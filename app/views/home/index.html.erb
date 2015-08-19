@@ -1,0 +1,6 @@
+<h1>GoCardless Reporting home</h1>
+<% if signed_in? %>
+	<%= link_to 'Log out', logout_connect_path, class: 'btn' %>
+<% else %>
+	<%= link_to 'Connect your GoCardless account', authorise_connect_path, class: 'btn' %>
+<% end %>
