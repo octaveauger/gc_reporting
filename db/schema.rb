@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819174507) do
+ActiveRecord::Schema.define(version: 20150820181126) do
 
   create_table "customer_bank_accounts", force: true do |t|
-    t.integer  "customer_id"
+    t.string   "customer_id"
     t.string   "account_holder_name"
     t.string   "country_code"
     t.string   "currency"
@@ -51,8 +51,41 @@ ActiveRecord::Schema.define(version: 20150819174507) do
   add_index "customers", ["gc_id"], name: "index_customers_on_gc_id"
   add_index "customers", ["organisation_id"], name: "index_customers_on_organisation_id"
 
+  create_table "events", force: true do |t|
+    t.string   "payment_id"
+    t.string   "action"
+    t.string   "origin"
+    t.string   "cause"
+    t.text     "description"
+    t.string   "scheme"
+    t.string   "reason_code"
+    t.string   "gc_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "gc_created_at"
+    t.string   "resource_type"
+    t.string   "mandate_id"
+    t.string   "payout_id"
+    t.string   "refund_id"
+    t.string   "subscription_id"
+    t.string   "new_customer_bank_account_id"
+    t.string   "previous_customer_bank_account_id"
+    t.string   "parent_event_id"
+  end
+
+  add_index "events", ["gc_id"], name: "index_events_on_gc_id"
+  add_index "events", ["mandate_id"], name: "index_events_on_mandate_id"
+  add_index "events", ["new_customer_bank_account_id"], name: "index_events_on_new_customer_bank_account_id"
+  add_index "events", ["parent_event_id"], name: "index_events_on_parent_event_id"
+  add_index "events", ["payment_id"], name: "index_events_on_payment_id"
+  add_index "events", ["payout_id"], name: "index_events_on_payout_id"
+  add_index "events", ["previous_customer_bank_account_id"], name: "index_events_on_previous_customer_bank_account_id"
+  add_index "events", ["refund_id"], name: "index_events_on_refund_id"
+  add_index "events", ["resource_type"], name: "index_events_on_resource_type"
+  add_index "events", ["subscription_id"], name: "index_events_on_subscription_id"
+
   create_table "mandates", force: true do |t|
-    t.integer  "customer_bank_account_id"
+    t.string   "customer_bank_account_id"
     t.string   "reference"
     t.string   "status"
     t.string   "scheme"
@@ -86,24 +119,8 @@ ActiveRecord::Schema.define(version: 20150819174507) do
 
   add_index "organisations", ["gc_id"], name: "index_organisations_on_gc_id"
 
-  create_table "payment_events", force: true do |t|
-    t.integer  "payment_id"
-    t.string   "action"
-    t.string   "origin"
-    t.string   "cause"
-    t.text     "description"
-    t.string   "scheme"
-    t.string   "reason_code"
-    t.string   "gc_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "payment_events", ["gc_id"], name: "index_payment_events_on_gc_id"
-  add_index "payment_events", ["payment_id"], name: "index_payment_events_on_payment_id"
-
   create_table "payments", force: true do |t|
-    t.integer  "mandate_id"
+    t.string   "mandate_id"
     t.date     "charge_date"
     t.integer  "amount"
     t.string   "description"

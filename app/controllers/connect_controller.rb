@@ -26,7 +26,7 @@ class ConnectController < ApplicationController
   		access_token: token.token)
   	session[:gc_token] = token.token
 
-  	redirect_to export_customers_path
+  	redirect_to gocardless_sync_path
   end
 
   def logout
