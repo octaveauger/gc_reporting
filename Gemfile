@@ -30,6 +30,7 @@ gem 'rerun'
 gem 'sinatra', :require => nil
 gem 'gocardless_pro', :git => 'https://github.com/gocardless/gocardless-pro-ruby.git'
 gem 'oauth2', '~> 1.0.0'
+gem 'celluloid'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
