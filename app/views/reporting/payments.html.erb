@@ -1,5 +1,7 @@
-<h1>Payment summary</h1>
-<%= link_to 'Export', reporting_payments_path(format: :csv) %>
+<div class="row">
+	<div class="col-sm-9"><h1>Payment summary</h1></div>
+	<div class="col-sm-3"><%= link_to 'Export', reporting_payments_path(format: :csv), class: 'btn pop pull-right', style: 'margin-top:30px' %></div>
+</div>
 
 <% if @payments.any? %>
 	<table class="table">
