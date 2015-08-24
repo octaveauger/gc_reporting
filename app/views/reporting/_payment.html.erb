@@ -6,7 +6,7 @@
 	</td>
 	<td><%= payment.description %></td>
 	<td><%= payment.charge_date.strftime('%d/%m/%Y') %></td>
-	<td><%= payment.currency.to_s + ' ' + (payment.amount/100).to_s %></td>
+	<td><%= payment.currency.to_s + ' ' + (payment.amount/100.0).to_s %></td>
 	<td><%= payment.reference %></td>
 	<td><%= payment.status %></td>
 	<td><%= payment.failure_cause %></td>

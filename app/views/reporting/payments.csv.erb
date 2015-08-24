@@ -1,5 +1,36 @@
-<%- headers = ['Name', 'Email'] -%>
+<%- headers = [
+	'Payment ID', 
+	'Payment creation date', 
+	'Customer ID', 
+	'First name', 
+	'Family name', 
+	'Company name', 
+	'Email', 
+	'Description', 
+	'Reference', 
+	'Expected charge date', 
+	'Currency', 
+	'Amount', 
+	'Amount refunded', 
+	'Status', 
+	'Failure cause'] -%>
 <%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
 <%- @payments.each do |payment| -%>
-  <%= CSV.generate_line [payment.gc_id, payment.customer.email], :row_sep => ?\t, :quote_char => ?\ %>
+  <%= CSV.generate_line [
+	  		payment.gc_id,
+	  		payment.gc_created_at.strftime('%d/%m/%Y  %k:%M'),
+	  		payment.customer.gc_id,
+	  		payment.customer.given_name,
+	  		payment.customer.family_name,
+	  		payment.customer.company_name,
+	  		payment.customer.email,
+	  		payment.description,
+	  		payment.reference,
+	  		payment.charge_date.strftime('%d/%m/%Y'),
+	  		payment.currency,
+	  		payment.amount/100.0,
+	  		payment.amount_refunded/100.0,
+	  		payment.status,
+	  		payment.failure_cause], 
+	  	:row_sep => ?\t, :quote_char => ?\ %>
 <%- end -%>
