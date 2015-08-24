@@ -1,0 +1,17 @@
+<h1>Payment summary</h1>
+<%= link_to 'Export', reporting_payments_path(format: :csv) %>
+
+<% if @payments.any? %>
+	<table class="table">
+		<th>Payment creation date</th>
+		<th>Customer</th>
+		<th>Description</th>
+		<th>Expected charge date</th>
+		<th>Amount</th>
+		<th>Reference</th>
+		<th>Status</th>
+		<th>Failure cause</th>
+		<%= render partial: 'reporting/payment', collection: @payments %>
+	</table>
+	<%= will_paginate @payments %>
+<% end %>

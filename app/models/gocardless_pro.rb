@@ -21,9 +21,9 @@ class GocardlessPro
 		  	params = { limit: 500 }
 		  	if @user.updated?(sync)
 	  			if sync == 'customer_bank_accounts'
-	  				params['before'] = @user.customer_bank_accounts.last_sync unless @user.customer_bank_accounts.count == 0 #TODO: TRIPLE CHECK
+	  				params['before'] = @user.customer_bank_accounts.last_sync unless @user.customer_bank_accounts.count == 0
 	  			elsif sync == 'mandates'
-	  				params['after'] = @user.mandates.last_sync unless @user.mandates.count == 0 #TODO: TRIPLE CHECK
+	  				params['before'] = @user.mandates.last_sync unless @user.mandates.count == 0
 	  			else
 	  				params['created_at[gt]'] = @user.last_update(sync)
 	  			end 

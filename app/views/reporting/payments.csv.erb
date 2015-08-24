@@ -1,0 +1,5 @@
+<%- headers = ['Name', 'Email'] -%>
+<%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
+<%- @payments.each do |payment| -%>
+  <%= CSV.generate_line [payment.gc_id, payment.customer.email], :row_sep => ?\t, :quote_char => ?\ %>
+<%- end -%>

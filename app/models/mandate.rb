@@ -3,6 +3,6 @@ class Mandate < ActiveRecord::Base
   has_many :payments, primary_key: 'gc_id', foreign_key: 'mandate_id'
 
   def self.last_sync
-  	order('gc_created_at desc').first
+  	order('gc_created_at desc').first.gc_id
   end
 end

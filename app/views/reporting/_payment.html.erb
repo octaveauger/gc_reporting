@@ -1,0 +1,13 @@
+<tr>
+	<td><%= payment.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td>
+		<%= payment.customer.full_name %><br/>
+		<%= payment.customer.email %>
+	</td>
+	<td><%= payment.description %></td>
+	<td><%= payment.charge_date.strftime('%d/%m/%Y') %></td>
+	<td><%= payment.currency.to_s + ' ' + (payment.amount/100).to_s %></td>
+	<td><%= payment.reference %></td>
+	<td><%= payment.status %></td>
+	<td><%= payment.failure_cause %></td>
+</tr>
