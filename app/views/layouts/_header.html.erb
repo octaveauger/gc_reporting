@@ -11,8 +11,9 @@
 
     <div class="collapse navbar-collapse" id="top-navbar">
       <ul class="nav navbar-nav">
+          <li><%= link_to "GoCardless Reporting", root_path, class: 'brand' %></li>
         <% if signed_in? %>
-          <li><%= link_to "Reporting", reporting_payments_path %></li>
+          <li><%= link_to "Payments", reporting_payments_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">
