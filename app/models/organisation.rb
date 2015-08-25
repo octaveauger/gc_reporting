@@ -22,4 +22,12 @@ class Organisation < ActiveRecord::Base
 			row.update(last_update: Time.current)
 		end
 	end
+
+	def recent_update?
+		['customers', 'customer_bank_accounts', 'mandates', 'payments', 'events'].reverse_each do |cat|
+			update = self.organisation_updates.where(category: cat).first
+			return false unless !update.nil? and update.last_update > 6.hours.ago
+		end
+		true
+	end
 end

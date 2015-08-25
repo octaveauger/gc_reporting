@@ -3,6 +3,13 @@
 	<div class="col-sm-3"><%= link_to 'Export', reporting_payments_path(format: :csv), class: 'btn pop pull-right', style: 'margin-top:30px' %></div>
 </div>
 
+<% if !current_user.recent_update? %>
+	<div class="alert alert-info" role="alert">
+		<div class="throbber-loader">Loading…</div>
+		<strong>Your data is currently being synchronised. Please reload your page in 10s.</strong>
+	</div>
+<% end %>
+
 <% if @payments.any? %>
 	<table class="table">
 		<th>Payment creation date</th>
@@ -16,4 +23,6 @@
 		<%= render partial: 'reporting/payment', collection: @payments %>
 	</table>
 	<%= will_paginate @payments %>
+<% else %>
+	<p>You have not created any payments yet or your data is synchronising</p>
 <% end %>

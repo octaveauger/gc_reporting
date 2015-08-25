@@ -26,7 +26,8 @@ class ConnectController < ApplicationController
   		access_token: token.token)
   	session[:gc_token] = token.token
 
-  	redirect_to gocardless_path
+  	SyncerJob.new.async.perform(current_user)
+    redirect_to reporting_payments_path
   end
 
   def logout

@@ -1,10 +1,10 @@
 class GocardlessPro
 
   	def initialize(user)
-		@client = GoCardlessPro::Client.new(
-		  access_token: user.access_token,
-		  environment: :sandbox
-		)
+		params = {}
+		params[:access_token] = user.access_token
+		params[:environment] = :sandbox unless Rails.env.production?
+		@client = GoCardlessPro::Client.new(params)
 		@user = user
 	end
 
