@@ -28,11 +28,12 @@ gem 'nokogiri', '~> 1.6.4.1'
 gem 'sidekiq'
 gem 'rerun'
 gem 'sinatra', :require => nil
-gem 'gocardless_pro', :git => 'https://github.com/gocardless/gocardless-pro-ruby.git'
+gem 'gocardless_pro'
 gem 'oauth2', '~> 1.0.0'
 gem 'will_paginate',			'3.0.4'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'simple_form'
+gem 'celluloid', '0.16.0'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
