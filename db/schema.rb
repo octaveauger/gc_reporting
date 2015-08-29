@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820181126) do
+ActiveRecord::Schema.define(version: 20150829202045) do
+
+  create_table "creditors", force: true do |t|
+    t.integer  "organisation_id"
+    t.string   "name"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "address_line3"
+    t.string   "city"
+    t.string   "region"
+    t.string   "postal_code"
+    t.string   "country_code"
+    t.string   "gc_id"
+    t.datetime "gc_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "creditors", ["gc_id"], name: "index_creditors_on_gc_id"
+  add_index "creditors", ["organisation_id"], name: "index_creditors_on_organisation_id"
 
   create_table "customer_bank_accounts", force: true do |t|
     t.string   "customer_id"
@@ -94,8 +113,10 @@ ActiveRecord::Schema.define(version: 20150820181126) do
     t.datetime "gc_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "creditor_id"
   end
 
+  add_index "mandates", ["creditor_id"], name: "index_mandates_on_creditor_id"
   add_index "mandates", ["customer_bank_account_id"], name: "index_mandates_on_customer_bank_account_id"
   add_index "mandates", ["gc_id"], name: "index_mandates_on_gc_id"
 
@@ -136,5 +157,55 @@ ActiveRecord::Schema.define(version: 20150820181126) do
 
   add_index "payments", ["gc_id"], name: "index_payments_on_gc_id"
   add_index "payments", ["mandate_id"], name: "index_payments_on_mandate_id"
+
+  create_table "payouts", force: true do |t|
+    t.integer  "creditor_id"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "reference"
+    t.string   "status"
+    t.string   "gc_id"
+    t.datetime "gc_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payouts", ["creditor_id"], name: "index_payouts_on_creditor_id"
+  add_index "payouts", ["gc_id"], name: "index_payouts_on_gc_id"
+
+  create_table "refunds", force: true do |t|
+    t.integer  "payment_id"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "gc_id"
+    t.datetime "gc_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refunds", ["gc_id"], name: "index_refunds_on_gc_id"
+  add_index "refunds", ["payment_id"], name: "index_refunds_on_payment_id"
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "mandate_id"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "status"
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "interval"
+    t.string   "interval_unit"
+    t.integer  "day_of_month"
+    t.string   "month"
+    t.string   "payment_reference"
+    t.string   "gc_id"
+    t.datetime "gc_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["gc_id"], name: "index_subscriptions_on_gc_id"
+  add_index "subscriptions", ["mandate_id"], name: "index_subscriptions_on_mandate_id"
 
 end

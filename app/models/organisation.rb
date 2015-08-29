@@ -4,7 +4,11 @@ class Organisation < ActiveRecord::Base
 	has_many :mandates, through: :customer_bank_accounts
 	has_many :payments, through: :mandates
 	has_many :events, through: :payments
+	has_many :payouts, through: :creditors
+	has_many :refunds, through: :payments
+	has_many :subscriptions, through: :mandates
 	has_many :organisation_updates
+	has_many :creditors
 
 	def updated?(cat)
 		self.organisation_updates.where(category: cat).count > 0
@@ -24,7 +28,8 @@ class Organisation < ActiveRecord::Base
 	end
 
 	def recent_update?
-		['customers', 'customer_bank_accounts', 'mandates', 'payments', 'events'].reverse_each do |cat|
+		['customers', 'customer_bank_accounts', 'mandates', 'payments', 
+			'payouts', 'refunds', 'subscriptions', 'events'].reverse_each do |cat|
 			update = self.organisation_updates.where(category: cat).first
 			return false unless !update.nil? and update.last_update > 6.hours.ago
 		end

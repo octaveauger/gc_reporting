@@ -8,7 +8,8 @@ class GocardlessPro
 		@user = user
 	end
 
-	SYNC_TABLES = ['customers', 'customer_bank_accounts', 'mandates', 'payments', 'events'].freeze
+	SYNC_TABLES = ['customers', 'customer_bank_accounts', 'mandates', 'payments', 
+		'payouts', 'refunds', 'subscriptions', 'events'].freeze # No creditos synced because this is restricted
 
 	def sync_data
 		SYNC_TABLES.each do |sync|
@@ -20,10 +21,18 @@ class GocardlessPro
 		ActiveRecord::Base.transaction do
 		  	params = { limit: 500 }
 		  	if @user.updated?(sync)
-	  			if sync == 'customer_bank_accounts'
+		  		if sync == 'creditor'
+	  				params['before'] = @user.creditors.last_sync unless @user.creditors.count == 0
+	  			elsif sync == 'customer_bank_accounts'
 	  				params['before'] = @user.customer_bank_accounts.last_sync unless @user.customer_bank_accounts.count == 0
 	  			elsif sync == 'mandates'
 	  				params['before'] = @user.mandates.last_sync unless @user.mandates.count == 0
+	  			elsif sync == 'payouts'
+	  				params['before'] = @user.payouts.last_sync unless @user.payouts.count == 0
+	  			elsif sync == 'refunds'
+	  				params['before'] = @user.refunds.last_sync unless @user.refunds.count == 0
+	  			elsif sync == 'subscriptions'
+	  				params['before'] = @user.subscriptions.last_sync unless @user.subscriptions.count == 0
 	  			else
 	  				params['created_at[gt]'] = @user.last_update(sync)
 	  			end 
@@ -35,6 +44,20 @@ class GocardlessPro
 
 		  	@user.updated(sync)
 		end
+	end
+
+	def add_creditors(record)
+		@user.creditors.create(
+			name: record.name,
+			address_line1: record.address_line1,
+			address_line2: record.address_line2,
+			address_line3: record.address_line3,
+			city: record.city,
+			region: record.region,
+			postal_code: record.postal_code,
+			country_code: record.country_code,
+			gc_id: record.id,
+			gc_created_at: record.created_at)
 	end
 
 	def add_customers(record)
@@ -69,6 +92,7 @@ class GocardlessPro
 	def add_mandates(record)
 		Mandate.create(
 			customer_bank_account_id: record.links.customer_bank_account,
+			creditor_id: record.links.creditor,
 			reference: record.reference,
 			status: record.status,
 			scheme: record.scheme,
@@ -87,6 +111,44 @@ class GocardlessPro
 			status: record.status,
 			reference: record.reference,
 			amount_refunded: record.amount_refunded,
+			gc_id: record.id,
+			gc_created_at: record.created_at)
+	end
+
+	def add_payouts(record)
+		Payout.create(
+			creditor_id: record.links.creditor,
+			amount: record.amount,
+			currency: record.currency,
+			reference: record.reference,
+			status: record.status,
+			gc_id: record.id,
+			gc_created_at: record.created_at)
+	end
+
+	def add_refunds(record)
+		Refund.create(
+			payment_id: record.links.payment,
+			amount: record.amount,
+			currency: record.currency,
+			gc_id: record.id,
+			gc_created_at: record.created_at)
+	end
+
+	def add_subscriptions(record)
+		Subscription.create(
+			mandate_id: record.links.mandate,
+			amount: record.amount,
+			currency: record.currency,
+			status: record.status,
+			name: record.name,
+			start_date: record.start_date,
+			end_date: record.end_date,
+			interval: record.interval,
+			interval_unit: record.interval_unit,
+			day_of_month: record.day_of_month,
+			month: record.month,
+			payment_reference: record.payment_reference,
 			gc_id: record.id,
 			gc_created_at: record.created_at)
 	end
