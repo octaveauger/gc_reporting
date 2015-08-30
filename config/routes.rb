@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
-  get "gocardless/sync"
-  get "gocardless", to: 'gocardless#index'
+  post "webhook", to: 'webhook#index'
   get "reporting", to: 'reporting#index'
   get "reporting/payments", to: 'reporting#payments'
 

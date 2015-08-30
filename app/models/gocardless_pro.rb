@@ -39,130 +39,191 @@ class GocardlessPro
 	  		end
 		  	
 		  	@client.method(sync).call.all(params: params).each do |record|
-		  		self.method('add_' + sync).call(record)
+		  		self.method('add_' + sync).call(record.as_json)
 		  	end
 
 		  	@user.updated(sync)
 		end
 	end
 
+	# Gets a single resource based on the GC id and its type (plural, e.g 'payments')
+	def get_resource(id, type)
+		@client.method(type).call.get(id)
+	end
+
 	def add_creditors(record)
-		@user.creditors.create(
-			name: record.name,
-			address_line1: record.address_line1,
-			address_line2: record.address_line2,
-			address_line3: record.address_line3,
-			city: record.city,
-			region: record.region,
-			postal_code: record.postal_code,
-			country_code: record.country_code,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			name: record['name'],
+			address_line1: record['address_line1'],
+			address_line2: record['address_line2'],
+			address_line3: record['address_line3'],
+			city: record['city'],
+			region: record['region'],
+			postal_code: record['postal_code'],
+			country_code: record['country_code'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		creditor = @user.creditors.find_by(gc_id: record['id'])
+		if creditor.nil?
+			@user.creditors.create(params)
+		else
+			creditor.update(params)
+		end
 	end
 
 	def add_customers(record)
-		@user.customers.create(
-			address_line1: record.address_line1,
-			address_line2: record.address_line2,
-			address_line3: record.address_line3,
-			city: record.city,
-			company_name: record.company_name,
-			country_code: record.country_code,
-			email: record.email,
-			given_name: record.given_name,
-			family_name: record.family_name,
-			postal_code: record.postal_code,
-			region: record.region,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = { 
+			address_line1: record['address_line1'],
+			address_line2: record['address_line2'],
+			address_line3: record['address_line3'],
+			city: record['city'],
+			company_name: record['company_name'],
+			country_code: record['country_code'],
+			email: record['email'],
+			given_name: record['given_name'],
+			family_name: record['family_name'],
+			postal_code: record['postal_code'],
+			region: record['region'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		customer = @user.customers.find_by(gc_id: record['id'])
+		if customer.nil?
+			@user.customers.create(params)
+		else
+			customer.update(params)
+		end
 	end
 
 	def add_customer_bank_accounts(record)
-		CustomerBankAccount.create(
-			customer_id: record.links.customer,
-			account_holder_name: record.account_holder_name,
-			country_code: record.country_code,
-			currency: record.currency,
-			bank_name: record.bank_name,
-			enabled: record.enabled,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			customer_id: record['links']['customer'],
+			account_holder_name: record['account_holder_name'],
+			country_code: record['country_code'],
+			currency: record['currency'],
+			bank_name: record['bank_name'],
+			enabled: record['enabled'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		customer_bank_account = @user.customer_bank_accounts.find_by(gc_id: record['id'])
+		if customer_bank_account.nil?
+			CustomerBankAccount.create(params)
+		else
+			customer_bank_account.update(params)
+		end
 	end
 
 	def add_mandates(record)
-		Mandate.create(
-			customer_bank_account_id: record.links.customer_bank_account,
-			creditor_id: record.links.creditor,
-			reference: record.reference,
-			status: record.status,
-			scheme: record.scheme,
-			next_possible_charge_date: record.next_possible_charge_date,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			customer_bank_account_id: record['links']['customer_bank_account'],
+			creditor_id: record['links']['creditor'],
+			reference: record['reference'],
+			status: record['status'],
+			scheme: record['scheme'],
+			next_possible_charge_date: record['next_possible_charge_date'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		mandate = @user.mandates.find_by(gc_id: record['id'])
+		if mandate.nil?
+			Mandate.create(params)
+		else
+			mandate.update(params)
+		end
 	end
 
 	def add_payments(record)
-		Payment.create(
-			mandate_id: record.links.mandate,
-			charge_date: record.charge_date,
-			amount: record.amount,
-			description: record.description,
-			currency: record.currency,
-			status: record.status,
-			reference: record.reference,
-			amount_refunded: record.amount_refunded,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			mandate_id: record['links']['mandate'],
+			charge_date: record['charge_date'],
+			amount: record['amount'],
+			description: record['description'],
+			currency: record['currency'],
+			status: record['status'],
+			reference: record['reference'],
+			amount_refunded: record['amount_refunded'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		payment = @user.payments.find_by(gc_id: record['id'])
+		if payment.nil?
+			Payment.create(params)
+		else
+			payment.update(params)
+		end
 	end
 
 	def add_payouts(record)
-		Payout.create(
-			creditor_id: record.links.creditor,
-			amount: record.amount,
-			currency: record.currency,
-			reference: record.reference,
-			status: record.status,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			creditor_id: record['links']['creditor'],
+			amount: record['amount'],
+			currency: record['currency'],
+			reference: record['reference'],
+			status: record['status'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		payout = @user.payouts.find_by(gc_id: record['id'])
+		if payout.nil?
+			Payout.create(params)
+		else
+			payout.update(params)
+		end
 	end
 
 	def add_refunds(record)
-		Refund.create(
-			payment_id: record.links.payment,
-			amount: record.amount,
-			currency: record.currency,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			payment_id: record['links']['payment'],
+			amount: record['amount'],
+			currency: record['currency'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		refund = @user.refunds.find_by(gc_id: record['id'])
+		if refund.nil?
+			Refund.create(params)
+		else
+			refund.update(params)
+		end
 	end
 
 	def add_subscriptions(record)
-		Subscription.create(
-			mandate_id: record.links.mandate,
-			amount: record.amount,
-			currency: record.currency,
-			status: record.status,
-			name: record.name,
-			start_date: record.start_date,
-			end_date: record.end_date,
-			interval: record.interval,
-			interval_unit: record.interval_unit,
-			day_of_month: record.day_of_month,
-			month: record.month,
-			payment_reference: record.payment_reference,
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+		params = {
+			mandate_id: record['links']['mandate'],
+			amount: record['amount'],
+			currency: record['currency'],
+			status: record['status'],
+			name: record['name'],
+			start_date: record['start_date'],
+			end_date: record['end_date'],
+			interval: record['interval'],
+			interval_unit: record['interval_unit'],
+			day_of_month: record['day_of_month'],
+			month: record['month'],
+			payment_reference: record['payment_reference'],
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		subscription = @user.subscriptions.find_by(gc_id: record['id'])
+		if subscription.nil?
+			Subscription.create(params)
+		else
+			subscription.update(params)
+		end
 	end
 
 	def add_events(record)
-		links = cleanup_event_links(record.links)
-		Event.create(
-			resource_type: record.resource_type,
-			action: record.action,
-			origin: record.details['origin'],
-			cause: record.details['cause'],
-			description: record.details['description'],
-			scheme: record.details['scheme'],
-			reason_code: record.details['reason_code'],
+		links = cleanup_event_links(record['links'])
+		params = {
+			resource_type: record['resource_type'],
+			action: record['action'],
+			origin: record['details']['origin'],
+			cause: record['details']['cause'],
+			description: record['details']['description'],
+			scheme: record['details']['scheme'],
+			reason_code: record['details']['reason_code'],
 			payment_id: links['payment'],
 			mandate_id: links['mandate'],
 			payout_id: links['payout'],
@@ -171,8 +232,15 @@ class GocardlessPro
 			new_customer_bank_account_id: links['new_customer_bank_account'],
 			previous_customer_bank_account_id: links['previous_customer_bank_account'],
 			parent_event_id: links['parent_event'],
-			gc_id: record.id,
-			gc_created_at: record.created_at)
+			gc_id: record['id'],
+			gc_created_at: record['created_at']
+		}
+		event = @user.events.find_by(gc_id: record['id'])
+		if event.nil?
+			Event.create(params)
+		else
+			event.update(params)
+		end
 	end
 
 	#Placeholder until Pro client links bug is fixed - does not include new and previous bank account links as they're unrecognisable using this method
