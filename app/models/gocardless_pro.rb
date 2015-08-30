@@ -215,7 +215,6 @@ class GocardlessPro
 	end
 
 	def add_events(record)
-		links = cleanup_event_links(record['links'])
 		params = {
 			resource_type: record['resource_type'],
 			action: record['action'],
@@ -224,14 +223,14 @@ class GocardlessPro
 			description: record['details']['description'],
 			scheme: record['details']['scheme'],
 			reason_code: record['details']['reason_code'],
-			payment_id: links['payment'],
-			mandate_id: links['mandate'],
-			payout_id: links['payout'],
-			refund_id: links['refund'],
-			subscription_id: links['subscription'],
-			new_customer_bank_account_id: links['new_customer_bank_account'],
-			previous_customer_bank_account_id: links['previous_customer_bank_account'],
-			parent_event_id: links['parent_event'],
+			payment_id: record['links']['payment'],
+			mandate_id: record['links']['mandate'],
+			payout_id: record['links']['payout'],
+			refund_id: record['links']['refund'],
+			subscription_id: record['links']['subscription'],
+			new_customer_bank_account_id: record['links']['new_customer_bank_account'],
+			previous_customer_bank_account_id: record['links']['previous_customer_bank_account'],
+			parent_event_id: record['links']['parent_event'],
 			gc_id: record['id'],
 			gc_created_at: record['created_at']
 		}
@@ -241,30 +240,6 @@ class GocardlessPro
 		else
 			event.update(params)
 		end
-	end
-
-	#Placeholder until Pro client links bug is fixed - does not include new and previous bank account links as they're unrecognisable using this method
-	def cleanup_event_links(dirty_links)
-		clean_links = {}
-		dirty_links.each do |resource|
-			if !resource.nil?
-				case resource[0..1]
-				when 'PM'
-					clean_links['payment'] = resource
-				when 'MD'
-					clean_links['mandate'] = resource
-				when 'SB'
-					clean_links['subscription'] = resource
-				when 'EV'
-					clean_links['parent_event'] = resource
-				when 'PO'
-					clean_links['payout'] = resource
-				when 'RF'
-					clean_links['refund'] = resource
-				end
-			end
-		end
-		clean_links
 	end
 
 end
