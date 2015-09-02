@@ -10,24 +10,29 @@ class ConnectController < ApplicationController
   end
 
   def callback
-  	if params[:error].present?
-  		case params[:error]
-  		when 'access_denied' then
-  			return redirect_to root_path, notice: 'You have cancelled the authorisation flow with GoCardless'
-  		else
-  			return redirect_to root_path, notice: 'There was an issue with the connection to GoCardless: #{params[:error_description]}'
-  		end
-  	end
+  	begin
+      if params[:error].present?
+    		case params[:error]
+    		when 'access_denied' then
+    			return redirect_to root_path, notice: 'You have cancelled the authorisation flow with GoCardless'
+    		else
+    			return redirect_to root_path, notice: 'There was an issue with the connection to GoCardless: #{params[:error_description]}'
+    		end
+    	end
 
-  	token = oauth.auth_code.get_token(params[:code],
-  		redirect_uri: ENV['GOCARDLESS_REDIRECT_URI'])
-  	Organisation.find_or_create_by(
-  		gc_id: token['organisation_id'],
-  		access_token: token.token)
-  	session[:gc_token] = token.token
+    	token = oauth.auth_code.get_token(params[:code],
+    		redirect_uri: ENV['GOCARDLESS_REDIRECT_URI'])
+    	Organisation.find_or_create_by(
+    		gc_id: token['organisation_id'],
+    		access_token: token.token)
+    	session[:gc_token] = token.token
 
-  	SyncerJob.new.async.perform(current_user)
-    redirect_to reporting_payments_path
+      SyncerJob.new.async.perform(current_user)
+      redirect_to reporting_payments_path
+    rescue => e
+      Utility.log_exception e
+      redirect_to root_path, alert: "Something went wrong and we've been notified"
+    end
   end
 
   def logout

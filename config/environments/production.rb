@@ -80,4 +80,22 @@ GcReporting::Application.configure do
 
   # Do not dump schema after migrations.
   #config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: 'https://gc-reporting.herokuapp.com/' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:                 'smtp.gmail.com',
+    port:                     587,
+    user_name:                ENV['GMAIL_USERNAME'],
+    password:                 ENV['GMAIL_PASSWORD'],
+    authentication:          'plain',
+    enable_starttls_auto:    true
+  }
+
+  config.middleware.use ExceptionNotification::Rack,
+     :email => {
+      :email_prefix => "[GC Reporting] ",
+      :sender_address => %{"notifier" <octave@gocardless.com>},
+      :exception_recipients => %w{octave@gocardless.com}
+    }
 end

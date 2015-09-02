@@ -18,32 +18,37 @@ class GocardlessPro
 	end
 
 	def sync_table(sync)
-		ActiveRecord::Base.transaction do
-		  	params = { limit: 500 }
-		  	if @user.updated?(sync)
-		  		if sync == 'creditor'
-	  				params['before'] = @user.creditors.last_sync unless @user.creditors.count == 0
-	  			elsif sync == 'customer_bank_accounts'
-	  				params['before'] = @user.customer_bank_accounts.last_sync unless @user.customer_bank_accounts.count == 0
-	  			elsif sync == 'mandates'
-	  				params['before'] = @user.mandates.last_sync unless @user.mandates.count == 0
-	  			elsif sync == 'payouts'
-	  				params['before'] = @user.payouts.last_sync unless @user.payouts.count == 0
-	  			elsif sync == 'refunds'
-	  				params['before'] = @user.refunds.last_sync unless @user.refunds.count == 0
-	  			elsif sync == 'subscriptions'
-	  				params['before'] = @user.subscriptions.last_sync unless @user.subscriptions.count == 0
-	  			else
-	  				params['created_at[gt]'] = @user.last_update(sync)
-	  			end 
-	  		end
-		  	
-		  	@client.method(sync).call.all(params: params).each do |record|
-		  		self.method('add_' + sync).call(record.as_json)
-		  	end
+		begin
+			ActiveRecord::Base.transaction do
+			  	params = { limit: 500 }
+			  	if @user.updated?(sync)
+			  		if sync == 'creditor'
+		  				params['before'] = @user.creditors.last_sync unless @user.creditors.count == 0
+		  			elsif sync == 'customer_bank_accounts'
+		  				params['before'] = @user.customer_bank_accounts.last_sync unless @user.customer_bank_accounts.count == 0
+		  			elsif sync == 'mandates'
+		  				params['before'] = @user.mandates.last_sync unless @user.mandates.count == 0
+		  			elsif sync == 'payouts'
+		  				params['before'] = @user.payouts.last_sync unless @user.payouts.count == 0
+		  			elsif sync == 'refunds'
+		  				params['before'] = @user.refunds.last_sync unless @user.refunds.count == 0
+		  			elsif sync == 'subscriptions'
+		  				params['before'] = @user.subscriptions.last_sync unless @user.subscriptions.count == 0
+		  			else
+		  				params['created_at[gt]'] = @user.last_update(sync)
+		  			end 
+		  		end
+			  	
+			  	@client.method(sync).call.all(params: params).each do |record|
+			  		self.method('add_' + sync).call(record.as_json)
+			  	end
 
-		  	@user.updated(sync)
-		end
+			  	@user.updated(sync)
+			end
+		rescue => e
+	    	Utility.log_exception e
+	    	flash[:alert] = "Something went wrong and we've been notified"
+	    end
 	end
 
 	# Gets a single resource based on the GC id and its type (plural, e.g 'payments')
