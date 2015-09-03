@@ -14,9 +14,9 @@ class ConnectController < ApplicationController
       if params[:error].present?
     		case params[:error]
     		when 'access_denied' then
-    			return redirect_to root_path, notice: 'You have cancelled the authorisation flow with GoCardless'
+    			return redirect_to root_path, notice: I18n.t('errors.gocardless.auth_cancelled')
     		else
-    			return redirect_to root_path, notice: 'There was an issue with the connection to GoCardless: #{params[:error_description]}'
+    			return redirect_to root_path, notice: I18n.t('errors.gocardless.auth_failed', error_description: params[:error_description])
     		end
     	end
 
@@ -31,13 +31,13 @@ class ConnectController < ApplicationController
       redirect_to reporting_payments_path
     rescue => e
       Utility.log_exception e
-      redirect_to root_path, alert: "Something went wrong and we've been notified"
+      redirect_to root_path, alert: I18n.t('errors.exceptions.default')
     end
   end
 
   def logout
   	session[:gc_token] = nil
-  	redirect_to root_path, notice: 'You have been logged out successfully'
+  	redirect_to root_path, notice: I18n.t('notices.logged_out')
   end
 
   private

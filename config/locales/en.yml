@@ -1,23 +1,79 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  will_paginate:
+    previous_label: '&#8592; Previous'
+    next_label: 'Next &#8594;'
+    page_gap: '&hellip;'
+  header:
+    toggle: 'Toggle navigation'
+    app_name: 'GoCardless Reporting'
+    link_payments: 'Payments'
+    link_connect: 'Connect'
+    link_logout: 'Log out'
+  errors:
+    gocardless:
+      auth_cancelled: 'You have cancelled the authorisation flow with GoCardless'
+      auth_failed: 'There was an issue with the connection to GoCardless: #{error_description}'
+    exceptions:
+      default: 'Something went wrong and we have been notified'
+  notices:
+    logged_out: 'You have been logged out successfully'
+    close: 'close'
+  gocardless:
+    payment:
+      status:
+        pending_submission: 'Pending submission'
+        submitted: 'Submitted'
+        confirmed: 'Confirmed'
+        failed: 'Failed'
+        charged_back: 'Charged back'
+        paid_out: 'Paid out'
+        cancelled: 'Cancelled'
+      cause:
+        payment_created: 'Payment created'
+        payment_cancelled: 'Payment cancelled'
+        payment_submitted: 'Payment submitted'
+        payment_confirmed: 'Payment confirmed'
+        payment_paid_out: 'Payment paid out'
+        payment_retried: 'Payment retried'
+        late_failure_settled: 'Late failure settled'
+        chargeback_settled: 'Chargeback settled'
+        test_failure: 'Test failure'
+        insufficient_funds: 'Insufficient funds'
+        refer_to_payer: 'Refer to payer'
+        bank_account_closed: 'Bank account closed'
+        direct_debit_not_enabled: 'Direct Debit not enabled'
+        invalid_bank_details: 'Invalid bank details'
+        bank_account_transferred: 'Bank account transferred'
+        mandate_cancelled: 'Mandate cancelled'
+        authorisation_disputed: 'Authorisation disputed'
+        refund_requested: 'Refund requested'
+  home:
+    index:
+      h1: 'Home'
+  reporting:
+    index:
+      h1: 'Payment reporting'
+      link_payments: 'Your payments'
+    payments:
+      h1: 'Payment summary'
+      link_export: 'Export'
+      csv_name: 'payment-list'
+      loading_loader_backup: 'Loading...'
+      loading_notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
+      table_title_payment_id: 'Payment ID'
+      table_title_payment_date: 'Payment creation date'
+      table_title_customer_id: 'Customer ID'
+      table_title_customer_fname: 'First name'
+      table_title_customer_lname: 'Family name'
+      table_title_company_name: 'Company name'
+      table_title_email: 'Email'
+      table_title_customer: 'Customer'
+      table_title_description: 'Description'
+      table_title_charge_date: 'Expected charge date'
+      table_title_currency: 'Currency'
+      table_title_amount: 'Amount'
+      table_title_amount_refunded: 'Amount refunded'
+      table_title_reference: 'Reference'
+      table_title_status: 'Status'
+      table_title_error_cause: 'Failure cause'
+      no_payments: 'You have not created any payments yet or your data is synchronising'

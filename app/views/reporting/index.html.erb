@@ -1,2 +1,3 @@
-<h1>GoCardless Reporting</h1>
-<%= link_to 'Your payments', reporting_payments_path %>
+<% provide(:title, t('.h1')) %>
+<h1><%= t('.h1') %></h1>
+<%= link_to t('.link_payments'), reporting_payments_path %>

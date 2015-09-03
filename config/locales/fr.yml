@@ -1,0 +1,79 @@
+fr:
+  will_paginate:
+    previous_label: '&#8592; Précédent'
+    next_label: 'Suivant &#8594;'
+    page_gap: '&hellip;'
+  header:
+    toggle: 'Changer navigation'
+    app_name: 'Rapports GoCardless'
+    link_payments: 'Paiements'
+    link_connect: 'Connection'
+    link_logout: 'Déconnection'
+  errors:
+    gocardless:
+      auth_cancelled: "Vous avez annulé l'autorisation avec votre compte GoCardless"
+      auth_failed: 'Il y eu un problème avec la connection vers GoCardless: #{error_description}'
+    exceptions:
+      default: 'Il y eu une erreur et nous en avons été alertés'
+  notices:
+    logged_out: 'Vous avez bien été déconnecté'
+    close: 'fermer'
+  gocardless:
+    payment:
+      status:
+        pending_submission: 'En attente de soumission'
+        submitted: 'Soumis'
+        confirmed: 'Confirmé'
+        failed: 'Echoué'
+        charged_back: 'Contesté'
+        paid_out: 'Reversé'
+        cancelled: 'Annulé'
+      cause:
+        payment_created: 'Paiement créé'
+        payment_cancelled: 'Paiement annulé'
+        payment_submitted: 'Paiement soumis'
+        payment_confirmed: 'Paiement confirmé'
+        payment_paid_out: 'Paiement reversé'
+        payment_retried: 'Paiement représenté'
+        late_failure_settled: 'Erreur tardive recouvrée'
+        chargeback_settled: 'Contestation recouvrée'
+        test_failure: 'Rejet test'
+        insufficient_funds: 'Fonds insuffisants'
+        refer_to_payer: 'Contactez le client'
+        bank_account_closed: 'Compte en banque fermé'
+        direct_debit_not_enabled: 'Prélèvement impossible'
+        invalid_bank_details: 'Données bancaires invalides'
+        bank_account_transferred: 'Compte en banque transferré'
+        mandate_cancelled: 'Mandat annulé'
+        authorisation_disputed: 'Autorisation contestée'
+        refund_requested: 'Remboursement réclamé'
+  home:
+    index:
+      h1: 'Accueil'
+  reporting:
+    index:
+      h1: 'Rapport de paiements'
+      link_payments: 'Vos paiements'
+    payments:
+      h1: 'Rapport de paiements'
+      link_export: 'Exporter'
+      csv_name: 'liste-paiements'
+      loading_loader_backup: 'Chargement...'
+      loading_notice: 'Vos données sont en cours de synchronisation. Rechargez cette page dans 10 secondes.'
+      table_title_payment_id: 'Identifiant paiement'
+      table_title_payment_date: 'Date de création du paiement'
+      table_title_customer_id: 'Identifiant client'
+      table_title_customer_fname: 'Prénom'
+      table_title_customer_lname: 'Nom de famille'
+      table_title_company_name: "Nom d'entreprise"
+      table_title_email: 'Email'
+      table_title_customer: 'Client'
+      table_title_description: 'Description'
+      table_title_charge_date: 'Date de prélèvement prévue'
+      table_title_currency: 'Devise'
+      table_title_amount: 'Somme'
+      table_title_amount_refunded: 'Somme remboursée'
+      table_title_reference: 'Référence'
+      table_title_status: 'Statut'
+      table_title_error_cause: 'Cause de rejet'
+      no_payments: "Vous n'avez pas créé de paiements ou vos données sont encore en train de synchroniser"

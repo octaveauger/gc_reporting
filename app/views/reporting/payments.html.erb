@@ -1,28 +1,29 @@
+<% provide(:title, t('.h1')) %>
 <div class="row">
-	<div class="col-sm-9"><h1>Payment summary</h1></div>
-	<div class="col-sm-3"><%= link_to 'Export', reporting_payments_path(format: :csv), class: 'btn pop pull-right', style: 'margin-top:30px' %></div>
+	<div class="col-sm-9"><h1><%= t('.h1') %></h1></div>
+	<div class="col-sm-3"><%= link_to t('.link_export'), reporting_payments_path(format: :csv), class: 'btn pop pull-right', style: 'margin-top:30px' %></div>
 </div>
 
 <% if !current_user.recent_update? %>
 	<div class="alert alert-info" role="alert">
-		<div class="throbber-loader">Loading…</div>
-		<strong>Your data is currently being synchronised. Please reload your page in 10s.</strong>
+		<div class="throbber-loader"><%= t('.loading_loader_backup') %></div>
+		<strong><%= t('.loading_notice') %></strong>
 	</div>
 <% end %>
 
 <% if @payments.any? %>
 	<table class="table">
-		<th>Payment creation date</th>
-		<th>Customer</th>
-		<th>Description</th>
-		<th>Expected charge date</th>
-		<th>Amount</th>
-		<th>Reference</th>
-		<th>Status</th>
-		<th>Failure cause</th>
+		<th><%= t('.table_title_payment_date') %></th>
+		<th><%= t('.table_title_customer') %></th>
+		<th><%= t('.table_title_description') %></th>
+		<th><%= t('.table_title_charge_date') %></th>
+		<th><%= t('.table_title_amount') %></th>
+		<th><%= t('.table_title_reference') %></th>
+		<th><%= t('.table_title_status') %></th>
+		<th><%= t('.table_title_error_cause') %></th>
 		<%= render partial: 'reporting/payment', collection: @payments %>
 	</table>
 	<%= will_paginate @payments %>
 <% else %>
-	<p>You have not created any payments yet or your data is synchronising</p>
+	<p><%= t('.no_payments') %></p>
 <% end %>
