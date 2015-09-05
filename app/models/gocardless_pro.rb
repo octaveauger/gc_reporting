@@ -56,25 +56,15 @@ class GocardlessPro
 		@client.method(type).call.get(id)
 	end
 
-	def add_creditors(record)
-		params = {
-			name: record['name'],
-			address_line1: record['address_line1'],
-			address_line2: record['address_line2'],
-			address_line3: record['address_line3'],
-			city: record['city'],
-			region: record['region'],
-			postal_code: record['postal_code'],
-			country_code: record['country_code'],
-			gc_id: record['id'],
-			gc_created_at: record['created_at']
-		}
-		creditor = @user.creditors.find_by(gc_id: record['id'])
+	def add_creditors(creditor_gc_id)
+		params = { gc_id: creditor_gc_id }
+		creditor = @user.creditors.find_by(gc_id: creditor_gc_id)
 		if creditor.nil?
-			@user.creditors.create(params)
+			creditor = @user.creditors.create(params)
 		else
 			creditor.update(params)
 		end
+		creditor
 	end
 
 	def add_customers(record)
@@ -161,6 +151,7 @@ class GocardlessPro
 	end
 
 	def add_payouts(record)
+		creditor = self.add_creditors(record['links']['creditor']) # As long as Creditor endpoint not available by oAuth apps, we add them manually
 		params = {
 			creditor_id: record['links']['creditor'],
 			amount: record['amount'],

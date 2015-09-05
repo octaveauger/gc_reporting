@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905204108) do
+ActiveRecord::Schema.define(version: 20150905223022) do
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 20150905204108) do
   add_index "payments", ["mandate_id"], name: "index_payments_on_mandate_id"
 
   create_table "payouts", force: true do |t|
-    t.integer  "creditor_id"
+    t.string   "creditor_id"
     t.integer  "amount"
     t.string   "currency"
     t.string   "reference"
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150905204108) do
   add_index "payouts", ["gc_id"], name: "index_payouts_on_gc_id"
 
   create_table "refunds", force: true do |t|
-    t.integer  "payment_id"
+    t.string   "payment_id"
     t.integer  "amount"
     t.string   "currency"
     t.string   "gc_id"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20150905204108) do
   add_index "refunds", ["payment_id"], name: "index_refunds_on_payment_id"
 
   create_table "subscriptions", force: true do |t|
-    t.integer  "mandate_id"
+    t.string   "mandate_id"
     t.integer  "amount"
     t.string   "currency"
     t.string   "status"

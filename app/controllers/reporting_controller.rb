@@ -29,4 +29,10 @@ class ReportingController < ApplicationController
       flash[:alert] = I18n.t('errors.exceptions.default')
     end
   end
+
+  def payout
+    @payout = current_user.payouts.find_by(gc_id: params[:payout_gc_id])
+    redirect_to reporting_payouts_path, alert: 'This payout could not be found' if @payout.nil?
+    
+  end
 end
