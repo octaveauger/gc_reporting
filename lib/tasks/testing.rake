@@ -11,6 +11,7 @@ namespace :testing do
   	Refund.destroy_all
   	Subscription.destroy_all
   	Event.destroy_all
+    Fee.destroy_all
   	OrganisationUpdate.destroy_all
   end
 end

@@ -7,6 +7,7 @@ en:
     toggle: 'Toggle navigation'
     app_name: 'GoCardless Reporting'
     link_payments: 'Payments'
+    link_payouts: 'Payouts'
     link_connect: 'Connect'
     link_logout: 'Log out'
   errors:
@@ -47,10 +48,17 @@ en:
         mandate_cancelled: 'Mandate cancelled'
         authorisation_disputed: 'Authorisation disputed'
         refund_requested: 'Refund requested'
+    payout:
+      status:
+        pending: 'Pending'
+        paid: 'Paid'
   home:
     index:
       h1: 'Home'
   reporting:
+    loading:
+      loader_backup: 'Loading...'
+      notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
     index:
       h1: 'Payment reporting'
       link_payments: 'Your payments'
@@ -58,8 +66,6 @@ en:
       h1: 'Payment summary'
       link_export: 'Export'
       csv_name: 'payment-list'
-      loading_loader_backup: 'Loading...'
-      loading_notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
       table_title_payment_id: 'Payment ID'
       table_title_payment_date: 'Payment creation date'
       table_title_customer_id: 'Customer ID'
@@ -77,3 +83,12 @@ en:
       table_title_status: 'Status'
       table_title_error_cause: 'Failure cause'
       no_payments: 'You have not created any payments yet or your data is synchronising'
+    payouts:
+      h1: 'Payout summary'
+      fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
+      table_title_payout_date: 'Payout creation date'
+      table_title_amount: 'Amount'
+      table_title_fees: 'Fees'
+      table_title_status: 'Status'
+      table_title_reference: 'Reference'
+      no_payouts: 'You have no payout yet or your data is synchronising'

@@ -7,6 +7,7 @@ fr:
     toggle: 'Changer navigation'
     app_name: 'Rapports GoCardless'
     link_payments: 'Paiements'
+    link_payouts: 'Reversements'
     link_connect: 'Connection'
     link_logout: 'Déconnection'
   errors:
@@ -47,10 +48,17 @@ fr:
         mandate_cancelled: 'Mandat annulé'
         authorisation_disputed: 'Autorisation contestée'
         refund_requested: 'Remboursement réclamé'
+    payout:
+      status:
+        pending: 'En attente'
+        paid: 'Payé'
   home:
     index:
       h1: 'Accueil'
   reporting:
+    loading:
+      loader_backup: 'Chargement...'
+      notice: 'Vos données sont en cours de synchronisation. Rafraichissez cette page dans 10 secondes.'
     index:
       h1: 'Rapport de paiements'
       link_payments: 'Vos paiements'
@@ -58,8 +66,6 @@ fr:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'
       csv_name: 'liste-paiements'
-      loading_loader_backup: 'Chargement...'
-      loading_notice: 'Vos données sont en cours de synchronisation. Rechargez cette page dans 10 secondes.'
       table_title_payment_id: 'Identifiant paiement'
       table_title_payment_date: 'Date de création du paiement'
       table_title_customer_id: 'Identifiant client'
@@ -77,3 +83,12 @@ fr:
       table_title_status: 'Statut'
       table_title_error_cause: 'Cause de rejet'
       no_payments: "Vous n'avez pas créé de paiements ou vos données sont encore en train de synchroniser"
+    payouts:
+      h1: 'Rapport de reversements'
+      fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
+      table_title_payout_date: 'Date de création du reversement'
+      table_title_amount: 'Somme'
+      table_title_fees: 'Frais'
+      table_title_status: 'Statut'
+      table_title_reference: 'Référence'
+      no_payouts: "Vous n'avez pas de reversements ou vos données sont encore en train de synchroniser"

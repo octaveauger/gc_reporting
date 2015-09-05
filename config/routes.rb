@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  post "webhook", to: 'webhook#index'
+  post 'webhook', to: 'webhook#index'
   
   localized do
     root to: 'home#index'
-	get "reporting", to: 'reporting#index'
-	get "reporting/payments", to: 'reporting#payments'
+	get 'reporting', to: 'reporting#index'
+	get 'reporting/payments', to: 'reporting#payments'
+  get 'reporting/payouts', to: 'reporting#payouts'
   end
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root

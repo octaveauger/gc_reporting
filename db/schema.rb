@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905184829) do
+ActiveRecord::Schema.define(version: 20150905204108) do
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20150905184829) do
   add_index "events", ["subscription_id"], name: "index_events_on_subscription_id"
 
   create_table "fees", force: true do |t|
-    t.integer  "event_id"
+    t.string   "event_id"
     t.integer  "amount"
     t.string   "currency"
     t.datetime "created_at"

@@ -14,6 +14,7 @@
           <li><%= link_to t('header.app_name'), root_path, class: 'brand' %></li>
         <% if signed_in? %>
           <li><%= link_to t('header.link_payments'), reporting_payments_path %></li>
+          <li><%= link_to t('header.link_payouts'), reporting_payouts_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">

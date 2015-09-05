@@ -1,0 +1,7 @@
+<tr>
+	<td><%= payout.gc_created_at.strftime('%d/%m/%Y') %></td>
+	<td><%= payout.currency.to_s + ' ' + (payout.amount/100.0).to_s %></td>
+	<td><%= payout.currency.to_s + ' ' + (payout.sum_fees/100.0).to_s %></td>
+	<td><%= payout.reference %></td>
+	<td><%= t('gocardless.payout.status.' + payout.status) %></td>
+</tr>

@@ -20,4 +20,13 @@ class ReportingController < ApplicationController
       flash[:alert] = I18n.t('errors.exceptions.default')
     end
   end
+
+  def payouts
+    begin
+      @payouts = Payout.includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+    rescue => e
+      Utility.log_exception e
+      flash[:alert] = I18n.t('errors.exceptions.default')
+    end
+  end
 end

@@ -5,10 +5,7 @@
 </div>
 
 <% if !current_user.recent_update? %>
-	<div class="alert alert-info" role="alert">
-		<div class="throbber-loader"><%= t('.loading_loader_backup') %></div>
-		<strong><%= t('.loading_notice') %></strong>
-	</div>
+	<%= render partial: 'reporting/loading' %>
 <% end %>
 
 <% if @payments.any? %>
