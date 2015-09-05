@@ -5,7 +5,6 @@
 <% if !current_user.recent_update? %>
 	<%= render partial: 'reporting/loading' %>
 <% end %>
-
 <% if @payouts.any? %>
 	<table class="table">
 		<th><%= t('.table_title_payout_date') %></th>
@@ -13,6 +12,7 @@
 		<th><%= t('.table_title_fees') %></th>
 		<th><%= t('.table_title_status') %></th>
 		<th><%= t('.table_title_reference') %></th>
+		<th></th>
 		<%= render partial: 'reporting/payout', collection: @payouts %>
 	</table>
 	<%= will_paginate @payouts %>

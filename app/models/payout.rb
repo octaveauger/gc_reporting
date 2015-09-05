@@ -8,7 +8,7 @@ class Payout < ActiveRecord::Base
   def self.last_sync
   	order('gc_created_at desc').first.gc_id
   end
-
+  
   def sum_fees
   	sum = 0
   	self.fees.each do |fee|
