@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829202045) do
+ActiveRecord::Schema.define(version: 20150905184829) do
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150829202045) do
     t.string   "parent_event_id"
   end
 
+  add_index "events", ["action"], name: "index_events_on_action"
   add_index "events", ["gc_id"], name: "index_events_on_gc_id"
   add_index "events", ["mandate_id"], name: "index_events_on_mandate_id"
   add_index "events", ["new_customer_bank_account_id"], name: "index_events_on_new_customer_bank_account_id"
@@ -102,6 +103,16 @@ ActiveRecord::Schema.define(version: 20150829202045) do
   add_index "events", ["refund_id"], name: "index_events_on_refund_id"
   add_index "events", ["resource_type"], name: "index_events_on_resource_type"
   add_index "events", ["subscription_id"], name: "index_events_on_subscription_id"
+
+  create_table "fees", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "amount"
+    t.string   "currency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fees", ["event_id"], name: "index_fees_on_event_id"
 
   create_table "mandates", force: true do |t|
     t.string   "customer_bank_account_id"

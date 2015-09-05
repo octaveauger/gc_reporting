@@ -241,9 +241,33 @@ class GocardlessPro
 		}
 		event = @user.events.find_by(gc_id: record['id'])
 		if event.nil?
-			Event.create(params)
+			event = Event.create(params)
 		else
 			event.update(params)
+		end
+
+		# If fees are due because this event is about a payout
+		if (
+				event.resource_type == 'payments' and 
+				['paid_out', 'late_failure_settled', 'chargeback_settled'].include? (event.action)
+			) or (
+				event.resource_type == 'refunds' and
+				event.action == 'refund_settled'
+			)
+			self.add_fees(event)
+		end
+	end
+
+	def add_fees(event)
+		case event.action
+			when 'paid_out'
+				event.fees.create(amount: [200, event.payment.amount * 0.01].min, currency: event.payment.currency)
+			when 'late_failure_settled'
+				event.fees.create(amount: -[200, event.payment.amount * 0.01].min, currency: event.payment.currency)
+			when 'chargeback_settled'
+				event.fees.create(amount: 0, currency: event.payment.currency)
+			when 'refund_settled'
+				event.fees.create(amount: 0, currency: event.refund.currency)
 		end
 	end
 
