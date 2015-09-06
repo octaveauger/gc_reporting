@@ -241,6 +241,17 @@ tr:first-of-type {
   border-top: none !important;
 }
 
+/* Layout */
+
+.panel {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.h1-btn {
+  margin-top: 25px;
+}
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;

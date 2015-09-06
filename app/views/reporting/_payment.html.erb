@@ -6,7 +6,7 @@
 	</td>
 	<td><%= payment.description %></td>
 	<td><%= payment.charge_date.strftime('%d/%m/%Y') %></td>
-	<td><%= payment.currency.to_s + ' ' + (payment.amount/100.0).to_s %></td>
+	<td><%= number_to_currency(payment.amount/100.0, precision: 2, unit: currency_symbol(payment.currency)) %></td>
 	<td><%= payment.reference %></td>
 	<td><%= t('gocardless.payment.status.' + payment.status) %></td>
 	<td><%= t('gocardless.payment.cause.' + payment.failure_cause) unless payment.failure_cause.empty? %></td>

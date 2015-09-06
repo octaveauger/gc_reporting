@@ -1,14 +1,11 @@
 <% provide(:title, t('.h1')) %>
 <div class="row">
 	<div class="col-sm-9"><h1><%= t('.h1') %></h1></div>
-	<div class="col-sm-3"><%= link_to t('.link_export'), reporting_payments_path(format: :csv), class: 'btn pop pull-right', style: 'margin-top:30px' %></div>
+	<div class="col-sm-3"><%= link_to t('.link_export'), reporting_payments_path(format: :csv), class: 'btn pop pull-right h1-btn' %></div>
 </div>
 
 <% if !current_user.recent_update? %>
-	<div class="alert alert-info" role="alert">
-		<div class="throbber-loader"><%= t('.loading_loader_backup') %></div>
-		<strong><%= t('.loading_notice') %></strong>
-	</div>
+	<%= render partial: 'reporting/loading' %>
 <% end %>
 
 <% if @payments.any? %>

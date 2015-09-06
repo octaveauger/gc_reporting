@@ -56,25 +56,15 @@ class GocardlessPro
 		@client.method(type).call.get(id)
 	end
 
-	def add_creditors(record)
-		params = {
-			name: record['name'],
-			address_line1: record['address_line1'],
-			address_line2: record['address_line2'],
-			address_line3: record['address_line3'],
-			city: record['city'],
-			region: record['region'],
-			postal_code: record['postal_code'],
-			country_code: record['country_code'],
-			gc_id: record['id'],
-			gc_created_at: record['created_at']
-		}
-		creditor = @user.creditors.find_by(gc_id: record['id'])
+	def add_creditors(creditor_gc_id)
+		params = { gc_id: creditor_gc_id }
+		creditor = @user.creditors.find_by(gc_id: creditor_gc_id)
 		if creditor.nil?
-			@user.creditors.create(params)
+			creditor = @user.creditors.create(params)
 		else
 			creditor.update(params)
 		end
+		creditor
 	end
 
 	def add_customers(record)
@@ -161,6 +151,7 @@ class GocardlessPro
 	end
 
 	def add_payouts(record)
+		creditor = self.add_creditors(record['links']['creditor']) # As long as Creditor endpoint not available by oAuth apps, we add them manually
 		params = {
 			creditor_id: record['links']['creditor'],
 			amount: record['amount'],
@@ -241,9 +232,33 @@ class GocardlessPro
 		}
 		event = @user.events.find_by(gc_id: record['id'])
 		if event.nil?
-			Event.create(params)
+			event = Event.create(params)
 		else
 			event.update(params)
+		end
+
+		# If fees are due because this event is about a payout
+		if (
+				event.resource_type == 'payments' and 
+				['paid_out', 'late_failure_settled', 'chargeback_settled'].include? (event.action)
+			) or (
+				event.resource_type == 'refunds' and
+				event.action == 'refund_settled'
+			)
+			self.add_fees(event)
+		end
+	end
+
+	def add_fees(event)
+		case event.action
+			when 'paid_out'
+				Fee.create(event_id: event.gc_id, amount: [200, event.payment.amount * 0.01].min, currency: event.payment.currency)
+			when 'late_failure_settled'
+				Fee.create(event_id: event.gc_id, amount: -[200, event.payment.amount * 0.01].min, currency: event.payment.currency)
+			when 'chargeback_settled'
+				Fee.create(event_id: event.gc_id, amount: 0, currency: event.payment.currency)
+			when 'refund_settled'
+				Fee.create(event_id: event.gc_id, amount: 0, currency: event.refund.currency)
 		end
 	end
 

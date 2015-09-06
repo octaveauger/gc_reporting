@@ -1,4 +1,207 @@
 en:
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    - 
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    - 
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      present: must be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      record_invalid: 'Validation failed: %{errors}'
+      restrict_dependent_destroy:
+        one: Cannot delete record because a dependent %{record} exists
+        many: Cannot delete record because dependent %{record} exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: must be other than %{count}
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
   will_paginate:
     previous_label: '&#8592; Previous'
     next_label: 'Next &#8594;'
@@ -7,17 +210,19 @@ en:
     toggle: 'Toggle navigation'
     app_name: 'GoCardless Reporting'
     link_payments: 'Payments'
+    link_payouts: 'Payouts'
     link_connect: 'Connect'
     link_logout: 'Log out'
   errors:
     gocardless:
       auth_cancelled: 'You have cancelled the authorisation flow with GoCardless'
-      auth_failed: 'There was an issue with the connection to GoCardless: #{error_description}'
+      auth_failed: 'There was an issue with the connection to GoCardless: %{error_description}'
     exceptions:
       default: 'Something went wrong and we have been notified'
   notices:
     logged_out: 'You have been logged out successfully'
     close: 'close'
+    payout_not_found: 'This payout could not be found'
   gocardless:
     payment:
       status:
@@ -47,10 +252,23 @@ en:
         mandate_cancelled: 'Mandate cancelled'
         authorisation_disputed: 'Authorisation disputed'
         refund_requested: 'Refund requested'
+        paid_out: 'Paid out'
+    refund:
+      actions:
+        created: 'Created'
+        paid: 'Paid'
+        refund_settled: 'Refund settled'
+    payout:
+      status:
+        pending: 'Pending'
+        paid: 'Paid'
   home:
     index:
       h1: 'Home'
   reporting:
+    loading:
+      loader_backup: 'Loading...'
+      notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
     index:
       h1: 'Payment reporting'
       link_payments: 'Your payments'
@@ -58,8 +276,6 @@ en:
       h1: 'Payment summary'
       link_export: 'Export'
       csv_name: 'payment-list'
-      loading_loader_backup: 'Loading...'
-      loading_notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
       table_title_payment_id: 'Payment ID'
       table_title_payment_date: 'Payment creation date'
       table_title_customer_id: 'Customer ID'
@@ -77,3 +293,35 @@ en:
       table_title_status: 'Status'
       table_title_error_cause: 'Failure cause'
       no_payments: 'You have not created any payments yet or your data is synchronising'
+    payouts:
+      h1: 'Payout summary'
+      fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
+      table_title_payout_date: 'Payout creation date'
+      table_title_amount: 'Amount'
+      table_title_fees: 'Fees'
+      table_title_status: 'Status'
+      table_title_reference: 'Reference'
+      no_payouts: 'You have no payout yet or your data is synchronising'
+    payout:
+      h1: 'Payout'
+      link_export: 'Export'
+      csv_name: 'payout-list'
+      payout_date: 'Date'
+      payout_amount: 'Amount'
+      payout_fees: 'Fees'
+      table_title_resource_id: 'GoCardless ID'
+      table_title_type: 'Type'
+      table_title_action: 'Action'
+      table_title_charge_date: 'Charge date'
+      table_title_customer_id: 'Customer ID'
+      table_title_customer_fname: 'First name'
+      table_title_customer_lname: 'Family name'
+      table_title_company_name: 'Company name'
+      table_title_email: 'Email'
+      table_title_customer: 'Customer'
+      table_title_currency: 'Currency'
+      table_title_credit: 'Credit'
+      table_title_debit: 'Debit'
+      table_title_fees: 'Fees'
+      refund: 'Refund'
+      payment: 'Payment'
