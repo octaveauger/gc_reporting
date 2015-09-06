@@ -218,12 +218,13 @@ fr:
   errors:
     gocardless:
       auth_cancelled: "Vous avez annulé l'autorisation avec votre compte GoCardless"
-      auth_failed: 'Il y eu un problème avec la connection vers GoCardless: #{error_description}'
+      auth_failed: 'Il y eu un problème avec la connection vers GoCardless: %{error_description}'
     exceptions:
       default: 'Il y eu une erreur et nous en avons été alertés'
   notices:
     logged_out: 'Vous avez bien été déconnecté'
     close: 'fermer'
+    payout_not_found: "Ce reversement n'a pas pu être trouvé"
   gocardless:
     payment:
       status:
@@ -253,6 +254,12 @@ fr:
         mandate_cancelled: 'Mandat annulé'
         authorisation_disputed: 'Autorisation contestée'
         refund_requested: 'Remboursement réclamé'
+        paid_out: 'Payé'
+    refund:
+      actions:
+        created: 'Créé'
+        paid: 'Payé'
+        refund_settled: 'Remboursement exécuté'
     payout:
       status:
         pending: 'En attente'
@@ -297,3 +304,26 @@ fr:
       table_title_status: 'Statut'
       table_title_reference: 'Référence'
       no_payouts: "Vous n'avez pas de reversements ou vos données sont encore en train de synchroniser"
+    payout:
+      h1: 'Reversement'
+      link_export: 'Exporter'
+      csv_name: 'liste-reversements'
+      payout_date: 'Date'
+      payout_amount: 'Somme'
+      payout_fees: 'Frais'
+      table_title_resource_id: 'Identifiant GoCardless'
+      table_title_type: 'Type'
+      table_title_action: 'Action'
+      table_title_charge_date: 'Date de paiement'
+      table_title_customer_id: 'Identifiant client'
+      table_title_customer_fname: 'Prénom'
+      table_title_customer_lname: 'Nom de famille'
+      table_title_company_name: "Nom d'entreprise"
+      table_title_email: 'Email'
+      table_title_customer: 'Client'
+      table_title_currency: 'Devise'
+      table_title_credit: 'Crédit'
+      table_title_debit: 'Débit'
+      table_title_fees: 'Frais'
+      refund: 'Remboursement'
+      payment: 'Paiement'

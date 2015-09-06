@@ -216,12 +216,13 @@ en:
   errors:
     gocardless:
       auth_cancelled: 'You have cancelled the authorisation flow with GoCardless'
-      auth_failed: 'There was an issue with the connection to GoCardless: #{error_description}'
+      auth_failed: 'There was an issue with the connection to GoCardless: %{error_description}'
     exceptions:
       default: 'Something went wrong and we have been notified'
   notices:
     logged_out: 'You have been logged out successfully'
     close: 'close'
+    payout_not_found: 'This payout could not be found'
   gocardless:
     payment:
       status:
@@ -251,6 +252,12 @@ en:
         mandate_cancelled: 'Mandate cancelled'
         authorisation_disputed: 'Authorisation disputed'
         refund_requested: 'Refund requested'
+        paid_out: 'Paid out'
+    refund:
+      actions:
+        created: 'Created'
+        paid: 'Paid'
+        refund_settled: 'Refund settled'
     payout:
       status:
         pending: 'Pending'
@@ -295,3 +302,26 @@ en:
       table_title_status: 'Status'
       table_title_reference: 'Reference'
       no_payouts: 'You have no payout yet or your data is synchronising'
+    payout:
+      h1: 'Payout'
+      link_export: 'Export'
+      csv_name: 'payout-list'
+      payout_date: 'Date'
+      payout_amount: 'Amount'
+      payout_fees: 'Fees'
+      table_title_resource_id: 'GoCardless ID'
+      table_title_type: 'Type'
+      table_title_action: 'Action'
+      table_title_charge_date: 'Charge date'
+      table_title_customer_id: 'Customer ID'
+      table_title_customer_fname: 'First name'
+      table_title_customer_lname: 'Family name'
+      table_title_company_name: 'Company name'
+      table_title_email: 'Email'
+      table_title_customer: 'Customer'
+      table_title_currency: 'Currency'
+      table_title_credit: 'Credit'
+      table_title_debit: 'Debit'
+      table_title_fees: 'Fees'
+      refund: 'Refund'
+      payment: 'Payment'

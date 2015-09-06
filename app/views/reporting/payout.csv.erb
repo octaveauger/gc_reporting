@@ -1,0 +1,50 @@
+<%- headers = [
+	t('.table_title_resource_id'), 
+	t('.table_title_type'),
+	t('.table_title_action'),
+	t('.table_title_charge_date'), 
+	t('.table_title_customer_id'), 
+	t('.table_title_customer_fname'), 
+	t('.table_title_customer_lname'), 
+	t('.table_title_company_name'), 
+	t('.table_title_email'), 
+	t('.table_title_currency'), 
+	t('.table_title_credit'), 
+	t('.table_title_debit'), 
+	t('.table_title_fees')] -%>
+<%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
+<%- @events.each do |event| -%>
+  <% if event.action == 'refund_settled' %>
+  	<%= CSV.generate_line [
+  		event.refund.gc_id,
+  		t('.refund'),
+  		t('gocardless.refund.action.' + event.action),
+  		event.refund.gc_created_at.strftime('%d/%m/%Y'),
+  		event.refund.payment.customer.gc_id,
+  		event.refund.payment.customer.given_name,
+  		event.refund.payment.customer.family_name,
+  		event.refund.payment.customer.company_name,
+  		event.refund.payment.customer.email,
+  		event.refund.currency,
+  		0,
+  		event.refund.amount/100.0,
+  		event.fee.amount/100.0], 
+  	:row_sep => ?\t, :quote_char => ?\ %>
+  <% else %>
+  	<%= CSV.generate_line [
+  		event.payment.gc_id,
+  		t('.payment'),
+  		t('gocardless.payment.cause.' + event.action),
+  		event.payment.charge_date.strftime('%d/%m/%Y'),
+  		event.payment.customer.gc_id,
+  		event.payment.customer.given_name,
+  		event.payment.customer.family_name,
+  		event.payment.customer.company_name,
+  		event.payment.customer.email,
+  		event.payment.currency,
+  		event.action == 'paid_out' ? event.payment.amount/100.0 : 0,
+  		event.action == 'paid_out' ? 0 : event.payment.amount/100.0,
+  		event.fee.amount/100.0], 
+  	:row_sep => ?\t, :quote_char => ?\ %>
+  <% end %>
+<%- end -%>
