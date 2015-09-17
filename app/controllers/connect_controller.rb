@@ -28,7 +28,7 @@ class ConnectController < ApplicationController
     	session[:gc_token] = token.token
 
       SyncerJob.new.async.perform(current_user)
-      redirect_to reporting_payments_path
+      redirect_to reporting_path
     rescue => e
       Utility.log_exception e
       redirect_to root_path, alert: I18n.t('errors.exceptions.default')

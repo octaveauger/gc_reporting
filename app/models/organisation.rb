@@ -31,7 +31,7 @@ class Organisation < ActiveRecord::Base
 		['customers', 'customer_bank_accounts', 'mandates', 'payments', 
 			'payouts', 'refunds', 'subscriptions', 'events'].reverse_each do |cat|
 			update = self.organisation_updates.where(category: cat).first
-			return false unless !update.nil? and update.last_update > 6.hours.ago
+			return false unless !update.nil?
 		end
 		true
 	end

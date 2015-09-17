@@ -1,0 +1,24 @@
+<%- headers = [
+	t('.table_title_creation_date'), 
+	t('.table_title_customer_id'), 
+	t('.table_title_mandate_id'), 
+	t('.table_title_customer_fname'), 
+	t('.table_title_customer_lname'), 
+	t('.table_title_company_name'), 
+	t('.table_title_email'), 
+	t('.table_title_mandate_scheme'), 
+	t('.table_title_mandate_status')] -%>
+<%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
+<%- @mandates.each do |mandate| -%>
+  <%= CSV.generate_line [
+	  		mandate.gc_created_at.strftime('%d/%m/%Y  %k:%M'),
+	  		mandate.customer.gc_id,
+	  		mandate.gc_id,
+	  		mandate.customer.given_name,
+	  		mandate.customer.family_name,
+	  		mandate.customer.company_name,
+	  		mandate.customer.email,
+	  		t('gocardless.mandate.scheme.' + mandate.scheme),
+	  		t('gocardless.mandate.status.' + mandate.status)], 
+	  	:row_sep => ?\t, :quote_char => ?\ %>
+<%- end -%>

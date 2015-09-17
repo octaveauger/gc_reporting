@@ -1,0 +1,24 @@
+<% provide(:title, t('.h1')) %>
+<div class="row">
+	<div class="col-sm-9"><h1><%= t('.h1') %></h1></div>
+	<div class="col-sm-3"><%= link_to t('.link_export'), reporting_mandates_path(format: :csv), class: 'btn pop pull-right h1-btn' %></div>
+</div>
+
+<% if !current_user.recent_update? %>
+	<%= render partial: 'reporting/loading' %>
+<% end %>
+
+<% if @mandates.any? %>
+	<table class="table">
+		<th><%= t('.table_title_creation_date') %></th>
+		<th><%= t('.table_title_customer_id') %></th>
+		<th><%= t('.table_title_mandate_id') %></th>
+		<th><%= t('.table_title_customer') %></th>
+		<th><%= t('.table_title_mandate_scheme') %></th>
+		<th><%= t('.table_title_mandate_status') %></th>
+		<%= render partial: 'reporting/mandate', collection: @mandates %>
+	</table>
+	<%= will_paginate @mandates %>
+<% else %>
+	<p><%= t('.no_mandates') %></p>
+<% end %>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   localized do
     root to: 'home#index'
     get 'reporting', to: 'reporting#index'
+    get 'reporting/mandates', to: 'reporting#mandates'
     get 'reporting/payments', to: 'reporting#payments'
     get 'reporting/payouts', to: 'reporting#payouts'
     get 'reporting/payout/:payout_gc_id', to: 'reporting#payout', as: 'reporting_payout'
