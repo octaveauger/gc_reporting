@@ -277,7 +277,14 @@ en:
         paid: 'Paid'
   home:
     index:
-      h1: 'Home'
+      h1: 'The Unofficial GoCardless Reporting App'
+      hero_text: 'This unofficial GoCardless application retrieves all data relating to your customers and payments from GoCardless and lets you export useful reports, in English and French.'
+      title_customers: 'Your customers'
+      alt_customers: 'Mandate report'
+      title_payments: 'Your payments'
+      alt_payments: 'Payment report'
+      title_payouts: 'Your payouts and fees'
+      alt_payouts: 'Payout report'
   reporting:
     loading:
       loader_backup: 'Loading...'
