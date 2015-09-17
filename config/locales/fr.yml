@@ -279,7 +279,14 @@ fr:
         paid: 'Payé'
   home:
     index:
-      h1: 'Accueil'
+      h1: "Le site non-officiel de rapports GoCardless"
+      hero_text: "Ce site non-officiel récupère toutes les informations de vos clients et paiements depuis GoCardless et vous permet d'exporter des rapports utiles, en Français et Anglais."
+      title_customers: 'Vos clients'
+      alt_customers: 'Rapport mandats'
+      title_payments: 'Vos paiements'
+      alt_payments: 'Rapport paiements'
+      title_payouts: 'Vos reversements et frais'
+      alt_payouts: 'Rapport reversements'
   reporting:
     loading:
       loader_backup: 'Chargement...'

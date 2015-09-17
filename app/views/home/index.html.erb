@@ -1,1 +1,33 @@
 <% provide(:title, t('.h1')) %>
+
+<div class="homepage-hero">
+	<h1><%= t('.h1') %></h1>
+	<p class="lead"><%= t('.hero_text') %></p>
+</div>
+
+<div class="row product-showcase">
+	<div class="col-xs-6 col-md-4">
+		<h2><%= t('.title_customers') %></h2>
+	</div>
+	<div class="col-xs-6 col-md-8">
+		<%= image_tag(I18n.locale.to_s + '/mandates.png', alt: t('.alt_customers'), class: 'img-thumbnail img-responsive') %>
+	</div>
+</div>
+
+<div class="row product-showcase">
+	<div class="col-xs-6 col-md-4">
+		<h2><%= t('.title_payments') %></h2>
+	</div>
+	<div class="col-xs-6 col-md-8">
+		<%= image_tag(I18n.locale.to_s + '/payments.png', alt: t('.alt_payments'), class: 'img-thumbnail img-responsive') %>
+	</div>
+</div>
+
+<div class="row product-showcase">
+	<div class="col-xs-6 col-md-4">
+		<h2><%= t('.title_payouts') %></h2>
+	</div>
+	<div class="col-xs-6 col-md-8">
+		<%= image_tag(I18n.locale.to_s + '/payout.png', alt: t('.alt_payouts'), class: 'img-thumbnail img-responsive') %>
+	</div>
+</div>
