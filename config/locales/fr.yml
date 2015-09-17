@@ -211,6 +211,7 @@ fr:
   header:
     toggle: 'Changer navigation'
     app_name: 'Rapports GoCardless'
+    link_mandates: 'Mandats'
     link_payments: 'Paiements'
     link_payouts: 'Reversements'
     link_connect: 'Connection'
@@ -226,6 +227,18 @@ fr:
     close: 'fermer'
     payout_not_found: "Ce reversement n'a pas pu être trouvé"
   gocardless:
+    mandate:
+      status:
+        pending_submission: 'En attente'
+        submitted: 'Soumis aux banques'
+        active: 'Actif'
+        failed: 'Echoué'
+        cancelled: 'Annulé'
+        expired: 'Expiré'
+      scheme:
+        bacs: 'BACS (Angleterre)'
+        sepa_core: 'SEPA Core'
+        sepa_cor1: 'SEPA Cor1'
     payment:
       status:
         pending_submission: 'En attente de soumission'
@@ -274,6 +287,21 @@ fr:
     index:
       h1: 'Rapport de paiements'
       link_payments: 'Vos paiements'
+    mandates:
+      h1: 'Rapport de mandats'
+      link_export: 'Exporter'
+      csv_name: 'liste-mandats'
+      table_title_customer_id: 'Identifiant client'
+      table_title_mandate_id: 'Identifiant mandat'
+      table_title_creation_date: 'Date de création de mandat'
+      table_title_customer_fname: 'Prénom'
+      table_title_customer_lname: 'Nom de famille'
+      table_title_company_name: "Nom d'entreprise"
+      table_title_email: 'Email'
+      table_title_customer: 'Client'
+      table_title_mandate_scheme: 'Type'
+      table_title_mandate_status: 'Statut du mandat'
+      no_mandates: "Vous n'avez pas créé de mandats ou vos données sont encore en train de synchroniser"
     payments:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'

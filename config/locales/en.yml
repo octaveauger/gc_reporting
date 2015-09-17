@@ -209,6 +209,7 @@ en:
   header:
     toggle: 'Toggle navigation'
     app_name: 'GoCardless Reporting'
+    link_mandates: 'Mandates'
     link_payments: 'Payments'
     link_payouts: 'Payouts'
     link_connect: 'Connect'
@@ -224,6 +225,18 @@ en:
     close: 'close'
     payout_not_found: 'This payout could not be found'
   gocardless:
+    mandate:
+      status:
+        pending_submission: 'Pending submission'
+        submitted: 'Submitted'
+        active: 'Active'
+        failed: 'Failed'
+        cancelled: 'Cancelled'
+        expired: 'Expired'
+      scheme:
+        bacs: 'BACS (UK)'
+        sepa_core: 'SEPA Core'
+        sepa_cor1: 'SEPA Cor1'
     payment:
       status:
         pending_submission: 'Pending submission'
@@ -272,6 +285,21 @@ en:
     index:
       h1: 'Payment reporting'
       link_payments: 'Your payments'
+    mandates:
+      h1: 'Mandate summary'
+      link_export: 'Export'
+      csv_name: 'mandate-list'
+      table_title_customer_id: 'Customer ID'
+      table_title_mandate_id: 'Mandate ID'
+      table_title_creation_date: 'Mandate creation date'
+      table_title_customer_fname: 'First name'
+      table_title_customer_lname: 'Family name'
+      table_title_company_name: 'Company name'
+      table_title_email: 'Email'
+      table_title_customer: 'Customer'
+      table_title_mandate_scheme: 'Scheme'
+      table_title_mandate_status: 'Mandate status'
+      no_mandates: 'You have not added any mandates yet or your data is synchronising'    
     payments:
       h1: 'Payment summary'
       link_export: 'Export'
