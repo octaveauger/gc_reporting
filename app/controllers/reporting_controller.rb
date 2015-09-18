@@ -7,10 +7,10 @@ class ReportingController < ApplicationController
     begin
       respond_to do |format|
         format.html do
-          @mandates = Mandate.includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+          @mandates = current_user.mandates.includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
         end
         format.csv do
-          @mandates = Mandate.includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all
+          @mandates = current_user.mandates.includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all
           headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.mandates.csv_name') + ".csv\""
           headers['Content-Type'] ||= 'text/csv'
         end
@@ -25,10 +25,10 @@ class ReportingController < ApplicationController
     begin
       respond_to do |format|
     		format.html do
-    			@payments = Payment.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+    			@payments = current_user.payments.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
     		end
     		format.csv do
-    			@payments = Payment.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
+    			@payments = current_user.payments.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
     			headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.payments.csv_name') + ".csv\""
     			headers['Content-Type'] ||= 'text/csv'
     		end
@@ -41,7 +41,7 @@ class ReportingController < ApplicationController
 
   def payouts
     begin
-      @payouts = Payout.includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+      @payouts = current_user.payouts.includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
     rescue => e
       Utility.log_exception e
       flash[:alert] = I18n.t('errors.exceptions.default')
