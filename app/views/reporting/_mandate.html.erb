@@ -3,8 +3,10 @@
 	<td><%= mandate.customer.gc_id %></td>
 	<td><%= mandate.gc_id %></td>
 	<td>
-		<%= mandate.customer.full_name %><br/>
-		<%= mandate.customer.email %>
+		<a href="<%= customer_path(mandate.customer) %>" target="_blank">
+			<%= mandate.customer.full_name %><br/>
+			<%= mandate.customer.email %>
+		</a>
 	</td>
 	<td><%= t('gocardless.mandate.scheme.' + mandate.scheme) %></td>
 	<td><%= t('gocardless.mandate.status.' + mandate.status) %></td>
