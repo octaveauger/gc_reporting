@@ -1,8 +1,10 @@
 <tr>
 	<td><%= payment.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
 	<td>
-		<%= payment.customer.full_name %><br/>
-		<%= payment.customer.email %>
+		<a href="<%= customer_path(payment.customer) %>" target="_blank">
+			<%= payment.customer.full_name %><br/>
+			<%= payment.customer.email %>
+		</a>
 	</td>
 	<td><%= payment.description %></td>
 	<td><%= payment.charge_date.strftime('%d/%m/%Y') %></td>
