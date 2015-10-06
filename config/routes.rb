@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'reporting/payments', to: 'reporting#payments'
     get 'reporting/payouts', to: 'reporting#payouts'
     get 'reporting/payout/:payout_gc_id', to: 'reporting#payout', as: 'reporting_payout'
+
+    resources :customers, only: [:show]
   end
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root

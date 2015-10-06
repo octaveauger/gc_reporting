@@ -224,6 +224,7 @@ en:
     logged_out: 'You have been logged out successfully'
     close: 'close'
     payout_not_found: 'This payout could not be found'
+    customer_not_found: 'This customer could not be found'
   gocardless:
     mandate:
       status:
@@ -298,13 +299,14 @@ en:
       csv_name: 'mandate-list'
       table_title_customer_id: 'Customer ID'
       table_title_mandate_id: 'Mandate ID'
-      table_title_creation_date: 'Mandate creation date'
+      table_title_creation_date: 'Creation date'
       table_title_customer_fname: 'First name'
       table_title_customer_lname: 'Family name'
       table_title_company_name: 'Company name'
       table_title_email: 'Email'
       table_title_customer: 'Customer'
       table_title_mandate_scheme: 'Scheme'
+      table_title_mandate_reference: 'Reference'
       table_title_mandate_status: 'Mandate status'
       no_mandates: 'You have not added any mandates yet or your data is synchronising'    
     payments:
@@ -360,3 +362,13 @@ en:
       table_title_fees: 'Fees'
       refund: 'Refund'
       payment: 'Payment'
+  customers:
+    show:
+      title_customer: 'Customer'
+      item_description_customer_gc_id: 'GoCardless ID'
+      item_description_customer_name: 'Name'
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Address'
+      item_description_customer_country: 'Country'
+      title_mandates: 'Mandates'
+      title_payments: 'Payments'

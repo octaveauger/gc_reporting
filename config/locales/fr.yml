@@ -226,6 +226,7 @@ fr:
     logged_out: 'Vous avez bien été déconnecté'
     close: 'fermer'
     payout_not_found: "Ce reversement n'a pas pu être trouvé"
+    customer_not_found: "Ce client n'a pas pu être trouvé"
   gocardless:
     mandate:
       status:
@@ -300,13 +301,14 @@ fr:
       csv_name: 'liste-mandats'
       table_title_customer_id: 'Identifiant client'
       table_title_mandate_id: 'Identifiant mandat'
-      table_title_creation_date: 'Date de création de mandat'
+      table_title_creation_date: 'Date de création'
       table_title_customer_fname: 'Prénom'
       table_title_customer_lname: 'Nom de famille'
       table_title_company_name: "Nom d'entreprise"
       table_title_email: 'Email'
       table_title_customer: 'Client'
       table_title_mandate_scheme: 'Type'
+      table_title_mandate_reference: 'Référence'
       table_title_mandate_status: 'Statut du mandat'
       no_mandates: "Vous n'avez pas créé de mandats ou vos données sont encore en train de synchroniser"
     payments:
@@ -362,3 +364,13 @@ fr:
       table_title_fees: 'Frais'
       refund: 'Remboursement'
       payment: 'Paiement'
+  customers:
+    show:
+      title_customer: 'Client'
+      item_description_customer_gc_id: 'ID GoCardless'
+      item_description_customer_name: 'Nom'
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Addresse'
+      item_description_customer_country: 'Pays'
+      title_mandates: 'Mandats'
+      title_payments: 'Paiements'

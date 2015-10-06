@@ -1,0 +1,7 @@
+<tr>
+	<td><%= mandate.gc_id %></td>
+	<td><%= mandate.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td><%= mandate.reference %></td>
+	<td><%= t('gocardless.mandate.scheme.' + mandate.scheme) %></td>
+	<td><%= t('gocardless.mandate.status.' + mandate.status) %></td>
+</tr>
