@@ -8,31 +8,32 @@
 	<%= render partial: 'reporting/loading' %>
 <% end %>
 
-	<form action="<%= reporting_mandates_path %>" method="get" class="form-inline">
-		<div class="form-group">
-			<p class='form-control-static'><%= t('filters.time.label_created') %></p>
-		</div>
-		<div class="form-group">
-			<%= select_tag(:time_filter, options_for_select(Mandate.time_filters, @time_filter), class: 'form-control') %>
-		</div>
-		<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
-	</form>
+<form action="<%= reporting_mandates_path %>" method="get" class="form-inline">
+	<div class="form-group">
+		<p class='form-control-static'><%= t('filters.time.label_created') %></p>
+	</div>
+	<div class="form-group">
+		<%= select_tag(:time_filter, options_for_select(Mandate.time_filters, @time_filter), class: 'form-control') %>
+	</div>
+	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+</form>
 
-	<table class="table" id="results">
-		<th><%= t('.table_title_creation_date') %></th>
-		<th><%= t('.table_title_customer_id') %></th>
-		<th><%= t('.table_title_mandate_id') %></th>
-		<th><%= t('.table_title_customer') %></th>
-		<th><%= t('.table_title_mandate_scheme') %></th>
-		<th><%= t('.table_title_mandate_status') %></th>
-		<% if !@mandates.nil? and @mandates.any? %>
-			<%= render partial: 'reporting/mandate', collection: @mandates %>
-		<% end %>
-	</table>
+<table class="table" id="results">
+	<th><%= t('.table_title_creation_date') %></th>
+	<th><%= t('.table_title_customer_id') %></th>
+	<th><%= t('.table_title_mandate_id') %></th>
+	<th><%= t('.table_title_customer') %></th>
+	<th><%= t('.table_title_mandate_scheme') %></th>
+	<th><%= t('.table_title_mandate_status') %></th>
 	<% if !@mandates.nil? and @mandates.any? %>
-		<div id="infinite-scrolling-mandates">
-			<%= will_paginate @mandates %>
-		</div>
-	<% else %>
-		<p><%= t('.no_mandates') %></p>
+		<%= render partial: 'reporting/mandate', collection: @mandates %>
 	<% end %>
+</table>
+
+<% if !@mandates.nil? and @mandates.any? %>
+	<div id="infinite-scrolling">
+		<%= will_paginate @mandates %>
+	</div>
+<% else %>
+	<p><%= t('.no_mandates') %></p>
+<% end %>

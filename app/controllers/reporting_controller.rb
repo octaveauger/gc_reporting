@@ -29,12 +29,16 @@ class ReportingController < ApplicationController
 
   def payments
     begin
+      @time_filter = params[:time_filter] || 'any'
       respond_to do |format|
     		format.html do
-    			@payments = current_user.payments.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+    			@payments = current_user.payments.filter(params.slice(:time_filter)).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
     		end
+        format.js do
+          @payments = current_user.payments.filter(params.slice(:time_filter)).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
     		format.csv do
-    			@payments = current_user.payments.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
+    			@payments = current_user.payments.filter(params.slice(:time_filter)).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
     			headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.payments.csv_name') + ".csv\""
     			headers['Content-Type'] ||= 'text/csv'
     		end
@@ -47,7 +51,15 @@ class ReportingController < ApplicationController
 
   def payouts
     begin
-      @payouts = current_user.payouts.includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+      @time_filter = params[:time_filter] || 'any'
+      respond_to do |format|
+        format.html do
+          @payouts = current_user.payouts.filter(params.slice(:time_filter)).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
+        format.js do
+          @payouts = current_user.payouts.filter(params.slice(:time_filter)).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
+      end
     rescue => e
       Utility.log_exception e
       flash[:alert] = I18n.t('errors.exceptions.default')
@@ -64,6 +76,9 @@ class ReportingController < ApplicationController
 
         respond_to do |format|
           format.html do
+            @events = Event.where(parent_event_id: @parent_event.gc_id).all.paginate(page: params[:page])
+          end
+          format.js do
             @events = Event.where(parent_event_id: @parent_event.gc_id).all.paginate(page: params[:page])
           end
           format.csv do

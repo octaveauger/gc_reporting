@@ -1,6 +1,6 @@
 $(function () {
-	// Infinite scrolling for mandates page
-	if($('#infinite-scrolling-mandates').size() > 0) {
+	// Infinite scrolling
+	if($('#infinite-scrolling').size() > 0) {
 		$(window).on('scroll', function(e) {
 			more_url = $('.pagination .next_page a').attr('href');
 			if(more_url && $(window).scrollTop() > $(document).height() - $(window).height() - 120) {

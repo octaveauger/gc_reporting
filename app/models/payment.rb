@@ -1,4 +1,6 @@
 class Payment < ActiveRecord::Base
+  include Filterable
+
   belongs_to :mandate, primary_key: 'gc_id', foreign_key: 'mandate_id'
   delegate :customer_bank_account, to: :mandate
   delegate :customer, to: :customer_bank_account
