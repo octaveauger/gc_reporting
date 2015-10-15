@@ -2,16 +2,25 @@ module Filterable
 	extend ActiveSupport::Concern
 
 	module ClassMethods
+		# Runs through all filtering parameters from form and trigger the right 'where' (from this module or the model)
+		def filter(filtering_params)
+			results = self.where(nil)
+			filtering_params.each do |key, value|
+				results = results.public_send(key, value) if value.present?
+			end
+			results
+		end
+
 		# Returns the dropdown options for usual time filters
 		def time_filters
 			[
-				['Any', 'any'],
-				['Today', 'today'],
-				['Yesterday', 'yesterday'],
-				['This week', 'this_week'],
-				['This month', 'this_month'],
-				['Last 7 days', 'last_7_days'],
-				['Last 30 days', 'last_30_days']
+				[I18n.t('filters.time.any'), 'any'],
+				[I18n.t('filters.time.today'), 'today'],
+				[I18n.t('filters.time.yesterday'), 'yesterday'],
+				[I18n.t('filters.time.this_week'), 'this_week'],
+				[I18n.t('filters.time.this_month'), 'this_month'],
+				[I18n.t('filters.time.last_7_days'), 'last_7_days'],
+				[I18n.t('filters.time.last_30_days'), 'last_30_days']
 			]
 		end
 
@@ -36,14 +45,6 @@ module Filterable
 			else
 				self.all
 			end
-		end
-
-		def filter(filtering_params)
-			results = self.where(nil)
-			filtering_params.each do |key, value|
-				results = results.public_send(key, value) if value.present?
-			end
-			results
 		end
 	end
 end

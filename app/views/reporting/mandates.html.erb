@@ -10,12 +10,12 @@
 
 	<form action="<%= reporting_mandates_path %>" method="get" class="form-inline">
 		<div class="form-group">
-			<p class='form-control-static'>Created</p>
+			<p class='form-control-static'><%= t('filters.time.label_created') %></p>
 		</div>
 		<div class="form-group">
 			<%= select_tag(:time_filter, options_for_select(Mandate.time_filters, @time_filter), class: 'form-control') %>
 		</div>
-		<button type="submit" class="btn btn-primary">Go</button>
+		<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
 	</form>
 
 	<table class="table" id="results">
