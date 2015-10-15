@@ -7,7 +7,7 @@ class ReportingController < ApplicationController
 
   def mandates
     begin
-      @time_filter = params[:time_filter]
+      @time_filter = params[:time_filter] || 'any'
       respond_to do |format|
         format.html do
           @mandates = current_user.mandates.filter(params.slice(:time_filter)).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
