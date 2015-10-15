@@ -1,4 +1,6 @@
 class Mandate < ActiveRecord::Base
+  include Filterable
+
   belongs_to :customer_bank_account, primary_key: 'gc_id', foreign_key: 'customer_bank_account_id'
   delegate :customer, to: :customer_bank_account
   belongs_to :creditor, primary_key: 'gc_id', foreign_key: 'creditor_id'
