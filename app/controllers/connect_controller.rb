@@ -1,10 +1,12 @@
 class ConnectController < ApplicationController
   READ_ONLY = 'read_only'.freeze
+  FULL_ACCESS = 'full_access'.freeze
 
   def authorise
   	auth_url = oauth.auth_code.authorize_url(
   		redirect_uri: ENV['GOCARDLESS_REDIRECT_URI'],
-  		scope: READ_ONLY
+  		scope: FULL_ACCESS,
+      initial_view: 'login'
   	)
   	redirect_to auth_url
   end
@@ -22,9 +24,17 @@ class ConnectController < ApplicationController
 
     	token = oauth.auth_code.get_token(params[:code],
     		redirect_uri: ENV['GOCARDLESS_REDIRECT_URI'])
-    	Organisation.find_or_create_by(
-    		gc_id: token['organisation_id'],
-    		access_token: token.token)
+    	org = Organisation.find_by(gc_id: token['organisation_id'])
+      if org.nil?
+        org = Organisation.create!(
+      		gc_id: token['organisation_id'],
+      		access_token: token.token
+        )
+      elsif org.access_token != token.token
+        org.update!(
+          access_token: token.token
+        )
+      end
     	session[:gc_token] = token.token
 
       SyncerJob.new.async.perform(current_user)
