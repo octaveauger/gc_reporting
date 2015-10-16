@@ -14,11 +14,11 @@ class Mandate < ActiveRecord::Base
   	# Returns the dropdown options for DD schemes
 	def self.scheme_filters
 		[
-			['Any', 'any'],
-			['SEPA Core', 'sepa_core'],
-			['SEPA Cor1', 'sepa_cor1'],
-			['UK Bacs', 'bacs'],
-			['Sweden Autogiro', 'autogiro']
+			[I18n.t('filters.scheme.any'), 'any'],
+			[I18n.t('filters.scheme.sepa_core'), 'sepa_core'],
+			[I18n.t('filters.scheme.sepa_cor1'), 'sepa_cor1'],
+			[I18n.t('filters.scheme.bacs'), 'bacs'],
+			[I18n.t('filters.scheme.autogiro'), 'autogiro']
 		]
 	end
 
@@ -34,13 +34,13 @@ class Mandate < ActiveRecord::Base
 	# Returns the dropdown options for mandate statuses
 	def self.status_filters
 		[
-			['Any', 'any'],
-			['Pending submission', 'pending_submission'],
-			['Submitted', 'submitted'],
-			['Active', 'active'],
-			['Failed', 'failed'],
-			['Cancelled', 'cancelled'],
-			['Expired', 'expired'],
+			[I18n.t('filters.mandate_status.any'), 'any'],
+			[I18n.t('filters.mandate_status.pending_submission'), 'pending_submission'],
+			[I18n.t('filters.mandate_status.submitted'), 'submitted'],
+			[I18n.t('filters.mandate_status.active'), 'active'],
+			[I18n.t('filters.mandate_status.failed'), 'failed'],
+			[I18n.t('filters.mandate_status.cancelled'), 'cancelled'],
+			[I18n.t('filters.mandate_status.expired'), 'expired']
 		]
 	end
 

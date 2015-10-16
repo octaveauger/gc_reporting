@@ -34,17 +34,17 @@ module Filterable
 			when 'any'
 				self.all
 			when 'today'
-				self.where(name_of_class+'.gc_created_at >= ?', Date.today)
+				self.where(name_of_class + '.gc_created_at >= ?', Date.today)
 			when 'yesterday'
-				self.where(name_of_classame+'.gc_created_at >= ?', Date.today - 1)
+				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 1)
 			when 'this_week'
-				self.where(name_of_class+'.gc_created_at >= ?', Time.now.beginning_of_week)
+				self.where(name_of_class + '.gc_created_at >= ?', Time.now.beginning_of_week)
 			when 'this_month'
-				self.where(name_of_class+'.gc_created_at >= ?', Time.now.beginning_of_month)
+				self.where(name_of_class + '.gc_created_at >= ?', Time.now.beginning_of_month)
 			when 'last_7_days'
-				self.where(name_of_class+'.gc_created_at >= ?', Date.today - 7)
+				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 7)
 			when 'last_30_days'
-				self.where(name_of_class+'.gc_created_at >= ?', Date.today - 30)
+				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 30)
 			else
 				self.all
 			end
@@ -53,10 +53,10 @@ module Filterable
 		# Returns the dropdown options for currencies
 		def currency_filters
 			[
-				['Any', 'any'],
-				['EUR', 'EUR'],
-				['GBP', 'GBP'],
-				['SEK', 'SEK']
+				[I18n.t('filters.currency.any'), 'any'],
+				[I18n.t('filters.currency.eur'), 'EUR'],
+				[I18n.t('filters.currency.gbp'), 'GBP'],
+				[I18n.t('filters.currency.sek'), 'SEK']
 			]
 		end
 

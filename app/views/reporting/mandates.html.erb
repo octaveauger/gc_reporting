@@ -10,19 +10,19 @@
 
 <form action="<%= reporting_mandates_path %>" method="get" class="form-inline">
 	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.time.label_created') %></p>
+		<p class='form-control-static'><%= t('filters.time.label') %></p>
 	</div>
 	<div class="form-group">
 		<%= select_tag(:time_filter, options_for_select(Mandate.time_filters, @time_filter), class: 'form-control') %>
 	</div>
 	<div class="form-group">
-		<p class='form-control-static'>with scheme</p>
+		<p class='form-control-static'><%= t('filters.scheme.label') %></p>
 	</div>
 	<div class="form-group">
 		<%= select_tag(:scheme_filter, options_for_select(Mandate.scheme_filters, @scheme_filter), class: 'form-control') %>
 	</div>
 	<div class="form-group">
-		<p class='form-control-static'>and status</p>
+		<p class='form-control-static'><%= t('filters.mandate_status.label') %></p>
 	</div>
 	<div class="form-group">
 		<%= select_tag(:status_filter, options_for_select(Mandate.status_filters, @status_filter), class: 'form-control') %>

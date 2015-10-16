@@ -8,13 +8,13 @@
 
 <form action="<%= reporting_payouts_path %>" method="get" class="form-inline">
 	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.time.label_created') %></p>
+		<p class='form-control-static'><%= t('filters.time.label') %></p>
 	</div>
 	<div class="form-group">
 		<%= select_tag(:time_filter, options_for_select(Payout.time_filters, @time_filter), class: 'form-control') %>
 	</div>
 	<div class="form-group">
-		<p class='form-control-static'>with currency</p>
+		<p class='form-control-static'><%= t('filters.currency.label') %></p>
 	</div>
 	<div class="form-group">
 		<%= select_tag(:currency_filter, options_for_select(Payout.currency_filters, @currency_filter), class: 'form-control') %>

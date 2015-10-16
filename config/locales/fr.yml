@@ -240,6 +240,7 @@ fr:
         bacs: 'BACS (Angleterre)'
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
+        autogiro: 'Autogiro (Suède)'
     payment:
       status:
         pending_submission: 'En attente de soumission'
@@ -280,7 +281,7 @@ fr:
         paid: 'Payé'
   filters:
     time:
-      label_created: 'Créés'
+      label: 'Créés'
       any: 'Tous'
       today: "Aujourd'hui"
       yesterday: 'Hier'
@@ -288,6 +289,38 @@ fr:
       this_month: 'Ce mois'
       last_7_days: '7 derniers jours'
       last_30_days: '30 derniers jours'
+    currency:
+      label: 'avec la devise'
+      any: 'Toutes'
+      eur: 'EUR'
+      gbp: 'GBP'
+      sek: 'SEK'
+    scheme:
+      label: 'avec le système'
+      any: 'Tous'
+      sepa_core: 'SEPA Core'
+      sepa_cor1: 'SEPA Cor1'
+      bacs: 'Bacs GB'
+      autogiro: 'Autogiro Suède'
+    mandate_status:
+      label: 'et le statut'
+      any: 'Tous'
+      pending_submission: 'En attente de soumission'
+      submitted: 'Soumis'
+      active: 'Actif'
+      failed: 'Echoué'
+      cancelled: 'Annulé'
+      expired: 'Expiré'
+    payment_status:
+      label: 'et le statut'
+      any: 'Tous'
+      pending_submission: 'En attente de soumission'
+      submitted: 'Soumis'
+      confirmed: 'Confirmé'
+      failed: 'Echoué'
+      charged_back: 'Contesté'
+      paid_out: 'Reversé'
+      cancelled: 'Annulé'
     form:
       submit: 'Go'
   home:

@@ -14,14 +14,14 @@ class Payment < ActiveRecord::Base
   	# Returns the dropdown options for payment statuses
 	def self.status_filters
 		[
-			['Any', 'any'],
-			['Pending submission', 'pending_submission'],
-			['Submitted', 'submitted'],
-			['Confirmed', 'confirmed'],
-			['Paid out', 'paid_out'],
-			['Failed', 'failed'],
-			['Cancelled', 'cancelled'],
-			['Charged back', 'charged_back']
+			[I18n.t('filters.payment_status.any'), 'any'],
+			[I18n.t('filters.payment_status.pending_submission'), 'pending_submission'],
+			[I18n.t('filters.payment_status.submitted'), 'submitted'],
+			[I18n.t('filters.payment_status.confirmed'), 'confirmed'],
+			[I18n.t('filters.payment_status.paid_out'), 'paid_out'],
+			[I18n.t('filters.payment_status.failed'), 'failed'],
+			[I18n.t('filters.payment_status.cancelled'), 'cancelled'],
+			[I18n.t('filters.payment_status.charged_back'), 'charged_back']
 		]
 	end
 
