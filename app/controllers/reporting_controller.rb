@@ -57,13 +57,15 @@ class ReportingController < ApplicationController
 
   def payouts
     begin
+      params_filters = params.slice(:time_filter, :currency_filter)
       @time_filter = params[:time_filter] || 'any'
+      @currency_filter = params[:currency_filter] || 'any'
       respond_to do |format|
         format.html do
-          @payouts = current_user.payouts.filter(params.slice(:time_filter)).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+          @payouts = current_user.payouts.filter(params_filters).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
         end
         format.js do
-          @payouts = current_user.payouts.filter(params.slice(:time_filter)).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+          @payouts = current_user.payouts.filter(params_filters).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
         end
       end
     rescue => e
