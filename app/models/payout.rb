@@ -1,4 +1,6 @@
 class Payout < ActiveRecord::Base
+  include Filterable
+
   belongs_to :creditor, primary_key: 'gc_id', foreign_key: 'creditor_id'
   has_many :events, primary_key: 'gc_id', foreign_key: 'payout_id'
   has_many :payments, through: :events

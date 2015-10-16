@@ -7,12 +7,19 @@ class ReportingController < ApplicationController
 
   def mandates
     begin
+      params_filters = params.slice(:time_filter, :scheme_filter, :status_filter)
+      @time_filter = params[:time_filter] || 'any'
+      @scheme_filter = params[:scheme_filter] || 'any'
+      @status_filter = params[:status_filter] || 'any'
       respond_to do |format|
         format.html do
-          @mandates = current_user.mandates.includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+          @mandates = current_user.mandates.filter(params_filters).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
+        format.js do
+          @mandates = current_user.mandates.filter(params_filters).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
         end
         format.csv do
-          @mandates = current_user.mandates.includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all
+          @mandates = current_user.mandates.filter(params_filters).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all
           headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.mandates.csv_name') + ".csv\""
           headers['Content-Type'] ||= 'text/csv'
         end
@@ -25,12 +32,19 @@ class ReportingController < ApplicationController
 
   def payments
     begin
+      params_filters = params.slice(:time_filter, :currency_filter, :status_filter)
+      @time_filter = params[:time_filter] || 'any'
+      @currency_filter = params[:currency_filter] || 'any'
+      @status_filter = params[:status_filter] || 'any'
       respond_to do |format|
     		format.html do
-    			@payments = current_user.payments.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+    			@payments = current_user.payments.filter(params_filters).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
     		end
+        format.js do
+          @payments = current_user.payments.filter(params_filters).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
     		format.csv do
-    			@payments = current_user.payments.includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
+    			@payments = current_user.payments.filter(params_filters).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
     			headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.payments.csv_name') + ".csv\""
     			headers['Content-Type'] ||= 'text/csv'
     		end
@@ -43,7 +57,17 @@ class ReportingController < ApplicationController
 
   def payouts
     begin
-      @payouts = current_user.payouts.includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+      params_filters = params.slice(:time_filter, :currency_filter)
+      @time_filter = params[:time_filter] || 'any'
+      @currency_filter = params[:currency_filter] || 'any'
+      respond_to do |format|
+        format.html do
+          @payouts = current_user.payouts.filter(params_filters).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
+        format.js do
+          @payouts = current_user.payouts.filter(params_filters).includes(:events, :fees).order('gc_created_at desc').all.paginate(page: params[:page])
+        end
+      end
     rescue => e
       Utility.log_exception e
       flash[:alert] = I18n.t('errors.exceptions.default')
@@ -60,6 +84,9 @@ class ReportingController < ApplicationController
 
         respond_to do |format|
           format.html do
+            @events = Event.where(parent_event_id: @parent_event.gc_id).all.paginate(page: params[:page])
+          end
+          format.js do
             @events = Event.where(parent_event_id: @parent_event.gc_id).all.paginate(page: params[:page])
           end
           format.csv do

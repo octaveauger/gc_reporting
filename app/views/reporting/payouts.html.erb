@@ -5,17 +5,39 @@
 <% if !current_user.recent_update? %>
 	<%= render partial: 'reporting/loading' %>
 <% end %>
-<% if @payouts.any? %>
-	<table class="table">
-		<th><%= t('.table_title_payout_date') %></th>
-		<th><%= t('.table_title_amount') %></th>
-		<th><%= t('.table_title_fees') %></th>
-		<th><%= t('.table_title_status') %></th>
-		<th><%= t('.table_title_reference') %></th>
-		<th></th>
+
+<form action="<%= reporting_payouts_path %>" method="get" class="form-inline">
+	<div class="form-group">
+		<p class='form-control-static'><%= t('filters.time.label') %></p>
+	</div>
+	<div class="form-group">
+		<%= select_tag(:time_filter, options_for_select(Payout.time_filters, @time_filter), class: 'form-control') %>
+	</div>
+	<div class="form-group">
+		<p class='form-control-static'><%= t('filters.currency.label') %></p>
+	</div>
+	<div class="form-group">
+		<%= select_tag(:currency_filter, options_for_select(Payout.currency_filters, @currency_filter), class: 'form-control') %>
+	</div>
+	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+</form>
+
+<table class="table">
+	<th><%= t('.table_title_payout_date') %></th>
+	<th><%= t('.table_title_amount') %></th>
+	<th><%= t('.table_title_fees') %></th>
+	<th><%= t('.table_title_reference') %></th>
+	<th><%= t('.table_title_status') %></th>
+	<th></th>
+	<% if !@payouts.nil? and @payouts.any? %>
 		<%= render partial: 'reporting/payout', collection: @payouts %>
-	</table>
-	<%= will_paginate @payouts %>
+	<% end %>
+</table>
+
+<% if !@payouts.nil? and @payouts.any? %>
+	<div id="infinite-scrolling">
+		<%= will_paginate @payouts %>
+	</div>
 <% else %>
 	<p><%= t('.no_payouts') %></p>
 <% end %>

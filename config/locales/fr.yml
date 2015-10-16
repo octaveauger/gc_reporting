@@ -240,6 +240,7 @@ fr:
         bacs: 'BACS (Angleterre)'
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
+        autogiro: 'Autogiro (Suède)'
     payment:
       status:
         pending_submission: 'En attente de soumission'
@@ -278,6 +279,50 @@ fr:
       status:
         pending: 'En attente'
         paid: 'Payé'
+  filters:
+    time:
+      label: 'Créés'
+      any: 'Tous'
+      today: "Aujourd'hui"
+      yesterday: 'Hier'
+      this_week: 'Cette semaine'
+      this_month: 'Ce mois'
+      last_7_days: '7 derniers jours'
+      last_30_days: '30 derniers jours'
+    currency:
+      label: 'avec la devise'
+      any: 'Toutes'
+      eur: 'EUR'
+      gbp: 'GBP'
+      sek: 'SEK'
+    scheme:
+      label: 'avec le système'
+      any: 'Tous'
+      sepa_core: 'SEPA Core'
+      sepa_cor1: 'SEPA Cor1'
+      bacs: 'Bacs GB'
+      autogiro: 'Autogiro Suède'
+    mandate_status:
+      label: 'et le statut'
+      any: 'Tous'
+      pending_submission: 'En attente de soumission'
+      submitted: 'Soumis'
+      active: 'Actif'
+      failed: 'Echoué'
+      cancelled: 'Annulé'
+      expired: 'Expiré'
+    payment_status:
+      label: 'et le statut'
+      any: 'Tous'
+      pending_submission: 'En attente de soumission'
+      submitted: 'Soumis'
+      confirmed: 'Confirmé'
+      failed: 'Echoué'
+      charged_back: 'Contesté'
+      paid_out: 'Reversé'
+      cancelled: 'Annulé'
+    form:
+      submit: 'Go'
   home:
     index:
       h1: "Le site non-officiel de rapports GoCardless"
@@ -310,7 +355,7 @@ fr:
       table_title_mandate_scheme: 'Type'
       table_title_mandate_reference: 'Référence'
       table_title_mandate_status: 'Statut du mandat'
-      no_mandates: "Vous n'avez pas créé de mandats ou vos données sont encore en train de synchroniser"
+      no_mandates: "Il n'y a pas de mandats correspondants ou vos données sont encore en train de synchroniser"
     payments:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'
@@ -331,7 +376,7 @@ fr:
       table_title_reference: 'Référence'
       table_title_status: 'Statut'
       table_title_error_cause: 'Cause de rejet'
-      no_payments: "Vous n'avez pas créé de paiements ou vos données sont encore en train de synchroniser"
+      no_payments: "Il n'y a pas de paiements correspondants ou vos données sont encore en train de synchroniser"
     payouts:
       h1: 'Rapport de reversements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
@@ -340,7 +385,7 @@ fr:
       table_title_fees: 'Frais'
       table_title_status: 'Statut'
       table_title_reference: 'Référence'
-      no_payouts: "Vous n'avez pas de reversements ou vos données sont encore en train de synchroniser"
+      no_payouts: "Il n'y a pas de reversements correspondants ou vos données sont encore en train de synchroniser"
     payout:
       h1: 'Reversement'
       link_export: 'Exporter'

@@ -1,0 +1,7 @@
+$('#results').append("<%= j render partial: 'reporting/payout_event', collection: @events %>");
+<% if @events.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @events %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

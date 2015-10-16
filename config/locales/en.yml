@@ -238,6 +238,7 @@ en:
         bacs: 'BACS (UK)'
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
+        autogiro: 'Autogiro (Sweden)'
     payment:
       status:
         pending_submission: 'Pending submission'
@@ -276,6 +277,50 @@ en:
       status:
         pending: 'Pending'
         paid: 'Paid'
+  filters:
+    time:
+      label: 'Created'
+      any: 'Any time'
+      today: 'Today'
+      yesterday: 'Yesterday'
+      this_week: 'This week'
+      this_month: 'This month'
+      last_7_days: 'Last 7 days'
+      last_30_days: 'Last 30 days'
+    currency:
+      label: 'with currency'
+      any: 'Any'
+      eur: 'EUR'
+      gbp: 'GBP'
+      sek: 'SEK'
+    scheme:
+      label: 'with scheme'
+      any: 'Any'
+      sepa_core: 'SEPA Core'
+      sepa_cor1: 'SEPA Cor1'
+      bacs: 'UK Bacs'
+      autogiro: 'Sweden Autogiro'
+    mandate_status:
+      label: 'and status'
+      any: 'Any'
+      pending_submission: 'Pending submission'
+      submitted: 'Submitted'
+      active: 'Active'
+      failed: 'Failed'
+      cancelled: 'Cancelled'
+      expired: 'Expired'
+    payment_status:
+      label: 'and status'
+      any: 'any'
+      pending_submission: 'Pending submission'
+      submitted: 'Submitted'
+      confirmed: 'Confirmed'
+      failed: 'Failed'
+      charged_back: 'Charged back'
+      paid_out: 'Paid out'
+      cancelled: 'Cancelled'
+    form:
+      submit: 'Go'
   home:
     index:
       h1: 'The Unofficial GoCardless Reporting App'
@@ -308,7 +353,7 @@ en:
       table_title_mandate_scheme: 'Scheme'
       table_title_mandate_reference: 'Reference'
       table_title_mandate_status: 'Mandate status'
-      no_mandates: 'You have not added any mandates yet or your data is synchronising'    
+      no_mandates: 'There are no corresponding mandates or your data is synchronising'    
     payments:
       h1: 'Payment summary'
       link_export: 'Export'
@@ -329,7 +374,7 @@ en:
       table_title_reference: 'Reference'
       table_title_status: 'Status'
       table_title_error_cause: 'Failure cause'
-      no_payments: 'You have not created any payments yet or your data is synchronising'
+      no_payments: 'There are no corresponding payments or your data is synchronising'
     payouts:
       h1: 'Payout summary'
       fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
@@ -338,7 +383,7 @@ en:
       table_title_fees: 'Fees'
       table_title_status: 'Status'
       table_title_reference: 'Reference'
-      no_payouts: 'You have no payout yet or your data is synchronising'
+      no_payouts: 'There are no corresponding payouts or your data is synchronising'
     payout:
       h1: 'Payout'
       link_export: 'Export'

@@ -23,7 +23,7 @@
 <% if !current_user.recent_update? %>
 	<%= render partial: 'reporting/loading' %>
 <% end %>
-<table class="table">
+<table class="table" id="results">
 	<th><%= t('.table_title_type') %></th>
 	<th><%= t('.table_title_action') %></th>
 	<th><%= t('.table_title_charge_date') %></th>
@@ -33,4 +33,6 @@
 	<th><%= t('.table_title_fees') %></th>
 	<%= render partial: 'reporting/payout_event', collection: @events %>
 </table>
-<%= will_paginate @events %>
+<div id="infinite-scrolling">
+	<%= will_paginate @events %>
+</div>
