@@ -7,16 +7,19 @@ class ReportingController < ApplicationController
 
   def mandates
     begin
+      params_filters = params.slice(:time_filter, :scheme_filter, :status_filter)
       @time_filter = params[:time_filter] || 'any'
+      @scheme_filter = params[:scheme_filter] || 'any'
+      @status_filter = params[:status_filter] || 'any'
       respond_to do |format|
         format.html do
-          @mandates = current_user.mandates.filter(params.slice(:time_filter)).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+          @mandates = current_user.mandates.filter(params_filters).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
         end
         format.js do
-          @mandates = current_user.mandates.filter(params.slice(:time_filter)).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+          @mandates = current_user.mandates.filter(params_filters).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
         end
         format.csv do
-          @mandates = current_user.mandates.filter(params.slice(:time_filter)).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all
+          @mandates = current_user.mandates.filter(params_filters).includes(:customer_bank_account, { customer_bank_account: :customer }).order('gc_created_at desc').all
           headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.mandates.csv_name') + ".csv\""
           headers['Content-Type'] ||= 'text/csv'
         end

@@ -2,6 +2,10 @@ module Filterable
 	extend ActiveSupport::Concern
 
 	module ClassMethods
+		def name_of_class
+			ActiveModel::Naming.plural(self)
+		end
+
 		# Runs through all filtering parameters from form and trigger the right 'where' (from this module or the model)
 		def filter(filtering_params)
 			results = self.where(nil)
@@ -26,22 +30,21 @@ module Filterable
 
 		# Filters results by usual time filters
 		def time_filter(selection)
-			name = ActiveModel::Naming.plural(self)
 			case selection
 			when 'any'
 				self.all
 			when 'today'
-				self.where(name+'.gc_created_at >= ?', Date.today)
+				self.where(name_of_class+'.gc_created_at >= ?', Date.today)
 			when 'yesterday'
-				self.where(name+'.gc_created_at >= ?', Date.today - 1)
+				self.where(name_of_classame+'.gc_created_at >= ?', Date.today - 1)
 			when 'this_week'
-				self.where(name+'.gc_created_at >= ?', Time.now.beginning_of_week)
+				self.where(name_of_class+'.gc_created_at >= ?', Time.now.beginning_of_week)
 			when 'this_month'
-				self.where(name+'.gc_created_at >= ?', Time.now.beginning_of_month)
+				self.where(name_of_class+'.gc_created_at >= ?', Time.now.beginning_of_month)
 			when 'last_7_days'
-				self.where(name+'.gc_created_at >= ?', Date.today - 7)
+				self.where(name_of_class+'.gc_created_at >= ?', Date.today - 7)
 			when 'last_30_days'
-				self.where(name+'.gc_created_at >= ?', Date.today - 30)
+				self.where(name_of_class+'.gc_created_at >= ?', Date.today - 30)
 			else
 				self.all
 			end
