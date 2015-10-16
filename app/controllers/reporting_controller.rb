@@ -32,16 +32,19 @@ class ReportingController < ApplicationController
 
   def payments
     begin
+      params_filters = params.slice(:time_filter, :currency_filter, :status_filter)
       @time_filter = params[:time_filter] || 'any'
+      @currency_filter = params[:currency_filter] || 'any'
+      @status_filter = params[:status_filter] || 'any'
       respond_to do |format|
     		format.html do
-    			@payments = current_user.payments.filter(params.slice(:time_filter)).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+    			@payments = current_user.payments.filter(params_filters).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
     		end
         format.js do
-          @payments = current_user.payments.filter(params.slice(:time_filter)).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
+          @payments = current_user.payments.filter(params_filters).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all.paginate(page: params[:page])
         end
     		format.csv do
-    			@payments = current_user.payments.filter(params.slice(:time_filter)).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
+    			@payments = current_user.payments.filter(params_filters).includes(:events, mandate: { customer_bank_account: :customer }).order('gc_created_at desc').all
     			headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('reporting.payments.csv_name') + ".csv\""
     			headers['Content-Type'] ||= 'text/csv'
     		end

@@ -49,5 +49,24 @@ module Filterable
 				self.all
 			end
 		end
+
+		# Returns the dropdown options for currencies
+		def currency_filters
+			[
+				['Any', 'any'],
+				['EUR', 'EUR'],
+				['GBP', 'GBP'],
+				['SEK', 'SEK']
+			]
+		end
+
+		# Filters results by usual time filters
+		def currency_filter(selection)
+			if selection == 'any'
+				self.all
+			else
+				self.where(name_of_class + '.currency = ?', selection)
+			end
+		end
 	end
 end
