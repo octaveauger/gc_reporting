@@ -16,4 +16,11 @@ module ApplicationHelper
 	  	else currency
 	  	end
 	end
+
+	# Analyses a status (from any GC object) - returns something to use in the CSS status-disc class
+	def status_meaning(status)
+		return 'pending' if ['pending', 'pending_submission','submitted'].include?(status)
+		return 'positive' if ['active', 'confirmed', 'paid_out', 'paid'].include?(status)
+		return 'negative'
+	end
 end
