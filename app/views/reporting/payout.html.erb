@@ -1,7 +1,14 @@
 <% provide(:title, t('.h1') + ' - ' + @payout.reference) %>
 <div class="row">
 	<div class="col-sm-9"><h1><%= t('.h1') %> <small><%= @payout.reference %></small></h1></div>
-	<div class="col-sm-3"><%= link_to t('.link_export'), reporting_payout_path(@payout.gc_id, format: :csv), class: 'btn pop pull-right h1-btn' %></div>
+	<div class="col-sm-3">
+		<div class="pull-right">
+			<a href="reporting_payout_path(@payout.gc_id, format: :csv) %>" class='btn pop h1-btn' %>
+				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+				<%= t('.link_export') %>
+			</a>
+		</div>
+	</div>
 </div>
 <p><%= t('reporting.payouts.fee_disclaimer') %></p>
 

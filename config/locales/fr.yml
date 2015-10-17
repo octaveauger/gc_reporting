@@ -358,6 +358,9 @@ fr:
       table_title_mandate_reference: 'Référence'
       table_title_mandate_status: 'Statut du mandat'
       no_mandates: "Il n'y a pas de mandats correspondants ou vos données sont encore en train de synchroniser"
+      create_mandate_button: 'Nouveau mandat'    
+      create_mandate_title: 'Nouveau mandat'    
+      create_mandate_explanation: 'Envoyez ce lien à vos clients :'    
     payments:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'

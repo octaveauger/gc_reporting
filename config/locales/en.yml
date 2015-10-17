@@ -355,7 +355,10 @@ en:
       table_title_mandate_scheme: 'Scheme'
       table_title_mandate_reference: 'Reference'
       table_title_mandate_status: 'Mandate status'
-      no_mandates: 'There are no corresponding mandates or your data is synchronising'    
+      no_mandates: 'There are no corresponding mandates or your data is synchronising'
+      create_mandate_button: 'New mandate'    
+      create_mandate_title: 'New mandate'    
+      create_mandate_explanation: 'Send this link to your customers:'    
     payments:
       h1: 'Payment summary'
       link_export: 'Export'
