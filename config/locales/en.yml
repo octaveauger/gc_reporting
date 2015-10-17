@@ -225,6 +225,8 @@ en:
     close: 'close'
     payout_not_found: 'This payout could not be found'
     customer_not_found: 'This customer could not be found'
+    invalid_link: 'This link is invalid'
+    mandate_success: 'Your mandate was successfully created'
   gocardless:
     mandate:
       status:

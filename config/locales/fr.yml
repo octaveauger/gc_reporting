@@ -227,6 +227,8 @@ fr:
     close: 'fermer'
     payout_not_found: "Ce reversement n'a pas pu être trouvé"
     customer_not_found: "Ce client n'a pas pu être trouvé"
+    invalid_link: "Ce lien n'existe pas"
+    mandate_success: 'Votre mandat a bien été créé'
   gocardless:
     mandate:
       status:
