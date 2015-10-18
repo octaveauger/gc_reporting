@@ -1,7 +1,18 @@
 <% provide(:title, t('.h1')) %>
 <div class="row">
-	<div class="col-sm-9"><h1><%= t('.h1') %></h1></div>
-	<div class="col-sm-3"><%= link_to t('.link_export'), reporting_mandates_path(format: :csv, time_filter: @time_filter, scheme_filter: @scheme_filter, status_filter: @status_filter), class: 'btn pop pull-right h1-btn' %></div>
+	<div class="col-sm-8"><h1><%= t('.h1') %></h1></div>
+	<div class="col-sm-4">
+		<div class="pull-right">
+			<button type="button" class="btn pop h1-btn" data-toggle="modal" data-target="#new-mandate">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<%= t('.create_mandate_button') %>
+			</button>
+			<a href="<%= reporting_mandates_path(format: :csv, time_filter: @time_filter, scheme_filter: @scheme_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
+				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+				<%= t('.link_export') %>
+			</a>
+		</div>
+	</div>
 </div>
 
 <% if !current_user.recent_update? %>
@@ -49,3 +60,17 @@
 <% else %>
 	<p><%= t('.no_mandates') %></p>
 <% end %>
+
+<div class="modal fade" id="new-mandate" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"><%= t('.create_mandate_title') %></h3>
+      </div>
+      <div class="modal-body">
+        <%= t('.create_mandate_explanation') %> <%= link_to authorisations_new_url(current_user.gc_id), authorisations_new_url(current_user.gc_id), target: '_blank' %>
+      </div>
+    </div>
+  </div>
+</div>

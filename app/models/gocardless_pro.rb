@@ -9,7 +9,7 @@ class GocardlessPro
 	end
 
 	SYNC_TABLES = ['customers', 'customer_bank_accounts', 'mandates', 'payments', 
-		'payouts', 'refunds', 'subscriptions', 'events'].freeze # No creditos synced because this is restricted
+		'payouts', 'refunds', 'subscriptions', 'events'].freeze # No creditors synced because this is restricted
 
 	def sync_data
 		SYNC_TABLES.each do |sync|
@@ -262,4 +262,26 @@ class GocardlessPro
 		end
 	end
 
+	def create_redirect_flow(redirect_flow_session_token, redirect_url)
+		begin
+			flow = @client.redirect_flows.create(params: {
+				session_token: redirect_flow_session_token,
+				success_redirect_url: redirect_url
+			})
+			{ success: true, flow_link: flow.redirect_url }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def complete_redirect_flow(redirect_flow_id, redirect_flow_session_token)
+		begin
+			flow = @client.redirect_flows.complete(redirect_flow_id, params: {
+				session_token: redirect_flow_session_token
+			})
+			{ success: true, mandate_id: flow.links['mandate'] }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
 end
