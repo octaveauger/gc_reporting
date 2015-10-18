@@ -225,6 +225,8 @@ en:
     close: 'close'
     payout_not_found: 'This payout could not be found'
     customer_not_found: 'This customer could not be found'
+    invalid_link: 'This link is invalid'
+    mandate_success: 'Your mandate was successfully created'
   gocardless:
     mandate:
       status:
@@ -353,7 +355,10 @@ en:
       table_title_mandate_scheme: 'Scheme'
       table_title_mandate_reference: 'Reference'
       table_title_mandate_status: 'Mandate status'
-      no_mandates: 'There are no corresponding mandates or your data is synchronising'    
+      no_mandates: 'There are no corresponding mandates or your data is synchronising'
+      create_mandate_button: 'New mandate'    
+      create_mandate_title: 'New mandate'    
+      create_mandate_explanation: 'Send this link to your customers:'    
     payments:
       h1: 'Payment summary'
       link_export: 'Export'

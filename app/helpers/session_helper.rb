@@ -33,4 +33,13 @@ module SessionHelper
 		session.delete(:return_to)
 		redirect || reporting_path
 	end
+
+	def redirect_flow_session_token
+		session[:redirect_flow_token] = SecureRandom.urlsafe_base64(nil, false) if session[:redirect_flow_token].nil?
+		session[:redirect_flow_token]
+	end
+
+	def delete_redirect_flow_session_token
+		session.delete(:redirect_flow_token)
+	end
 end
