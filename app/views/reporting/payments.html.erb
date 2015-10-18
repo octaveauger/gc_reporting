@@ -1,7 +1,7 @@
 <% provide(:title, t('.h1')) %>
 <div class="row">
-	<div class="col-sm-9"><h1><%= t('.h1') %></h1></div>
-	<div class="col-sm-3">
+	<div class="col-sm-8"><h1><%= t('.h1') %></h1></div>
+	<div class="col-sm-4">
 		<div class="pull-right">
 			<a href="<%= reporting_payments_path(format: :csv, time_filter: @time_filter, currency_filter: @currency_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
