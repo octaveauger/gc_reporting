@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   get "authorisations/success"
 
   resources :payments, only: [:new, :create]
+
+  resources :mandates, only: [:show]
 end

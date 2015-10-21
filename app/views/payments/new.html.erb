@@ -4,7 +4,7 @@
 	<%= simple_form_for @payment, :url => payments_path  do |f| %>
 		<div class="form-group <%= 'has-error' unless @payment.errors[:mandate_id].empty? %>">
 			<%= label_tag(:mandate_id, 'Customer', class: 'control-label') %>
-			<%= f.select :mandate_id, @mandates.map{ |m| [m.customer_name, m.gc_id]}, {}, { class: 'form-control' } %>
+			<%= f.select :mandate_id, @mandates.map{ |m| [m.customer_name, m.gc_id]}, {}, { class: 'form-control', target: mandate_url(@mandate_selected.gc_id).sub(@mandate_selected.gc_id, '') } %>
 			<%= f.error :mandate_id %>
 		</div>
 		<div class="form-group <%= 'has-error' unless @payment.errors[:amount].empty? %>">
