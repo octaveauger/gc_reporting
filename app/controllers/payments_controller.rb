@@ -10,29 +10,36 @@ class PaymentsController < ApplicationController
   end
 
   def create
+    @mandate = current_user.mandates.can_take_payment.find_by(gc_id: params['payment_request']['mandate_id'])
     @mandates = current_user.mandates.can_take_payment.all
-    @mandate_selected = (@mandates.select { |mandate| mandate.gc_id == params['mandate_id']}).first
-    @mandate_selected = @mandates.last if @mandate_selected.nil?
+    if @mandate.nil?
+      @mandate_selected = (@mandates.select { |mandate| mandate.gc_id == params['mandate_id']}).first
+      @mandate_selected = @mandates.last if @mandate_selected.nil?
+    else
+      @mandate_selected = @mandate
+    end
     @next_possible_charge_date = @mandate_selected.next_possible_charge_date
   	@payment = PaymentRequest.new(payment_request_params)
 
-    @mandate = current_user.mandates.can_take_payment.find_by(gc_id: params['payment_request']['mandate_id'])
   	if @mandate.nil?
-  		flash[:alert] = 'Select a valid mandate'
+  		flash.now[:alert] = I18n.t('errors.form.payments.select_valid_mandate')
   		render 'new'
   	else
       if !@payment.valid?
-        flash[:alert] = 'Please correct the form errors below'
+        flash.now[:alert] = I18n.t('errors.form.please_correct_form')
         render 'new'
       else
         client = GocardlessPro.new(current_user)
         result = client.create_payment(@payment.params_for_gocardless)
         if result[:success]
-          flash[:notice] = 'Your payment will be taken on the ' + result[:charge_date].to_date.strftime('%d/%m/%Y')
+          flash.now[:notice] = I18n.t('payments.new.success_message', charge_date: result[:charge_date].to_date.strftime('%d/%m/%Y'))
           @payment = PaymentRequest.new(mandate_id: @mandate_selected.gc_id, currency: @mandate_selected.currency, charge_date: @next_possible_charge_date)
           render 'new'
         else
-          flash[:alert] = 'GoCardless: ' + result[:message] + result[:errors].to_json
+          result[:errors].each do |error|
+            @payment.errors.add(error['field'], error['message'])
+          end
+          flash.now[:alert] = 'GoCardless: ' + result[:message]
           render 'new'
         end
       end

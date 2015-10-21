@@ -27,11 +27,11 @@ class PaymentRequest
     		errors.add(:mandate_id, 'is not valid')
     	else
     		if !self.charge_date.nil? and Time.parse(self.charge_date) < Time.parse(self.mandate.next_possible_charge_date)
-    			errors.add(:charge_date, 'must be on or later than ' + mandate.next_possible_charge_date)
+    			errors.add(:charge_date, :later_charge_date, charge_date: mandate.next_possible_charge_date.to_date.strftime('%d/%m/%Y'))
     		end
     		reference_max_lengths = { 'bacs' => 10, 'sepa_core' => 140, 'sepa_cor1' => 140, 'autogiro' => 16 }
     		if !self.reference.nil? and self.reference.length > reference_max_lengths[self.mandate.scheme]
-    			errors.add(:reference, 'must be less than ' + reference_max_lengths[self.mandate.scheme] + 'characters')
+    			errors.add(:reference, :too_long, chars: reference_max_lengths[self.mandate.scheme].to_s)
     		end
     	end
     end
