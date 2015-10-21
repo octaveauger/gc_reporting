@@ -27,7 +27,7 @@ class AuthorisationsController < ApplicationController
 	  	if redirect_flow[:success]
 	  		redirect_to authorisations_success_path, notice: I18n.t('notices.mandate_success')
 	  	else
-	  		redirect_to authorisations_error_path, alert: 'GoCardless: ' + redirect_flow[:message] + redirect_flow[:errors].to_json
+	  		redirect_to authorisations_error_path, alert: 'GoCardless: ' + redirect_flow[:message]
 	  	end
 	end
   end

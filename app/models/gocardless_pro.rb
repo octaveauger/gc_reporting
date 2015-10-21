@@ -284,4 +284,13 @@ class GocardlessPro
   			{ success: false, message: gc_error.message, errors: gc_error.errors }
 		end
 	end
+
+	def create_payment(params)
+		begin
+			gc_payment = @client.payments.create(params: params)
+			{ success: true, payment_id: gc_payment.id, charge_date: gc_payment.charge_date }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
 end

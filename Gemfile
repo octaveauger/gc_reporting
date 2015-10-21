@@ -37,6 +37,7 @@ gem 'celluloid', '0.16.0'
 gem 'sucker_punch', '~> 1.0'
 gem 'exception_notification'
 gem 'route_translator'
+gem 'validates_timeliness', '~> 3.0'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

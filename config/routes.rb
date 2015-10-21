@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   get "authorisations/confirm/:flow_id", to: 'authorisations#confirm', as: 'authorisations_confirm'
   get "authorisations/error"
   get "authorisations/success"
+
+  resources :payments, only: [:new, :create]
 end

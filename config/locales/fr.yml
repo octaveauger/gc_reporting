@@ -382,6 +382,7 @@ fr:
       table_title_status: 'Statut'
       table_title_error_cause: 'Cause de rejet'
       no_payments: "Il n'y a pas de paiements correspondants ou vos données sont encore en train de synchroniser"
+      create_payment_button: 'Nouveau paiement'
     payouts:
       h1: 'Rapport de reversements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
