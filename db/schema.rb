@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905223022) do
+ActiveRecord::Schema.define(version: 20151021235248) do
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -196,6 +196,20 @@ ActiveRecord::Schema.define(version: 20150905223022) do
 
   add_index "refunds", ["gc_id"], name: "index_refunds_on_gc_id"
   add_index "refunds", ["payment_id"], name: "index_refunds_on_payment_id"
+
+  create_table "revenues", force: true do |t|
+    t.integer  "organisation_id"
+    t.string   "category"
+    t.string   "reference"
+    t.integer  "amount"
+    t.string   "currency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "revenues", ["category"], name: "index_revenues_on_category"
+  add_index "revenues", ["organisation_id"], name: "index_revenues_on_organisation_id"
+  add_index "revenues", ["reference"], name: "index_revenues_on_reference"
 
   create_table "subscriptions", force: true do |t|
     t.string   "mandate_id"

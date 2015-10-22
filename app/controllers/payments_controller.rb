@@ -32,6 +32,12 @@ class PaymentsController < ApplicationController
         client = GocardlessPro.new(current_user)
         result = client.create_payment(@payment.params_for_gocardless)
         if result[:success]
+          current_user.revenues.create!(
+            category: 'payment',
+            reference: result[:payment_id],
+            amount: @payment.app_fee,
+            currency: @payment.currency
+          )
           flash.now[:notice] = I18n.t('payments.new.success_message', charge_date: result[:charge_date].to_date.strftime('%d/%m/%Y'))
           @payment = PaymentRequest.new(mandate_id: @mandate_selected.gc_id, currency: @mandate_selected.currency, charge_date: @next_possible_charge_date)
           render 'new'
