@@ -206,6 +206,18 @@ en:
     previous_label: '&#8592; Previous'
     next_label: 'Next &#8594;'
     page_gap: '&hellip;'
+  activemodel:
+    errors:
+      models:
+        payment_request:
+          attributes:
+            charge_date:
+              later_charge_date: 'must be on or later than %{charge_date}'
+            reference:
+              too_long: 'must be less than %{chars} characters'
+            amount:
+              blank: "can't be blank"
+              not_a_number: "is not a number"
   header:
     toggle: 'Toggle navigation'
     app_name: 'GoCardless Reporting'
@@ -220,6 +232,10 @@ en:
       auth_failed: 'There was an issue with the connection to GoCardless: %{error_description}'
     exceptions:
       default: 'Something went wrong and we have been notified'
+    form:
+      please_correct_form: 'Please correct the form errors below'
+      payments:
+        select_valid_mandate: 'Please select a valid mandate'
   notices:
     logged_out: 'You have been logged out successfully'
     close: 'close'
@@ -380,6 +396,7 @@ en:
       table_title_status: 'Status'
       table_title_error_cause: 'Failure cause'
       no_payments: 'There are no corresponding payments or your data is synchronising'
+      create_payment_button: 'New payment'
     payouts:
       h1: 'Payout summary'
       fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
@@ -422,3 +439,17 @@ en:
       item_description_customer_country: 'Country'
       title_mandates: 'Mandates'
       title_payments: 'Payments'
+  payments:
+    new:
+      h1: 'Take a payment'
+      form_label_customer: 'Customer'
+      form_label_amount: 'Amount'
+      form_label_description: 'Description'
+      form_hint_description: 'What is this payment for?'
+      form_label_reference: 'Reference'
+      form_hint_reference: 'This will appear on the customer bank statement'
+      form_label_charge_date_start: 'Take payment on (earliest '
+      form_label_charge_date_end: ')'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Create'
+      success_message: 'Your payment will be taken on the %{charge_date}'

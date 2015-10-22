@@ -8,6 +8,6 @@ class CustomersController < ApplicationController
   	end
   	@payments = @customer.payments.includes(:events).order('gc_created_at desc').all.paginate(page: params[:page])
 
-  	#render layout: 'stripped'
+  	render layout: !request.xhr?
   end
 end

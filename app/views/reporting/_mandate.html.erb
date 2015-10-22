@@ -3,7 +3,7 @@
 	<td><%= mandate.customer.gc_id %></td>
 	<td><%= mandate.gc_id %></td>
 	<td>
-		<a href="<%= customer_path(mandate.customer) %>" target="_blank">
+		<a class="modal-link" data-toggle="modal" data-target="#customer-modal" href="<%= customer_path(mandate.customer) %>">
 			<%= mandate.customer.full_name %><br/>
 			<%= mandate.customer.email %>
 		</a>

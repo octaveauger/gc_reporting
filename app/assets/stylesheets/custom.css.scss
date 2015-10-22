@@ -171,19 +171,6 @@ textarea, textarea.form-control {
   line-height: 1.6em;
 }
 
-textarea, textarea.form-control, input[type="text"], input[type="password"], input[type="file"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, .faux-file {
-  display: inline-block;
-  padding: 0 .4em 0 .4em;
-  vertical-align: middle;
-  border-radius: 3px;
-  min-width: 50px;
-  max-width: 550px;
-  width: 100%;
-  min-height: 36px;
-  background-color: #fff;
-  border: 2px solid #c9c9c9;
-}
-
 select {
   color: #5092da !important;
 }
@@ -261,6 +248,13 @@ tr:first-of-type {
 
 .modal-header{
   padding: 5px 15px;
+}
+
+.no-padding-left {
+  padding-left: 0px;
+}
+.no-padding-right {
+  padding-right: 0px;
 }
 
 /* Elements */

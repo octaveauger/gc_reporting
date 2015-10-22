@@ -208,6 +208,18 @@ fr:
     previous_label: '&#8592; Précédent'
     next_label: 'Suivant &#8594;'
     page_gap: '&hellip;'
+  activemodel:
+    errors:
+      models:
+        payment_request:
+          attributes:
+            charge_date:
+              later_charge_date: 'doit être le, ou après le %{charge_date}'
+            reference:
+              too_long: 'doit contenir moins de %{chars} caractères'
+            amount:
+              blank: "doit être rempli(e)"
+              not_a_number: "n'est pas un nombre"
   header:
     toggle: 'Changer navigation'
     app_name: 'Rapports GoCardless'
@@ -222,6 +234,10 @@ fr:
       auth_failed: 'Il y eu un problème avec la connection vers GoCardless: %{error_description}'
     exceptions:
       default: 'Il y eu une erreur et nous en avons été alertés'
+    form:
+      please_correct_form: 'Veuillez corriger les erreurs du formulaire ci-dessous'
+      payments:
+        select_valid_mandate: 'Veuillez sélectionner un mandat valide'
   notices:
     logged_out: 'Vous avez bien été déconnecté'
     close: 'fermer'
@@ -382,6 +398,7 @@ fr:
       table_title_status: 'Statut'
       table_title_error_cause: 'Cause de rejet'
       no_payments: "Il n'y a pas de paiements correspondants ou vos données sont encore en train de synchroniser"
+      create_payment_button: 'Nouveau paiement'
     payouts:
       h1: 'Rapport de reversements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
@@ -424,3 +441,17 @@ fr:
       item_description_customer_country: 'Pays'
       title_mandates: 'Mandats'
       title_payments: 'Paiements'
+  payments:
+    new:
+      h1: 'Prenez un paiement'
+      form_label_customer: 'Client'
+      form_label_amount: 'Somme'
+      form_label_description: 'Description'
+      form_hint_description: 'A quoi correspond ce paiement ?'
+      form_label_reference: 'Référence'
+      form_hint_reference: 'Cela apparaîtra sur le compte en banque du client'
+      form_label_charge_date_start: 'Prenez le paiement le (au plus tôt '
+      form_label_charge_date_end: ')'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Créer'
+      success_message: 'Votre paiement sera pris le %{charge_date}'

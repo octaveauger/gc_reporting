@@ -9,6 +9,7 @@ class Organisation < ActiveRecord::Base
 	has_many :subscriptions, through: :mandates
 	has_many :organisation_updates
 	has_many :creditors
+	has_many :revenues
 
 	def updated?(cat)
 		self.organisation_updates.where(category: cat).count > 0

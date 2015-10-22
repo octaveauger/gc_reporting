@@ -53,6 +53,7 @@
 		<th><%= t('reporting.mandates.table_title_mandate_reference') %></th>
 		<th><%= t('reporting.mandates.table_title_mandate_scheme') %></th>
 		<th><%= t('reporting.mandates.table_title_mandate_status') %></th>
+		<th></th>
 		<%= render partial: 'customers/mandate', collection: @customer.mandates.order('gc_created_at desc') %>
 	</table>
 <% else %>

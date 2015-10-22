@@ -6,9 +6,33 @@ class Mandate < ActiveRecord::Base
 	belongs_to :creditor, primary_key: 'gc_id', foreign_key: 'creditor_id'
 	has_many :payments, primary_key: 'gc_id', foreign_key: 'mandate_id'
 	has_many :subscriptions, primary_key: 'gc_id', foreign_key: 'mandate_id'
+	scope :can_take_payment,  -> { where(:status => ['pending_submission', 'submitted', 'active']) }
 
 	def self.last_sync
 		order('gc_created_at desc').first.gc_id
+	end
+
+	def customer_name
+		self.customer.full_name
+	end
+
+	def next_possible_charge_date
+		client = GocardlessPro.new(self.customer.organisation)
+		gc_mandate = client.get_resource(self.gc_id, 'mandates')
+		gc_mandate.next_possible_charge_date
+	end
+
+	def currency
+		case self.scheme
+		when 'bacs'
+			'GBP'
+		when 'sepa_core'
+			'EUR'
+		when 'sepa_cor1'
+			'EUR'
+		when 'autogiro'
+			'SEK'
+		end
 	end
 
   	# Returns the dropdown options for DD schemes
