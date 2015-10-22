@@ -252,9 +252,9 @@ class GocardlessPro
 	def add_fees(event)
 		case event.action
 			when 'paid_out'
-				Fee.create(event_id: event.gc_id, amount: [200, event.payment.amount * 0.01].min, currency: event.payment.currency)
+				Fee.create(event_id: event.gc_id, amount: [200, (event.payment.amount * 0.01).ceil].min, currency: event.payment.currency)
 			when 'late_failure_settled'
-				Fee.create(event_id: event.gc_id, amount: -[200, event.payment.amount * 0.01].min, currency: event.payment.currency)
+				Fee.create(event_id: event.gc_id, amount: -[200, (event.payment.amount * 0.01).ceil].min, currency: event.payment.currency)
 			when 'chargeback_settled'
 				Fee.create(event_id: event.gc_id, amount: 0, currency: event.payment.currency)
 			when 'refund_settled'
