@@ -384,7 +384,7 @@ en:
   reporting:
     loading:
       loader_backup: 'Loading...'
-      notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
+      notice: 'Your data is currently being synchronised. This page will reload when it is ready.'
     index:
       h1: 'Payment reporting'
       link_payments: 'Your payments'

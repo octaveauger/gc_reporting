@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "mandates/cancel"
   get "payments/cancel"
   get "payments/retry"
+  get "organisations/sync_status"
 
   resources :mandates, only: [:show]
 end
