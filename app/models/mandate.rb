@@ -22,6 +22,16 @@ class Mandate < ActiveRecord::Base
 		gc_mandate.next_possible_charge_date
 	end
 
+	def can_take_payment?
+		['pending_submission', 'submitted', 'active'].include? self.status
+	end
+
+	# Cancels the mandate with GoCardless and returns a hash with the results
+	def cancel
+		client = GocardlessPro.new(self.customer.organisation)
+		client.cancel_mandate(self.gc_id)
+	end
+
 	def currency
 		case self.scheme
 		when 'bacs'

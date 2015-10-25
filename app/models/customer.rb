@@ -5,7 +5,11 @@ class Customer < ActiveRecord::Base
   has_many :payments, through: :mandates
 
   def full_name
-  	company_name = (self.company_name.blank? ? '' : '(' + self.company_name.to_s + ')')
-  	self.given_name.to_s + ' ' + self.family_name.to_s + company_name
+  	if self.given_name.blank? and self.family_name.blank?
+  		self.company_name
+  	else
+	  	company_name = (self.company_name.blank? ? '' : '(' + self.company_name.to_s + ')')
+	  	self.given_name.to_s + ' ' + self.family_name.to_s + company_name
+	end
   end
 end

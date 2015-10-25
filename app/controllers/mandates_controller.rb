@@ -15,4 +15,15 @@ class MandatesController < ApplicationController
   		format.json { render json: response }
     end
   end
+
+  def cancel
+    @mandate = current_user.mandates.find_by(gc_id: params['mandate_id'])
+    if !@mandate.nil?
+      @results = @mandate.cancel
+      @cancelled = @results[:success]
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 end
