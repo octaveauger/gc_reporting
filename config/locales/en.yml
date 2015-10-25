@@ -395,7 +395,8 @@ en:
       no_mandates: 'There are no corresponding mandates or your data is synchronising'
       create_mandate_button: 'New mandate'    
       create_mandate_title: 'New mandate'    
-      create_mandate_explanation: 'Send this link to your customers:'    
+      create_mandate_explanation: 'Send this link to your customers:'
+      cancel_mandate: 'Cancel mandate'
     payments:
       h1: 'Payment summary'
       link_export: 'Export'

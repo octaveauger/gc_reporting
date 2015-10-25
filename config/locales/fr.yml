@@ -397,7 +397,8 @@ fr:
       no_mandates: "Il n'y a pas de mandats correspondants ou vos données sont encore en train de synchroniser"
       create_mandate_button: 'Nouveau mandat'    
       create_mandate_title: 'Nouveau mandat'    
-      create_mandate_explanation: 'Envoyez ce lien à vos clients :'    
+      create_mandate_explanation: 'Envoyez ce lien à vos clients :'
+      cancel_mandate: 'Annuler le mandat'
     payments:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'
