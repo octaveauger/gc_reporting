@@ -6,6 +6,7 @@ class Payment < ActiveRecord::Base
 	delegate :customer, to: :customer_bank_account
 	has_many :events, primary_key: 'gc_id', foreign_key: 'payment_id'
 	has_many :refunds, primary_key: 'gc_id', foreign_key: 'payment_id'
+	scope :can_be_refunded,  -> { where(:status => ['confirmed', 'paid_out']) }
 
 	def failure_cause
 		if self.status == 'failed' and self.events.where(action: 'failed').any?
@@ -13,6 +14,10 @@ class Payment < ActiveRecord::Base
 		else
 			''
 		end
+	end
+
+	def customer_name
+		self.mandate.customer_name
 	end
 
 	def can_be_cancelled?
@@ -25,6 +30,18 @@ class Payment < ActiveRecord::Base
 
 	def can_be_refunded?
 		['confirmed', 'paid_out'].include? self.status
+	end
+
+	def total_refunded_amount
+		total = 0
+		self.refunds.each do |refund|
+			total += refund.amount.to_i
+		end
+		total
+	end
+
+	def max_refundable_amount
+		self.amount - self.total_refunded_amount
 	end
 
 	# Cancels the payment with GoCardless and returns a hash with the results

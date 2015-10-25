@@ -11,7 +11,7 @@
 <% end %>
 
 <% if payment_action.can_be_refunded? and !@refunded %>
-	<a href="" data-role="refund-payment" data-target="<%= payments_refund_path(payment_id: payment_action.gc_id) %>">
+	<a href="<%= new_refund_path(payment_id: payment_action.gc_id) %>" target="_blank">
 		<span class="glyphicon glyphicon-share-alt positive" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<%= t('reporting.payments.refund_payment') %>"></span>
 	</a>
 <% end %>

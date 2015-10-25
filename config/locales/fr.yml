@@ -220,6 +220,15 @@ fr:
             amount:
               blank: "doit être rempli(e)"
               not_a_number: "n'est pas un nombre"
+        refund_request:
+          attributes:
+            amount:
+              blank: "doit être rempli(e)"
+              not_a_number: "n'est pas un nombre"
+              too_much: 'doit être inférieur au montant remboursable maximum'
+              too_little: 'doit être plus élevé'
+            reference:
+              too_long: 'doit contenir moins de %{chars} caractères'
   header:
     toggle: 'Changer navigation'
     app_name: 'Rapports GoCardless'
@@ -239,6 +248,8 @@ fr:
       please_correct_form: 'Veuillez corriger les erreurs du formulaire ci-dessous'
       payments:
         select_valid_mandate: 'Veuillez sélectionner un mandat valide'
+      refunds:
+        select_valid_payment: 'Veuillez sélectionner un paiement valide'
   notices:
     logged_out: 'Vous avez bien été déconnecté'
     close: 'fermer'
@@ -421,6 +432,9 @@ fr:
       table_title_error_cause: 'Cause de rejet'
       no_payments: "Il n'y a pas de paiements correspondants ou vos données sont encore en train de synchroniser"
       create_payment_button: 'Nouveau paiement'
+      cancel_payment: 'Annuler le paiement'
+      retry_payment: 'Représenter le paiement'
+      refund_payment: 'Rembourser le paiement'
     payouts:
       h1: 'Rapport de reversements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
@@ -477,3 +491,14 @@ fr:
       form_button_cancel: 'Annuler'
       form_button_submit: 'Créer'
       success_message: 'Votre paiement sera pris le %{charge_date}'
+  refunds:
+    new:
+      h1: 'Rembourser un paiement'
+      form_label_payment: 'Paiement'
+      form_label_amount: 'Montant'
+      form_label_amount_max: 'max : '
+      form_label_reference: 'Référence'
+      form_hint_reference: 'Cela apparaîtra sur le compte en banque du client'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Rembourser'
+      success_message: 'Votre remboursement sera versé au client dans les 2 prochains jours ouvrés'

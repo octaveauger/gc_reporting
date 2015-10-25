@@ -312,6 +312,15 @@ class GocardlessPro
 		end
 	end
 
+	def create_refund(params)
+		begin
+			gc_refund = @client.refunds.create(params: params)
+			{ success: true, refund_id: gc_refund.id }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
 	def cancel_mandate(mandate_id)
 		begin
 			gc_mandate = @client.mandates.cancel(mandate_id)

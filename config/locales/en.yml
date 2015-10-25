@@ -218,6 +218,15 @@ en:
             amount:
               blank: "can't be blank"
               not_a_number: "is not a number"
+        refund_request:
+          attributes:
+            amount:
+              blank: "can't be blank"
+              not_a_number: "is not a number"
+              too_much: 'must be less than the maximum refundable amount'
+              too_little: 'must be higher'
+            reference:
+              too_long: 'must be less than %{chars} characters'
   header:
     toggle: 'Toggle navigation'
     app_name: 'GoCardless Reporting'
@@ -237,6 +246,8 @@ en:
       please_correct_form: 'Please correct the form errors below'
       payments:
         select_valid_mandate: 'Please select a valid mandate'
+      refunds:
+        select_valid_payment: 'Please select a valid payment'
   notices:
     logged_out: 'You have been logged out successfully'
     close: 'close'
@@ -478,3 +489,14 @@ en:
       form_button_cancel: 'Cancel'
       form_button_submit: 'Create'
       success_message: 'Your payment will be taken on the %{charge_date}'
+  refunds:
+    new:
+      h1: 'Refund a payment'
+      form_label_payment: 'Payment'
+      form_label_amount: 'Amount'
+      form_label_amount_max: 'max: '
+      form_label_reference: 'Reference'
+      form_hint_reference: 'This will appear on the customer bank statement'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Refund'
+      success_message: 'Your refund will be paid out to the customer in the next 2 working days'
