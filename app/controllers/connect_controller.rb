@@ -21,9 +21,9 @@ class ConnectController < ApplicationController
       if params[:error].present?
     		case params[:error]
     		when 'access_denied' then
-    			return redirect_to root_path, notice: I18n.t('errors.gocardless.auth_cancelled')
+    			return redirect_to root_path, alert: I18n.t('errors.gocardless.auth_cancelled')
     		else
-    			return redirect_to root_path, notice: I18n.t('errors.gocardless.auth_failed', error_description: params[:error_description])
+    			return redirect_to root_path, alert: I18n.t('errors.gocardless.auth_failed', error_description: params[:error_description])
     		end
     	end
 

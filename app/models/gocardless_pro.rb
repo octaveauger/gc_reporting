@@ -294,6 +294,33 @@ class GocardlessPro
 		end
 	end
 
+	def cancel_payment(payment_id)
+		begin
+			gc_payment = @client.payments.cancel(payment_id)
+			{ success: true }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def retry_payment(payment_id)
+		begin
+			gc_payment = @client.payments.retry(payment_id)
+			{ success: true }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def create_refund(params)
+		begin
+			gc_refund = @client.refunds.create(params: params)
+			{ success: true, refund_id: gc_refund.id }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
 	def cancel_mandate(mandate_id)
 		begin
 			gc_mandate = @client.mandates.cancel(mandate_id)

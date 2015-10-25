@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     get 'reporting/payout/:payout_gc_id', to: 'reporting#payout', as: 'reporting_payout'
 
     resources :customers, only: [:show]
-    resources :payments, only: [:new, :create]
+    resources :payments, only: [:show, :new, :create]
+    resources :refunds, only: [:new, :create]
   end
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
   get "authorisations/error"
   get "authorisations/success"
   get "mandates/cancel"
+  get "payments/cancel"
+  get "payments/retry"
 
   resources :mandates, only: [:show]
 end

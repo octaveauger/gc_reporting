@@ -1,6 +1,19 @@
 class PaymentsController < ApplicationController
   before_action :logged_in_user
 
+  def show
+    @payment = current_user.payments.find_by(gc_id: params[:id])
+    if !@payment.nil?
+      response = {
+        currency: currency_symbol(@payment.currency),
+        payment_max_refund: @payment.max_refundable_amount,
+      }
+    end
+    respond_to do |format|
+      format.json { render json: response }
+    end
+  end
+
   def new
   	@mandates = current_user.mandates.can_take_payment.all
   	@mandate_selected = (@mandates.select { |mandate| mandate.gc_id == params['mandate_id']}).first
@@ -50,7 +63,30 @@ class PaymentsController < ApplicationController
         end
       end
     end
+  end
 
+  def cancel
+    @payment = current_user.payments.find_by(gc_id: params['payment_id'])
+    if !@payment.nil?
+      @results = @payment.cancel
+      @cancelled = @results[:success]
+      @alert = 'GoCardless: ' + @results[:message] if !@cancelled
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def retry
+    @payment = current_user.payments.find_by(gc_id: params['payment_id'])
+    if !@payment.nil?
+      @results = @payment.retry
+      @retried = @results[:success]
+      @alert = 'GoCardless: ' + @results[:message] if !@retried
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

@@ -1,0 +1,29 @@
+<div class="col-md-8 col-md-offset-2">
+	<h1><%= t('.h1') %></h1>
+
+	<%= simple_form_for @refund, :url => refunds_path do |f| %>
+		<div class="form-group <%= 'has-error' unless @refund.errors[:refund_id].empty? %>">
+			<%= label_tag(:payment_id, t('.form_label_payment'), class: 'control-label') %>
+			<%= f.select :payment_id, @payments.map{ |p| [p.customer_name + ' - ' + p.charge_date.strftime('%d/%m/%Y') + ' - ' + p.currency + (p.amount / 100).to_s, p.gc_id]}, {}, { class: 'form-control', target: payment_url(@payment_selected.gc_id).sub(@payment_selected.gc_id, '') } %>
+			<%= f.error :mandate_id %>
+		</div>
+		<div class="form-group <%= 'has-error' unless @refund.errors[:amount].empty? %>">
+			<label class="control-label" for="amount"><%= t('.form_label_amount') %> (<%= t('.form_label_amount_max') %> <span id="payment_currency"><%= currency_symbol(@payment_selected.currency) %></span><span id="payment_max_refund"><%= @payment_selected.max_refundable_amount / 100 %></span>)</label>
+			<%= f.text_field :amount, placeholder: 10, class: 'form-control' %>
+			<%= f.error :amount %>
+		</div>
+		<div class="form-group <%= 'has-error' unless @refund.errors[:reference].empty? %>">
+			<label class="control-label" for="reference"><%= t('.form_label_reference') %></label>
+			<%= f.text_field :reference, placeholder: t('.form_hint_reference'), class: 'form-control' %>
+			<%= f.error :reference %>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 no-padding-left">
+				<a href="<%= reporting_payments_path %>" class="btn btn-default btn-block col-xs-4"><%= t('.form_button_cancel') %></a>
+			</div>
+			<div class="col-xs-8 no-padding-right">
+				<button type="submit" class="btn btn-primary btn-block"><%= t('.form_button_submit') %></button>
+			</div>
+		</div>
+	<% end %>
+</div>
