@@ -224,7 +224,8 @@ en:
     link_mandates: 'Mandates'
     link_payments: 'Payments'
     link_payouts: 'Payouts'
-    link_connect: 'Connect'
+    link_signup: 'Signup'
+    link_login: 'Login'
     link_logout: 'Log out'
   errors:
     gocardless:
@@ -349,6 +350,26 @@ en:
       alt_payments: 'Payment report'
       title_payouts: 'Your payouts and fees'
       alt_payouts: 'Payout report'
+  connect:
+    signup:
+      h1: 'Signup for Antilope for free'
+      intro: "Antilope works with <a href='https://gocardless.com/en-eu' target='_blank'>GoCardless</a>, the leading European Direct Debit provider: by connecting a GoCardless account, you'll be able to take payments via Direct Debit across the UK and the Eurozone."
+      button_connect: 'Connect a GoCardless account'
+      simple_title: 'Simple'
+      simple_description: 'Create online mandates, take payments and retry failed payments in one click'
+      automated_title: 'Automated'
+      automated_description: 'No more files: GoCardless submits your payments and shows their real time status'
+      economical_title: 'Economical'
+      economical_description: 'GoCardless charges 1%, capped at €/£2. Antilope will add €/£0.20 per payment'
+      clients_lead: 'You will be in good company, amongst 12,000 other companies'
+      clients_alt: 'GoCardless clients'
+    new_account:
+      h1: 'Complete your Antilope account'
+      form_label_fname: 'First name'
+      form_label_lname: 'Last name'
+      form_label_email: 'Email'
+      form_label_company_name: 'Company name'
+      form_button_submit: 'Complete your account'      
   reporting:
     loading:
       loader_backup: 'Loading...'

@@ -1,0 +1,31 @@
+<h1><%= t('.h1') %></h1>
+<p class="lead"><%= t('.intro').html_safe %></p>
+
+<div class="text-center">
+	<%= link_to t('.button_connect'), authorise_connect_path(oauth_view: 'signup'), :class => 'btn btn-lg pop' %>
+</div>
+
+<hr/>
+<div class="row benefits">
+	<div class="col-md-4 text-center">
+		<span class="glyphicon glyphicon-heart icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.simple_title') %></h3>
+		<p><%= t('.simple_description') %></p>
+	</div>
+	<div class="col-md-4 text-center">
+		<span class="glyphicon glyphicon-retweet icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.automated_title') %></h3>
+		<p><%= t('.automated_description') %></p>
+	</div>
+	<div class="col-md-4 text-center">
+		<span class="glyphicon glyphicon-euro icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.economical_title') %></h3>
+		<p><%= t('.economical_description') %></p>
+	</div>
+</div>
+
+<hr/>
+<div>
+	<p class="lead"><%= t('.clients_lead') %></p>
+	<%= image_tag(I18n.locale.to_s + '/gocardless-client-logos.png', alt: t('.clients_alt'), class: 'img-responsive') %>
+</div>

@@ -1,0 +1,11 @@
+<div class="col-md-8 col-md-offset-2">
+	<h1><%= t('.h1') %></h1>
+
+	<%= simple_form_for @organisation, :url => connect_create_path  do |f| %>
+		<%= f.input :fname, label: t('.form_label_fname'), autofocus: true %>
+		<%= f.input :lname, label: t('.form_label_lname') %>
+		<%= f.input :email, label: t('.form_label_email') %>
+		<%= f.input :company_name, label: t('.form_label_company_name') %>
+		<div class="col-xs-offset-3"><%= f.button :submit, t('.form_button_submit'), :class => 'btn btn-primary btn-block' %></div>
+	<% end %>
+</div>

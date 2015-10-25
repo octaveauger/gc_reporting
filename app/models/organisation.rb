@@ -11,6 +11,8 @@ class Organisation < ActiveRecord::Base
 	has_many :creditors
 	has_many :revenues
 
+	validates :email, format: /.+@.+\..+/i
+
 	def updated?(cat)
 		self.organisation_updates.where(category: cat).count > 0
 	end
@@ -35,5 +37,10 @@ class Organisation < ActiveRecord::Base
 			return false unless !update.nil?
 		end
 		true
+	end
+
+	# Returns true if all fields are complete, false otherwise
+	def profile_complete?
+		!self.fname.blank? and !self.lname.blank? and !self.email.blank? and !self.company_name.blank?
 	end
 end

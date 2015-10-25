@@ -1,6 +1,6 @@
-<h1><%= t('.h1') %></h1>
+<div class="col-md-8 col-md-offset-2">
+	<h1><%= t('.h1') %></h1>
 
-<div class="col-md-6">
 	<%= simple_form_for @payment, :url => payments_path  do |f| %>
 		<div class="form-group <%= 'has-error' unless @payment.errors[:mandate_id].empty? %>">
 			<%= label_tag(:mandate_id, t('.form_label_customer'), class: 'control-label') %>

@@ -278,6 +278,16 @@ tr:first-of-type {
     background: #EE6850 none repeat scroll 0% 0%;
 }
 
+.benefits {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.glyphicon.icon-marketing {
+  font-size: 3em;
+  color: #5092da;
+}
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
