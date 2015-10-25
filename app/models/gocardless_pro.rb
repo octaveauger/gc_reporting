@@ -293,4 +293,13 @@ class GocardlessPro
   			{ success: false, message: gc_error.message, errors: gc_error.errors }
 		end
 	end
+
+	def cancel_mandate(mandate_id)
+		begin
+			gc_mandate = @client.mandates.cancel(mandate_id)
+			{ success: true }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
 end
