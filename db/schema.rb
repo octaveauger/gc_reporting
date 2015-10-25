@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021235248) do
+ActiveRecord::Schema.define(version: 20151024231328) do
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -147,6 +147,10 @@ ActiveRecord::Schema.define(version: 20151021235248) do
     t.string   "gc_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "email"
+    t.string   "company_name"
   end
 
   add_index "organisations", ["gc_id"], name: "index_organisations_on_gc_id"

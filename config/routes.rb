@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   
   localized do
     root to: 'home#index'
+    get 'signup', to: 'connect#signup'
+    get 'connect/account', to: 'connect#new_account'
+    patch 'connect/create', to: 'connect#create_account'
     get 'reporting', to: 'reporting#index'
     get 'reporting/mandates', to: 'reporting#mandates'
     get 'reporting/payments', to: 'reporting#payments'

@@ -22,7 +22,8 @@
         <% if signed_in? %>
   	        <li><%= link_to t('header.link_logout'), logout_connect_path %></li>
   	    <% else %>
-  	        <li class="list-button"><%= link_to t('header.link_connect'), authorise_connect_path, :class => 'btn pop' %></li>
+            <li class="list-button"><%= link_to t('header.link_login'), authorise_connect_path %></li>
+            <li class="list-button"><%= link_to t('header.link_signup'), signup_path, :class => 'btn pop' %></li>
   	    <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">
