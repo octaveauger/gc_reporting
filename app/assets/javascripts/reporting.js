@@ -9,10 +9,4 @@ $(function () {
 			}
 		});
 	}
-
-	// Cancel mandate
-	$('a[data-role="cancel-mandate"]').on('click', function(e) {
-		e.preventDefault();
-		$.getScript($(this).attr('data-target'));
-	});
 });

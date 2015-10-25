@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get "authorisations/error"
   get "authorisations/success"
   get "mandates/cancel"
+  get "payments/cancel"
+  get "payments/retry"
+  get "payments/refund"
 
   resources :mandates, only: [:show]
 end

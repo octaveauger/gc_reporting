@@ -20,7 +20,7 @@
 	</td>
 	<td>
 		<% if mandate.status != 'cancelled' and !@cancelled %>
-			<a href="" data-role="cancel-mandate" data-target="<%= mandates_cancel_path(mandate_id: mandate.gc_id) %>">
+			<a href="" data-role="ajax-get" data-target="<%= mandates_cancel_path(mandate_id: mandate.gc_id) %>">
 				<span class="glyphicon glyphicon-remove negative" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<%= t('reporting.mandates.cancel_mandate') %>"></span>
 			</a>
 		<% end %>

@@ -8,7 +8,35 @@ class Payment < ActiveRecord::Base
 	has_many :refunds, primary_key: 'gc_id', foreign_key: 'payment_id'
 
 	def failure_cause
-		self.status == 'failed' ? self.events.where(action: 'failed').first.cause : ''
+		if self.status == 'failed' and self.events.where(action: 'failed').any?
+			self.events.where(action: 'failed').first.cause
+		else
+			''
+		end
+	end
+
+	def can_be_cancelled?
+		self.status == 'pending_submission'
+	end
+
+	def can_be_retried?
+		self.mandate.can_take_payment? and self.status == 'failed'
+	end
+
+	def can_be_refunded?
+		['confirmed', 'paid_out'].include? self.status
+	end
+
+	# Cancels the payment with GoCardless and returns a hash with the results
+	def cancel
+		client = GocardlessPro.new(self.customer.organisation)
+		client.cancel_payment(self.gc_id)
+	end
+
+	# Retries the payment with GoCardless and returns a hash with the results
+	def retry
+		client = GocardlessPro.new(self.customer.organisation)
+		client.retry_payment(self.gc_id)
 	end
 
   	# Returns the dropdown options for payment statuses

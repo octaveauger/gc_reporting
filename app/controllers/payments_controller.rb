@@ -50,7 +50,33 @@ class PaymentsController < ApplicationController
         end
       end
     end
+  end
 
+  def cancel
+    @payment = current_user.payments.find_by(gc_id: params['payment_id'])
+    if !@payment.nil?
+      @results = @payment.cancel
+      @cancelled = @results[:success]
+      @alert = 'GoCardless: ' + @results[:message] if !@cancelled
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def retry
+    @payment = current_user.payments.find_by(gc_id: params['payment_id'])
+    if !@payment.nil?
+      @results = @payment.retry
+      @retried = @results[:success]
+      @alert = 'GoCardless: ' + @results[:message] if !@retried
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def refund
   end
 
   private
