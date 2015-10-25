@@ -386,7 +386,7 @@ fr:
   reporting:
     loading:
       loader_backup: 'Chargement...'
-      notice: 'Vos données sont en cours de synchronisation. Rafraichissez cette page dans 10 secondes.'
+      notice: 'Vos données sont en cours de synchronisation. Cette page sera rafraîchie automatiquement.'
     index:
       h1: 'Rapport de paiements'
       link_payments: 'Vos paiements'
