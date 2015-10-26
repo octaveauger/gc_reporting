@@ -24,7 +24,7 @@ body {
 
 #site-navbar {
   min-height: 62px;
-  overflow: hidden;
+  //overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -83,6 +83,22 @@ body {
 
 #site-navbar .navbar-brand {
   padding-top: 5px;
+}
+
+#site-navbar .dropdown.open > a {
+  background-color: #5092da;
+}
+
+#site-navbar .dropdown-menu.dropdown-flags {
+  min-width: 0;
+}
+#site-navbar .dropdown-menu.dropdown-flags a {
+  padding: 5px 18px;
+}
+
+span.brand-name {
+  color: #e85c41;
+  margin-left: 10px;
 }
 
 /* Text */
