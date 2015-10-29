@@ -35,4 +35,8 @@ Rails.application.routes.draw do
   get "organisations/sync_status"
 
   resources :mandates, only: [:show]
+
+  scope module: 'admin' do
+    resources :sessions, only: [:new, :create, :destroy], path: 'admin/sessions'
+  end
 end
