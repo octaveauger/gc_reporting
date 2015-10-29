@@ -229,7 +229,7 @@ en:
               too_long: 'must be less than %{chars} characters'
   header:
     toggle: 'Toggle navigation'
-    app_name: 'GoCardless Reporting'
+    app_name: 'Antilope'
     link_mandates: 'Mandates'
     link_payments: 'Payments'
     link_payouts: 'Payouts'

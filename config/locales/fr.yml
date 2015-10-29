@@ -231,7 +231,7 @@ fr:
               too_long: 'doit contenir moins de %{chars} caractères'
   header:
     toggle: 'Changer navigation'
-    app_name: 'Rapports GoCardless'
+    app_name: 'Antilope'
     link_mandates: 'Mandats'
     link_payments: 'Paiements'
     link_payouts: 'Reversements'
