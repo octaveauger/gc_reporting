@@ -96,9 +96,10 @@ body {
   padding: 5px 18px;
 }
 
-span.brand-name {
-  color: #e85c41;
-  margin-left: 10px;
+#site-navbar li.brand-name > a {
+  font-size: 20px;
+  padding-top: 13px;
+  padding-bottom: 10px;
 }
 
 /* Text */
@@ -250,14 +251,6 @@ tr:first-of-type {
   margin-top: 25px;
 }
 
-.homepage-hero {
-  margin-bottom: 40px;
-}
-
-.product-showcase {
-  margin-bottom: 25px;
-}
-
 .modal {
   padding-top: 62px;
 }
@@ -301,9 +294,33 @@ tr:first-of-type {
   color: #2ED565;
 }
 
+.homepage-hero {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.homepage-hero > .call-to-action {
+  margin-top: 20px;
+}
+
 .benefits {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+.benefit {
+  margin-bottom: 40px;
+}
+
+.product-showcase {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.product-showcase > .description {
+  margin-top: 40px;
+}
+.product-showcase > .description > p {
+  margin-top: 20px;
 }
 
 .glyphicon.icon-marketing {

@@ -60,6 +60,7 @@ class ConnectController < ApplicationController
   end
 
   def signup
+    redirect_to authorise_connect_path(oauth_view: 'signup')
   end
 
   def new_account
