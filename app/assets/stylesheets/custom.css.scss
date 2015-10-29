@@ -24,7 +24,7 @@ body {
 
 #site-navbar {
   min-height: 62px;
-  overflow: hidden;
+  //overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -83,6 +83,23 @@ body {
 
 #site-navbar .navbar-brand {
   padding-top: 5px;
+}
+
+#site-navbar .dropdown.open > a {
+  background-color: #5092da;
+}
+
+#site-navbar .dropdown-menu.dropdown-flags {
+  min-width: 0;
+}
+#site-navbar .dropdown-menu.dropdown-flags a {
+  padding: 5px 18px;
+}
+
+#site-navbar li.brand-name > a {
+  font-size: 20px;
+  padding-top: 13px;
+  padding-bottom: 10px;
 }
 
 /* Text */
@@ -234,14 +251,6 @@ tr:first-of-type {
   margin-top: 25px;
 }
 
-.homepage-hero {
-  margin-bottom: 40px;
-}
-
-.product-showcase {
-  margin-bottom: 25px;
-}
-
 .modal {
   padding-top: 62px;
 }
@@ -285,9 +294,33 @@ tr:first-of-type {
   color: #2ED565;
 }
 
+.homepage-hero {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.homepage-hero > .call-to-action {
+  margin-top: 20px;
+}
+
 .benefits {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+.benefit {
+  margin-bottom: 40px;
+}
+
+.product-showcase {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.product-showcase > .description {
+  margin-top: 40px;
+}
+.product-showcase > .description > p {
+  margin-top: 20px;
 }
 
 .glyphicon.icon-marketing {

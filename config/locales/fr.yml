@@ -231,7 +231,7 @@ fr:
               too_long: 'doit contenir moins de %{chars} caractères'
   header:
     toggle: 'Changer navigation'
-    app_name: 'Rapports GoCardless'
+    app_name: 'Antilope'
     link_mandates: 'Mandats'
     link_payments: 'Paiements'
     link_payouts: 'Reversements'
@@ -354,18 +354,6 @@ fr:
     form:
       submit: 'Go'
   connect:
-    signup:
-      h1: 'Créez votre compte Antilope gratuit'
-      intro: "Antilope travaille avec <a href='https://gocardless.com/fr-fr' target='_blank'>GoCardless</a>, le leader européen du prélèvement automatique : en connectant un compte GoCardless, vous pourrez commencer à prendre des paiements par prélèvement SEPA dans la zone Euro."
-      button_connect: 'Connectez un compte GoCardless'
-      simple_title: 'Simple'
-      simple_description: 'Créez des mandats en ligne, prenez des paiements et représentez les échecs en un clic'
-      automated_title: 'Automatisé'
-      automated_description: 'Plus besoin de fichiers: GoCardless soumet vos paiements et montre leur statut en temps réel'
-      economical_title: 'Economique'
-      economical_description: 'GoCardless facture 1%, plafonné à 2€. Antilope ajoute 0,20€ par paiement'
-      clients_lead: 'Vous serez en bonne companie, avec 12 000 autres entreprises'
-      clients_alt: 'Clients GoCardless'
     new_account:
       h1: 'Complétez votre compte Antilope'
       form_label_fname: 'Prénom'
@@ -375,14 +363,32 @@ fr:
       form_button_submit: 'Complétez votre compte'      
   home:
     index:
-      h1: "Le site non-officiel de rapports GoCardless"
-      hero_text: "Ce site non-officiel récupère toutes les informations de vos clients et paiements depuis GoCardless et vous permet d'exporter des rapports utiles, en Français et Anglais."
-      title_customers: 'Vos clients'
-      alt_customers: 'Rapport mandats'
-      title_payments: 'Vos paiements'
-      alt_payments: 'Rapport paiements'
-      title_payouts: 'Vos reversements et frais'
-      alt_payouts: 'Rapport reversements'
+      h1: 'Soyez payés plus vite avec Antilope.io'
+      intro: "Antilope travaille avec <a href='https://gocardless.com/fr-fr' target='_blank'>GoCardless</a>, le leader européen du prélèvement automatique : en connectant un compte GoCardless, vous pourrez commencer à prendre des paiements par prélèvement SEPA dans la zone Euro."
+      button_connect: 'Connectez un compte GoCardless'
+      trusted_title: 'De confiance'
+      trusted_description: 'Nous travaillons avec GoCardless, une Institution de Paiement réputée qui gère vos fonds de bout en bout'
+      global_title: 'Européen'
+      global_description: 'Prenez des paiements de vos clients dans 23 pays : la zone Euro, la Grande Bretagne et la Suède'
+      simple_title: 'Simple'
+      simple_description: 'Créez des mandats en ligne, prenez des paiements et représentez les échecs en un clic'
+      automated_title: 'Automatisé'
+      automated_description: 'Plus besoin de fichiers: GoCardless soumet vos paiements et montre leur statut en temps réel'
+      economical_title: 'Economique'
+      economical_description: 'GoCardless facture 1%, plafonné à 2€. Antilope ajoute 0,20€ par paiement'
+      sme_title: 'Pour PME'
+      sme_description: 'Antilope est parfait pour les auto-entrepreneurs, associations et les TPE et PME'
+      clients_lead: 'Vous serez en bonne companie, avec 12 000 autres entreprises'
+      clients_alt: 'Clients GoCardless'
+      title_mandate: 'Mandats de prélèvement en ligne'
+      description_mandate: 'Envoyez par email le lien vers votre page de mandat personnelle à vos clients'
+      alt_mandate: 'Mandat en ligne'
+      title_payments: 'Prenez des paiements facilement'
+      description_payments: "Pas besoin de créer des fichiers complexes : indiquez juste le montant et la date, et GoCardless s'en chargera"
+      alt_payments: 'Paiements faciles'
+      title_payment: 'Gérez vos paiements'
+      description_payment: "Voyez d'un coup d'oeil le statut actuel de vos paiements, et annulez / représentez / remboursez-les facilement"
+      alt_payment: 'Gestion des paiements'
   reporting:
     loading:
       loader_backup: 'Chargement...'

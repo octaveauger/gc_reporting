@@ -2,32 +2,85 @@
 
 <div class="homepage-hero">
 	<h1><%= t('.h1') %></h1>
-	<p class="lead"><%= t('.hero_text') %></p>
+	<p class="lead"><%= t('.intro').html_safe %></p>
+	<div class="call-to-action">
+		<%= link_to t('.button_connect'), authorise_connect_path(oauth_view: 'signup'), :class => 'btn btn-lg pop' %>
+	</div>
 </div>
 
+<hr/>
+<div class="row benefits">
+	<div class="col-md-4 text-center benefit">
+		<span class="glyphicon glyphicon-star icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.trusted_title') %></h3>
+		<p><%= t('.trusted_description') %></p>
+	</div>
+	<div class="col-md-4 text-center benefit">
+		<span class="glyphicon glyphicon-globe icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.global_title') %></h3>
+		<p><%= t('.global_description') %></p>
+	</div>
+	<div class="col-md-4 text-center benefit">
+		<span class="glyphicon glyphicon-heart icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.simple_title') %></h3>
+		<p><%= t('.simple_description') %></p>
+	</div>
+	<div class="col-md-4 text-center benefit">
+		<span class="glyphicon glyphicon-euro icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.economical_title') %></h3>
+		<p><%= t('.economical_description') %></p>
+	</div>
+	<div class="col-md-4 text-center benefit">
+		<span class="glyphicon glyphicon-retweet icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.automated_title') %></h3>
+		<p><%= t('.automated_description') %></p>
+	</div>
+	<div class="col-md-4 text-center benefit">
+		<span class="glyphicon glyphicon-user icon-marketing" aria-hidden="true"></span>
+		<h3><%= t('.sme_title') %></h3>
+		<p><%= t('.sme_description') %></p>
+	</div>
+</div>
+
+<hr/>
+<div class="benefits text-center">
+	<p class="lead"><%= t('.clients_lead') %></p>
+	<%= image_tag(I18n.locale.to_s + '/gocardless-client-logos.png', alt: t('.clients_alt'), class: 'img-responsive') %>
+</div>
+
+<hr/>
 <div class="row product-showcase">
-	<div class="col-xs-6 col-md-4">
-		<h2><%= t('.title_customers') %></h2>
+	<div class="col-xs-6 col-md-4 description">
+		<h2><%= t('.title_mandate') %></h2>
+		<p class="lead"><%= t('.description_mandate') %></p>
 	</div>
 	<div class="col-xs-6 col-md-8">
-		<%= image_tag(I18n.locale.to_s + '/mandates.png', alt: t('.alt_customers'), class: 'img-thumbnail img-responsive') %>
+		<%= image_tag(I18n.locale.to_s + '/mandate.png', alt: t('.alt_mandate'), class: 'img-thumbnail img-responsive', style: 'width: 50%') %>
 	</div>
 </div>
 
+<hr/>
 <div class="row product-showcase">
-	<div class="col-xs-6 col-md-4">
+	<div class="col-xs-6 col-md-8">
+		<%= image_tag(I18n.locale.to_s + '/payment.png', alt: t('.alt_payment'), class: 'img-thumbnail img-responsive', style: 'width: 80%') %>
+	</div>
+	<div class="col-xs-6 col-md-4 description">
+		<h2><%= t('.title_payment') %></h2>
+		<p class="lead"><%= t('.description_payment') %></p>
+	</div>
+</div>
+
+<hr/>
+<div class="row product-showcase">
+	<div class="col-xs-6 col-md-4 description">
 		<h2><%= t('.title_payments') %></h2>
+		<p class="lead"><%= t('.description_payments') %></p>
 	</div>
 	<div class="col-xs-6 col-md-8">
 		<%= image_tag(I18n.locale.to_s + '/payments.png', alt: t('.alt_payments'), class: 'img-thumbnail img-responsive') %>
 	</div>
 </div>
 
-<div class="row product-showcase">
-	<div class="col-xs-6 col-md-4">
-		<h2><%= t('.title_payouts') %></h2>
-	</div>
-	<div class="col-xs-6 col-md-8">
-		<%= image_tag(I18n.locale.to_s + '/payout.png', alt: t('.alt_payouts'), class: 'img-thumbnail img-responsive') %>
-	</div>
+<div class="call-to-action benefits text-center">
+	<%= link_to t('.button_connect'), authorise_connect_path(oauth_view: 'signup'), :class => 'btn btn-lg pop' %>
 </div>
