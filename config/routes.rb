@@ -36,7 +36,8 @@ Rails.application.routes.draw do
 
   resources :mandates, only: [:show]
 
-  scope module: 'admin' do
+  namespace :admin do
     resources :sessions, only: [:new, :create, :destroy], path: 'admin/sessions'
+    get "organisations", to: 'organisations#index'
   end
 end

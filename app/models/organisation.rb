@@ -43,4 +43,16 @@ class Organisation < ActiveRecord::Base
 	def profile_complete?
 		!self.fname.blank? and !self.lname.blank? and !self.email.blank? and !self.company_name.blank?
 	end
+
+	def full_name
+		self.fname.to_s + ' ' + self.lname.to_s
+	end
+
+	def mandate_count
+		self.mandates.count
+	end
+
+	def payment_count
+		self.payments.count
+	end
 end

@@ -57,6 +57,13 @@ module SessionHelper
 		!current_admin.nil?
 	end
 
+	def logged_in_admin
+		unless current_admin
+			store_location
+			redirect_to new_admin_session_path
+		end
+	end
+
 	def admin_log_out
 	    session.delete(:admin_id)
 	    @current_admin = nil

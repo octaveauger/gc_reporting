@@ -12,12 +12,12 @@
     <div class="collapse navbar-collapse" id="top-navbar">
       <ul class="nav navbar-nav">
         <% if admin_signed_in? %>
-          <li><a>Test</a></li>
+          <li><%= link_to 'Organisations', admin_organisations_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">
         <% if admin_signed_in? %>
-  	        <li><%= link_to t('header.link_logout'), session_path(current_admin), method: 'delete' %></li>
+  	        <li><%= link_to t('header.link_logout'), admin_session_path(current_admin), method: 'delete' %></li>
   	    <% end %>
       </ul>
     </div>
