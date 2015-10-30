@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029225105) do
+ActiveRecord::Schema.define(version: 20151030231244) do
 
   create_table "admins", force: true do |t|
     t.string   "email"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20151029225105) do
     t.string   "lname"
     t.string   "email"
     t.string   "company_name"
+    t.datetime "last_login"
   end
 
   add_index "organisations", ["gc_id"], name: "index_organisations_on_gc_id"

@@ -66,6 +66,7 @@ module SessionHelper
 
 	def admin_log_out
 	    session.delete(:admin_id)
+	    session.delete(:return_to)
 	    @current_admin = nil
 	  end
 end
