@@ -33,11 +33,13 @@ class ConnectController < ApplicationController
       if org.nil?
         org = Organisation.create!(
       		gc_id: token['organisation_id'],
-      		access_token: token.token
+      		access_token: token.token,
+          last_login: DateTime.current
         )
       elsif org.access_token != token.token
         org.update!(
-          access_token: token.token
+          access_token: token.token,
+          last_login: DateTime.current
         )
       end
     	session[:gc_token] = token.token

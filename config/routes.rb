@@ -35,4 +35,9 @@ Rails.application.routes.draw do
   get "organisations/sync_status"
 
   resources :mandates, only: [:show]
+
+  namespace :admin do
+    resources :sessions, only: [:new, :create, :destroy]
+    get "organisations", to: 'organisations#index'
+  end
 end

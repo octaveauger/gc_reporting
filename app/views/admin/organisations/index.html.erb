@@ -1,0 +1,22 @@
+<% provide(:title, 'Organisations') %>
+<h1><%= @organisations.count %> Organisations</h1>
+
+<table class="table" id="results">
+	<th>Signup date</th>
+	<th>Last login</th>
+	<th>GoCardless ID</th>
+	<th>Company</th>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Mandates</th>
+	<th>Payments</th>
+	<% if !@organisations.nil? and @organisations.any? %>
+		<%= render partial: 'admin/organisations/organisation', collection: @organisations %>
+	<% end %>
+</table>
+
+<% if !@organisations.nil? and @organisations.any? %>
+	<div id="infinite-scrolling">
+		<%= will_paginate @organisations %>
+	</div>
+<% end %>
