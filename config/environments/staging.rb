@@ -81,7 +81,7 @@ GcReporting::Application.configure do
   # Do not dump schema after migrations.
   #config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'https://gc-reporting.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://grim-skull-6724.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:                 'smtp.gmail.com',
@@ -94,7 +94,7 @@ GcReporting::Application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
      :email => {
-      :email_prefix => "[Antilope Prod] ",
+      :email_prefix => "[Antilope Staging] ",
       :sender_address => %{"notifier" <octave@gocardless.com>},
       :exception_recipients => %w{octave@gocardless.com}
     }

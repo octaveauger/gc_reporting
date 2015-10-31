@@ -45,7 +45,7 @@ GcReporting::Application.configure do
 
   config.middleware.use ExceptionNotification::Rack,
      :email => {
-      :email_prefix => "[GC Reporting] ",
+      :email_prefix => "[Antilope Local] ",
       :sender_address => %{"notifier" <octave@gocardless.com>},
       :exception_recipients => %w{octave@gocardless.com}
     }
