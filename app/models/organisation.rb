@@ -11,7 +11,7 @@ class Organisation < ActiveRecord::Base
 	has_many :creditors
 	has_many :revenues
 
-	validates :email, format: /.+@.+\..+/i
+	validates :email, format: /.+@.+\..+/i, allow_nil: true
 
 	def updated?(cat)
 		self.organisation_updates.where(category: cat).count > 0
