@@ -68,12 +68,18 @@ class ConnectController < ApplicationController
   def new_account
     redirect_to root_path if !signed_in?
     @organisation = current_user
+    if @organisation.country.blank?
+      @organisation.assign_attributes(country: 'GB') if I18n.locale.to_s == 'en'
+      @organisation.assign_attributes(country: 'FR') if I18n.locale.to_s == 'fr'
+    end
+    @organisation.assign_attributes(locale: I18n.locale.to_s) if @organisation.locale.blank?
   end
 
   def create_account
     redirect_to root_path if !signed_in?
     @organisation = current_user
     if @organisation.update_attributes(organisation_params)
+      OrganisationMailer.welcome(@organisation).deliver if @organisation.created_at > 1.hour.ago
       redirect_to after_sign_in_path
     else
       render 'new_account'
@@ -93,6 +99,6 @@ class ConnectController < ApplicationController
   	end
 
     def organisation_params
-      params.require(:organisation).permit(:fname, :lname, :email, :company_name)
+      params.require(:organisation).permit(:fname, :lname, :email, :company_name, :country, :locale)
     end
 end

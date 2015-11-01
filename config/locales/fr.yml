@@ -238,6 +238,9 @@ fr:
     link_signup: 'Créer compte'
     link_login: 'Connection'
     link_logout: 'Déconnection'
+  locales:
+    en: 'Anglais'
+    fr: 'Français'
   errors:
     gocardless:
       auth_cancelled: "Vous avez annulé l'autorisation avec votre compte GoCardless"
@@ -257,6 +260,16 @@ fr:
     customer_not_found: "Ce client n'a pas pu être trouvé"
     invalid_link: "Ce lien n'existe pas"
     mandate_success: 'Votre mandat a bien été créé'
+  emails:
+    welcome:
+      subject: "Bienvenue chez Antilope, le moyen d'être payé à temps"
+      title: 'Bienvenue chez Antilope.io'
+      salutations: 'Bonjour %{name},'
+      explanation: 'Avec Antilope vous pouvez gérer vos clients et être payé à temps grâce au prélèvement automatique.'
+      login: 'Cliquez ici pour vous connecter :'
+      login_cta: 'Connection'
+      thanks: 'Cordialement,'
+      signature: 'Votre équipe Antilope'
   gocardless:
     mandate:
       status:
@@ -360,6 +373,8 @@ fr:
       form_label_lname: 'Nom de famille'
       form_label_email: 'Email'
       form_label_company_name: 'Nom de société'
+      form_label_country: 'Pays'
+      form_label_locale: 'Langue'
       form_button_submit: 'Complétez votre compte'      
   home:
     index:

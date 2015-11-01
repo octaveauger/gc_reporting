@@ -41,7 +41,7 @@ class Organisation < ActiveRecord::Base
 
 	# Returns true if all fields are complete, false otherwise
 	def profile_complete?
-		!self.fname.blank? and !self.lname.blank? and !self.email.blank? and !self.company_name.blank?
+		!self.fname.blank? and !self.lname.blank? and !self.email.blank? and !self.company_name.blank? and !self.country.blank? and !self.locale.blank?
 	end
 
 	def full_name
