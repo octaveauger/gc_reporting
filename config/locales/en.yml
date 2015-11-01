@@ -236,6 +236,9 @@ en:
     link_signup: 'Signup'
     link_login: 'Login'
     link_logout: 'Log out'
+  locales:
+    en: 'English'
+    fr: 'French'
   errors:
     gocardless:
       auth_cancelled: 'You have cancelled the authorisation flow with GoCardless'
@@ -255,6 +258,16 @@ en:
     customer_not_found: 'This customer could not be found'
     invalid_link: 'This link is invalid'
     mandate_success: 'Your mandate was successfully created'
+  emails:
+    welcome:
+      subject: 'Welcome to Antilope, the way to get paid on time'
+      title: 'Welcome to Antilope.io'
+      salutations: 'Dear %{name},'
+      explanation: 'With Antilope you can manage your customers and get paid on time using Direct Debit.'
+      login: 'To login, just click here:'
+      login_cta: 'Login'
+      thanks: 'Thanks,'
+      signature: 'Your Antilope team'
   gocardless:
     mandate:
       status:
@@ -386,6 +399,8 @@ en:
       form_label_lname: 'Last name'
       form_label_email: 'Email'
       form_label_company_name: 'Company name'
+      form_label_country: 'Country'
+      form_label_locale: 'Language'
       form_button_submit: 'Complete your account'      
   reporting:
     loading:

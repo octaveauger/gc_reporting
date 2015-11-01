@@ -39,6 +39,8 @@ gem 'exception_notification'
 gem 'route_translator'
 gem 'validates_timeliness', '~> 3.0'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'roadie-rails', '~> 1.0.6'
+gem 'i18n_country_select'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
