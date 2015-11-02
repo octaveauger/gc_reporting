@@ -49,6 +49,10 @@ class Organisation < ActiveRecord::Base
 		self.fname.to_s + ' ' + self.lname.to_s
 	end
 
+	def client_count
+		self.clients.count
+	end
+
 	def mandate_count
 		self.mandates.count
 	end

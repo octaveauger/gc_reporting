@@ -46,13 +46,13 @@ class Payment < ActiveRecord::Base
 
 	# Cancels the payment with GoCardless and returns a hash with the results
 	def cancel
-		client = GocardlessPro.new(self.customer.organisation)
+		client = GocardlessPro.new(self.customer.client.organisation)
 		client.cancel_payment(self.gc_id)
 	end
 
 	# Retries the payment with GoCardless and returns a hash with the results
 	def retry
-		client = GocardlessPro.new(self.customer.organisation)
+		client = GocardlessPro.new(self.customer.client.organisation)
 		client.retry_payment(self.gc_id)
 	end
 
