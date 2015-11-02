@@ -85,7 +85,21 @@ class GocardlessPro
 		}
 		customer = @user.customers.find_by(gc_id: record['id'])
 		if customer.nil?
-			@user.customers.create(params)
+			client = Client.find_by(customer_gc_id: params[:gc_id])
+			if client.nil? # We create a client based on GC data
+				source_id = ClientSource.where(name: 'gocardless').first.id
+				client = @user.clients.create!(
+					fname: params[:given_name],
+					lname: params[:family_name],
+					company_name: params[:company_name],
+					email: params[:email],
+					client_source_id: source_id,
+					source_client_id: nil,
+					customer_gc_id: params[:gc_id]
+				)
+			end
+			params[:client_id] = client.id
+			client.customers.create(params)
 		else
 			customer.update(params)
 		end
@@ -279,7 +293,7 @@ class GocardlessPro
 			flow = @client.redirect_flows.complete(redirect_flow_id, params: {
 				session_token: redirect_flow_session_token
 			})
-			{ success: true, mandate_id: flow.links['mandate'] }
+			{ success: true, mandate_id: flow.links['mandate'], customer_id: flow.links['customer'] }
 		rescue GoCardlessPro::Error => gc_error
   			{ success: false, message: gc_error.message, errors: gc_error.errors }
 		end

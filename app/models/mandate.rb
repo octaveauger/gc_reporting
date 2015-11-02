@@ -17,8 +17,8 @@ class Mandate < ActiveRecord::Base
 	end
 
 	def next_possible_charge_date
-		client = GocardlessPro.new(self.customer.organisation)
-		gc_mandate = client.get_resource(self.gc_id, 'mandates')
+		gc_client = GocardlessPro.new(self.customer.client.organisation)
+		gc_mandate = gc_client.get_resource(self.gc_id, 'mandates')
 		gc_mandate.next_possible_charge_date
 	end
 
@@ -28,8 +28,8 @@ class Mandate < ActiveRecord::Base
 
 	# Cancels the mandate with GoCardless and returns a hash with the results
 	def cancel
-		client = GocardlessPro.new(self.customer.organisation)
-		client.cancel_mandate(self.gc_id)
+		gc_client = GocardlessPro.new(self.customer.client.organisation)
+		gc_client.cancel_mandate(self.gc_id)
 	end
 
 	def currency

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102200328) do
+ActiveRecord::Schema.define(version: 20151102225649) do
 
   create_table "admins", force: true do |t|
     t.string   "email"
@@ -41,12 +41,16 @@ ActiveRecord::Schema.define(version: 20151102200328) do
     t.string   "source_client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
+    t.string   "customer_gc_id"
   end
 
   add_index "clients", ["client_source_id"], name: "index_clients_on_client_source_id"
+  add_index "clients", ["customer_gc_id"], name: "index_clients_on_customer_gc_id"
   add_index "clients", ["email"], name: "index_clients_on_email"
   add_index "clients", ["organisation_id"], name: "index_clients_on_organisation_id"
   add_index "clients", ["source_client_id"], name: "index_clients_on_source_client_id"
+  add_index "clients", ["token"], name: "index_clients_on_token"
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -84,7 +88,6 @@ ActiveRecord::Schema.define(version: 20151102200328) do
   add_index "customer_bank_accounts", ["gc_id"], name: "index_customer_bank_accounts_on_gc_id"
 
   create_table "customers", force: true do |t|
-    t.integer  "organisation_id"
     t.string   "address_line1"
     t.string   "address_line2"
     t.string   "address_line3"
@@ -105,7 +108,6 @@ ActiveRecord::Schema.define(version: 20151102200328) do
 
   add_index "customers", ["client_id"], name: "index_customers_on_client_id"
   add_index "customers", ["gc_id"], name: "index_customers_on_gc_id"
-  add_index "customers", ["organisation_id"], name: "index_customers_on_organisation_id"
 
   create_table "events", force: true do |t|
     t.string   "payment_id"
