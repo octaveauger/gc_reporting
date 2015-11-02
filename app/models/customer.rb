@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
-  belongs_to :organisation
+  belongs_to :organisation #TODO: to remove
+  belongs_to :client
   has_many :customer_bank_accounts, primary_key: 'gc_id', foreign_key: 'customer_id'
   has_many :mandates, through: :customer_bank_accounts
   has_many :payments, through: :mandates

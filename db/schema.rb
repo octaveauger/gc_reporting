@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101001218) do
+ActiveRecord::Schema.define(version: 20151102200328) do
 
   create_table "admins", force: true do |t|
     t.string   "email"
@@ -21,6 +21,32 @@ ActiveRecord::Schema.define(version: 20151101001218) do
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email"
+
+  create_table "client_sources", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "display_name"
+  end
+
+  add_index "client_sources", ["name"], name: "index_client_sources_on_name"
+
+  create_table "clients", force: true do |t|
+    t.integer  "organisation_id"
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "company_name"
+    t.string   "email"
+    t.integer  "client_source_id"
+    t.string   "source_client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clients", ["client_source_id"], name: "index_clients_on_client_source_id"
+  add_index "clients", ["email"], name: "index_clients_on_email"
+  add_index "clients", ["organisation_id"], name: "index_clients_on_organisation_id"
+  add_index "clients", ["source_client_id"], name: "index_clients_on_source_client_id"
 
   create_table "creditors", force: true do |t|
     t.integer  "organisation_id"
@@ -74,8 +100,10 @@ ActiveRecord::Schema.define(version: 20151101001218) do
     t.datetime "gc_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
   end
 
+  add_index "customers", ["client_id"], name: "index_customers_on_client_id"
   add_index "customers", ["gc_id"], name: "index_customers_on_gc_id"
   add_index "customers", ["organisation_id"], name: "index_customers_on_organisation_id"
 

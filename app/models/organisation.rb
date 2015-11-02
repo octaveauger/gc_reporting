@@ -1,5 +1,6 @@
 class Organisation < ActiveRecord::Base
-	has_many :customers
+	has_many :clients
+	has_many :customers, through: :clients
 	has_many :customer_bank_accounts, through: :customers
 	has_many :mandates, through: :customer_bank_accounts
 	has_many :payments, through: :mandates
