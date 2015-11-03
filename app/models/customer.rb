@@ -10,6 +10,6 @@ class Customer < ActiveRecord::Base
   	else
 	  	company_name = (self.company_name.blank? ? '' : '(' + self.company_name.to_s + ')')
 	  	self.given_name.to_s + ' ' + self.family_name.to_s + company_name
-	end
+    end
   end
 end

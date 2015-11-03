@@ -418,6 +418,16 @@ en:
       no_clients: 'You have not added any client yet'
       create_client_button: 'New client'    
       create_client_title: 'New client'
+    show:
+      title_customer: 'Customer'
+      item_description_customer_gc_id: 'GoCardless ID'
+      item_description_customer_name: 'Name'
+      item_description_company_name: 'Company name'
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Address'
+      item_description_customer_country: 'Country'
+      title_mandates: 'Mandates'
+      title_payments: 'Payments'
   reporting:
     loading:
       loader_backup: 'Loading...'
@@ -502,16 +512,6 @@ en:
       table_title_fees: 'Fees'
       refund: 'Refund'
       payment: 'Payment'
-  customers:
-    show:
-      title_customer: 'Customer'
-      item_description_customer_gc_id: 'GoCardless ID'
-      item_description_customer_name: 'Name'
-      item_description_customer_email: 'Email'
-      item_description_customer_address: 'Address'
-      item_description_customer_country: 'Country'
-      title_mandates: 'Mandates'
-      title_payments: 'Payments'
   payments:
     new:
       h1: 'Take a payment'

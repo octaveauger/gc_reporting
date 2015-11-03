@@ -5,7 +5,7 @@
 	<td><%= client.email %></td>
 	<td><%= client.client_source.display_name %></td>
 	<td>
-		<a class="modal-link" data-toggle="modal" data-target="#customer-modal" data-path="<%= client_path(client) %>" class="btn btn-xs">
+		<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(client.token) %>" class="btn btn-xs">
 			<span class="glyphicon glyphicon-eye-open"></span>
 		</a>
 	</td>

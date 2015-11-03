@@ -15,4 +15,13 @@ class Client < ActiveRecord::Base
   def full_name
   	self.fname.to_s + ' ' + self.lname.to_s
   end
+
+  def display_name
+  	if self.fname.blank? and self.lname.blank?
+  		self.company_name
+  	else
+	  	company_name = (self.company_name.blank? ? '' : '(' + self.company_name.to_s + ')')
+	  	self.fname.to_s + ' ' + self.lname.to_s + company_name
+    end
+  end
 end

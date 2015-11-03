@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     get 'reporting/payout/:payout_gc_id', to: 'reporting#payout', as: 'reporting_payout'
 
     resources :clients, only: [:index, :show, :new, :create, :edit, :update]
-    resources :customers, only: [:show]
     resources :payments, only: [:show, :new, :create]
     resources :refunds, only: [:new, :create]
   end

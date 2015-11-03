@@ -5,9 +5,9 @@ $(function () {
   // Refresh the syncing loader
   autorefresh_sync_loader();
 
-  // Calls the customer modal via ajax
-  $('.modal-link[data-target="#customer-modal"]').on('click', function(e) {
-  	$('#customer-modal').find('.modal-content').load($(this).attr('data-path'));
+  // Calls the client modal via ajax
+  $('.modal-link[data-target="#client-modal"]').on('click', function(e) {
+  	$('#client-modal').find('.modal-content').load($(this).attr('data-path'));
   });
 
   // Trigger get actions via Ajax (e.g cancel mandate)

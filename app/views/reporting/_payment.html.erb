@@ -1,9 +1,9 @@
 <tr id="<%= payment.gc_id %>">
 	<td><%= payment.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
 	<td>
-		<a class="modal-link" data-toggle="modal" data-target="#customer-modal" data-path="<%= customer_path(payment.customer) %>">
-			<%= payment.customer.full_name %><br/>
-			<%= payment.customer.email %>
+		<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(payment.client.token) %>">
+			<%= payment.client.display_name %><br/>
+			<%= payment.client.email %>
 		</a>
 	</td>
 	<td><%= payment.description %></td>

@@ -420,6 +420,16 @@ fr:
       no_clients: "Vous n'avez pas encore ajouté de clients"
       create_client_button: 'Nouveau client'    
       create_client_title: 'Nouveau client'
+    show:
+      title_customer: 'Client'
+      item_description_customer_gc_id: 'ID GoCardless'
+      item_description_customer_name: 'Nom'
+      item_description_company_name: "Nom d'entreprise"
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Addresse'
+      item_description_customer_country: 'Pays'
+      title_mandates: 'Mandats'
+      title_payments: 'Paiements'
   reporting:
     loading:
       loader_backup: 'Chargement...'
@@ -504,16 +514,6 @@ fr:
       table_title_fees: 'Frais'
       refund: 'Remboursement'
       payment: 'Paiement'
-  customers:
-    show:
-      title_customer: 'Client'
-      item_description_customer_gc_id: 'ID GoCardless'
-      item_description_customer_name: 'Nom'
-      item_description_customer_email: 'Email'
-      item_description_customer_address: 'Addresse'
-      item_description_customer_country: 'Pays'
-      title_mandates: 'Mandats'
-      title_payments: 'Paiements'
   payments:
     new:
       h1: 'Prenez un paiement'
