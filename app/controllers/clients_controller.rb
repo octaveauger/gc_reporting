@@ -7,13 +7,13 @@ class ClientsController < ApplicationController
       @time_filter = params[:time_filter] || 'any'
       respond_to do |format|
         format.html do
-          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('created_at desc').all.paginate(page: params[:page])
+          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('source_created_at desc').all.paginate(page: params[:page])
         end
         format.js do
-          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('created_at desc').all.paginate(page: params[:page])
+          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('source_created_at desc').all.paginate(page: params[:page])
         end
         format.csv do
-          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('created_at desc').all
+          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('source_created_at desc').all
           headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('clients.index.csv_name') + ".csv\""
           headers['Content-Type'] ||= 'text/csv'
         end

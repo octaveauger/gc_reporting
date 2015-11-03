@@ -8,7 +8,7 @@
 <%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
 <%- @clients.each do |client| -%>
   <%= CSV.generate_line [
-	  		client.created_at.strftime('%d/%m/%Y  %k:%M'),
+	  		client.source_created_at.strftime('%d/%m/%Y  %k:%M'),
 	  		client.fname,
 	  		client.lname,
 	  		client.company_name,

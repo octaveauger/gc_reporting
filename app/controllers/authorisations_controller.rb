@@ -26,7 +26,7 @@ class AuthorisationsController < ApplicationController
 	  	redirect_flow = gc_client.complete_redirect_flow(params['redirect_flow_id'], redirect_flow_session_token)
 	  	delete_redirect_flow_session_token
 	  	if redirect_flow[:success]
-	  		client.update!(customer_gc_id: redirect_flow['customer_id']) unless client.nil?
+	  		client.update(customer_gc_id: redirect_flow[:customer_id]) unless client.nil?
 	  		redirect_to authorisations_success_path, notice: I18n.t('notices.mandate_success')
 	  	else
 	  		redirect_to authorisations_error_path, alert: 'GoCardless: ' + redirect_flow[:message]
