@@ -1,0 +1,52 @@
+<% provide(:title, t('.h1')) %>
+<div class="row">
+	<div class="col-sm-8"><h1><%= t('.h1') %></h1></div>
+	<div class="col-sm-4">
+		<div class="pull-right">
+			<button type="button" class="btn pop h1-btn" data-toggle="modal" data-target="#new-client">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<%= t('.create_client_button') %>
+			</button>
+			<a href="<%= clients_path(format: :csv, time_filter: @time_filter) %>" class='btn pop h1-btn' %>
+				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+				<%= t('.link_export') %>
+			</a>
+		</div>
+	</div>
+</div>
+
+<% if !current_user.recent_update? %>
+	<%= render partial: 'reporting/loading' %>
+<% end %>
+
+<form action="<%= clients_path %>" method="get" class="form-inline">
+	<div class="form-group">
+		<p class='form-control-static'><%= t('filters.time.label') %></p>
+	</div>
+	<div class="form-group">
+		<%= select_tag(:time_filter, options_for_select(Client.time_filters, @time_filter), class: 'form-control') %>
+	</div>
+	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+</form>
+
+<table class="table" id="results">
+	<th><%= t('.table_title_creation_date') %></th>
+	<th><%= t('.table_title_customer_name') %></th>
+	<th><%= t('.table_title_company_name') %></th>
+	<th><%= t('.table_title_email') %></th>
+	<th><%= t('.table_title_source') %></th>
+	<th></th>
+	<% if !@clients.nil? and @clients.any? %>
+		<%= render partial: 'clients/client', collection: @clients %>
+	<% end %>
+</table>
+
+<% if !@clients.nil? and @clients.any? %>
+	<div id="infinite-scrolling">
+		<%= will_paginate @clients %>
+	</div>
+<% else %>
+	<p><%= t('.no_clients') %></p>
+<% end %>
+
+<%= render partial: 'customers/modal' %>

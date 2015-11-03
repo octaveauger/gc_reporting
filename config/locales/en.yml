@@ -230,6 +230,7 @@ en:
   header:
     toggle: 'Toggle navigation'
     app_name: 'Antilope'
+    link_clients: 'Clients'
     link_mandates: 'Mandates'
     link_payments: 'Payments'
     link_payouts: 'Payouts'
@@ -402,6 +403,21 @@ en:
       form_label_country: 'Country'
       form_label_locale: 'Language'
       form_button_submit: 'Complete your account'      
+  clients:
+    index:
+      h1: 'Your clients'
+      link_export: 'Export'
+      csv_name: 'client-list'
+      table_title_creation_date: 'Creation date'
+      table_title_customer_name: 'Name'
+      table_title_customer_fname: 'First name'
+      table_title_customer_lname: 'Family name'
+      table_title_company_name: 'Company name'
+      table_title_email: 'Email'
+      table_title_source: 'Source'
+      no_clients: 'You have not added any client yet'
+      create_client_button: 'New client'    
+      create_client_title: 'New client'
   reporting:
     loading:
       loader_backup: 'Loading...'

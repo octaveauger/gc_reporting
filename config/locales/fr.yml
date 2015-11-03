@@ -232,6 +232,7 @@ fr:
   header:
     toggle: 'Changer navigation'
     app_name: 'Antilope'
+    link_clients: 'Clients'
     link_mandates: 'Mandats'
     link_payments: 'Paiements'
     link_payouts: 'Reversements'
@@ -366,16 +367,6 @@ fr:
       cancelled: 'Annulé'
     form:
       submit: 'Go'
-  connect:
-    new_account:
-      h1: 'Complétez votre compte Antilope'
-      form_label_fname: 'Prénom'
-      form_label_lname: 'Nom de famille'
-      form_label_email: 'Email'
-      form_label_company_name: 'Nom de société'
-      form_label_country: 'Pays'
-      form_label_locale: 'Langue'
-      form_button_submit: 'Complétez votre compte'      
   home:
     index:
       h1: 'Soyez payés plus vite avec Antilope.io'
@@ -404,6 +395,31 @@ fr:
       title_payment: 'Gérez vos paiements'
       description_payment: "Voyez d'un coup d'oeil le statut actuel de vos paiements, et annulez / représentez / remboursez-les facilement"
       alt_payment: 'Gestion des paiements'
+  connect:
+    new_account:
+      h1: 'Complétez votre compte Antilope'
+      form_label_fname: 'Prénom'
+      form_label_lname: 'Nom de famille'
+      form_label_email: 'Email'
+      form_label_company_name: 'Nom de société'
+      form_label_country: 'Pays'
+      form_label_locale: 'Langue'
+      form_button_submit: 'Complétez votre compte'      
+  clients:
+    index:
+      h1: 'Vos clients'
+      link_export: 'Exporter'
+      csv_name: 'liste-client'
+      table_title_creation_date: 'Date de création'
+      table_title_customer_name: 'Nom'
+      table_title_customer_fname: 'Prénom'
+      table_title_customer_lname: 'Nom de famille'
+      table_title_company_name: "Nom d'entreprise"
+      table_title_email: 'Email'
+      table_title_source: 'Source'
+      no_clients: "Vous n'avez pas encore ajouté de clients"
+      create_client_button: 'Nouveau client'    
+      create_client_title: 'Nouveau client'
   reporting:
     loading:
       loader_backup: 'Chargement...'
