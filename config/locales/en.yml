@@ -414,6 +414,7 @@ en:
       table_title_customer_lname: 'Family name'
       table_title_company_name: 'Company name'
       table_title_email: 'Email'
+      table_title_source_client_id: 'Your client reference'
       table_title_source: 'Source'
       no_clients: 'You have not added any client yet'
       create_client_button: 'New client'    
@@ -428,6 +429,17 @@ en:
       item_description_customer_country: 'Country'
       title_mandates: 'Mandates'
       title_payments: 'Payments'
+    new:
+      h1: 'Add a new client'
+      form_intro: 'All fields are optional - fill the ones you know'
+      form_label_fname: 'First name'
+      form_label_lname: 'Last name'
+      form_label_email: 'Email'
+      form_label_company_name: 'Company name'
+      form_label_source_client_id: 'Your client reference'
+      form_placeholder_source_client_id: 'Enter any custom reference for your customer'
+      form_button_submit: 'Add client'
+      client_success: 'Your client was successfully created'
   reporting:
     loading:
       loader_backup: 'Loading...'

@@ -3,6 +3,7 @@
 	<td><%= client.full_name %></td>
 	<td><%= client.company_name %></td>
 	<td><%= client.email %></td>
+	<td><%= client.source_client_id %></td>
 	<td><%= client.client_source.display_name %></td>
 	<td>
 		<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(client.token) %>" class="btn btn-xs">

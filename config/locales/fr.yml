@@ -416,6 +416,7 @@ fr:
       table_title_customer_lname: 'Nom de famille'
       table_title_company_name: "Nom d'entreprise"
       table_title_email: 'Email'
+      table_title_source_client_id: 'Votre référence client'
       table_title_source: 'Source'
       no_clients: "Vous n'avez pas encore ajouté de clients"
       create_client_button: 'Nouveau client'    
@@ -430,6 +431,17 @@ fr:
       item_description_customer_country: 'Pays'
       title_mandates: 'Mandats'
       title_payments: 'Paiements'
+    new:
+      h1: 'Ajoutez un nouveau client'
+      form_intro: 'Tous les champs sont optionnels - remplissez ceux que vous connaissez'
+      form_label_fname: 'Prénom'
+      form_label_lname: 'Nom de famille'
+      form_label_email: 'Email'
+      form_label_company_name: "Nom d'entreprise"
+      form_label_source_client_id: 'Votre référence client'
+      form_placeholder_source_client_id: "Indiquez l'éventuelle référence client propre à votre entreprise"
+      form_button_submit: 'Ajouter un client'
+      client_success: 'Votre client a bien été créé'
   reporting:
     loading:
       loader_backup: 'Chargement...'

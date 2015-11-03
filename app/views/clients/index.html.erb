@@ -3,10 +3,7 @@
 	<div class="col-sm-8"><h1><%= t('.h1') %></h1></div>
 	<div class="col-sm-4">
 		<div class="pull-right">
-			<button type="button" class="btn pop h1-btn" data-toggle="modal" data-target="#new-client">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				<%= t('.create_client_button') %>
-			</button>
+			<%= link_to t('.create_client_button'), new_client_path, class: 'btn pop h1-btn' %>
 			<a href="<%= clients_path(format: :csv, time_filter: @time_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>
@@ -34,6 +31,7 @@
 	<th><%= t('.table_title_customer_name') %></th>
 	<th><%= t('.table_title_company_name') %></th>
 	<th><%= t('.table_title_email') %></th>
+	<th><%= t('.table_title_source_client_id') %></th>
 	<th><%= t('.table_title_source') %></th>
 	<th></th>
 	<% if !@clients.nil? and @clients.any? %>

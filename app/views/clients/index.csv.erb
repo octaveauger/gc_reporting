@@ -4,6 +4,7 @@
 	t('.table_title_customer_lname'), 
 	t('.table_title_company_name'), 
 	t('.table_title_email'), 
+	t('.table_title_source_client_id'), 
 	t('.table_title_source')] -%>
 <%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
 <%- @clients.each do |client| -%>
@@ -13,6 +14,7 @@
 	  		client.lname,
 	  		client.company_name,
 	  		client.email,
+	  		client.source_client_id,
 	  		client.client_source.display_name], 
 	  	:row_sep => ?\t, :quote_char => ?\ %>
 <%- end -%>

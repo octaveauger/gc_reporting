@@ -12,6 +12,10 @@ class Client < ActiveRecord::Base
   has_many :refunds, through: :payments
   has_many :subscriptions, through: :mandates
 
+  validates :client_source_id, presence: true
+  validates :source_created_at, presence: true
+  validates :email, format: /.+@.+\..+/i, allow_blank: true
+
   def full_name
   	self.fname.to_s + ' ' + self.lname.to_s
   end

@@ -25,9 +25,21 @@ class ClientsController < ApplicationController
   end
 
   def new
+    @client = current_user.clients.new
   end
 
   def create
+    @client = current_user.clients.new(client_params)
+    @client.assign_attributes(
+      source_created_at: Time.now,
+      client_source_id: ClientSource.find_by(name: 'import').id
+    )
+    if @client.save
+      redirect_to new_client_path, notice: I18n.t('clients.new.client_success') and return
+    else
+      flash[:alert] = I18n.t('errors.form.please_correct_form')
+      render 'new'
+    end
   end
 
   def edit
@@ -39,10 +51,16 @@ class ClientsController < ApplicationController
   def show
     @client = current_user.clients.find_by(token: params[:id])
     if @client.nil?
-      redirect_to reporting_path, alert: I18n.t('notices.client_not_found')
+      redirect_to reporting_path, alert: I18n.t('notices.client_not_found') and return
     end
     @payments = @client.payments.includes(:events).order('gc_created_at desc').all.paginate(page: params[:page])
 
     render layout: !request.xhr?
   end
+
+  private
+
+    def client_params
+      params.require(:client).permit(:fname, :lname, :email, :company_name, :source_client_id)
+    end
 end
