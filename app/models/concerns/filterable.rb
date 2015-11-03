@@ -32,6 +32,8 @@ module Filterable
 		def time_filter(selection)
 			if self.method_defined? :gc_created_at
 				time_column = 'gc_created_at'
+			elsif self.method_defined? :source_created_at
+				time_column = 'source_created_at'
 			else
 				time_column = 'created_at'
 			end

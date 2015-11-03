@@ -95,7 +95,8 @@ class GocardlessPro
 					email: params[:email],
 					client_source_id: source_id,
 					source_client_id: nil,
-					customer_gc_id: params[:gc_id]
+					customer_gc_id: params[:gc_id],
+					source_created_at: params[:gc_created_at]
 				)
 			end
 			params[:client_id] = client.id
