@@ -43,9 +43,20 @@ class ClientsController < ApplicationController
   end
 
   def edit
+    @client = current_user.clients.find_by(token: params[:id])
+    if @client.nil?
+      redirect_to clients_path, alert: I18n.t('notices.invalid_link') and return
+    end
   end
 
   def update
+    @client = current_user.clients.find_by(token: params[:id])
+    if @client.update_attributes(client_params)
+      redirect_to clients_path, notice: I18n.t('clients.edit.client_success') and return
+    else
+      flash[:alert] = I18n.t('errors.form.please_correct_form')
+      render 'edit'
+    end
   end
 
   def show

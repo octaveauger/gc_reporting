@@ -438,10 +438,15 @@ fr:
       form_label_lname: 'Nom de famille'
       form_label_email: 'Email'
       form_label_company_name: "Nom d'entreprise"
-      form_label_source_client_id: 'Votre référence client'
+      form_label_source_client_id: 'Référence client'
       form_placeholder_source_client_id: "Indiquez l'éventuelle référence client propre à votre entreprise"
       form_button_submit: 'Ajouter un client'
       client_success: 'Votre client a bien été créé'
+    edit:
+      h1: 'Editez votre client'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Editer le client'
+      client_success: 'Votre client a bien été édité'
   reporting:
     loading:
       loader_backup: 'Chargement...'

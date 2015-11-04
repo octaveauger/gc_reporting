@@ -3,7 +3,10 @@
 	<div class="col-sm-8"><h1><%= t('.h1') %></h1></div>
 	<div class="col-sm-4">
 		<div class="pull-right">
-			<%= link_to t('.create_client_button'), new_client_path, class: 'btn pop h1-btn' %>
+			<a href="<%= new_client_path %>" class="btn pop h1-btn">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<%= t('.create_client_button') %>
+			</a>
 			<a href="<%= clients_path(format: :csv, time_filter: @time_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>

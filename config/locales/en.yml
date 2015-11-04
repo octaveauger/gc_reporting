@@ -436,10 +436,15 @@ en:
       form_label_lname: 'Last name'
       form_label_email: 'Email'
       form_label_company_name: 'Company name'
-      form_label_source_client_id: 'Your client reference'
+      form_label_source_client_id: 'Client reference'
       form_placeholder_source_client_id: 'Enter any custom reference for your customer'
       form_button_submit: 'Add client'
       client_success: 'Your client was successfully created'
+    edit:
+      h1: 'Edit your client'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Edit client'
+      client_success: 'Your client was successfully edited'
   reporting:
     loading:
       loader_backup: 'Loading...'
