@@ -42,6 +42,13 @@ class ClientsController < ApplicationController
     end
   end
 
+  def import
+    Client.import_csv(params[:client_import], current_user)
+  end
+
+  def import_result
+  end
+
   def edit
   end
 

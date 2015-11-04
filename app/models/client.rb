@@ -28,4 +28,26 @@ class Client < ActiveRecord::Base
 	  	self.fname.to_s + ' ' + self.lname.to_s + company_name
     end
   end
+
+  # TODOS:
+  # Encoding issues: breaks if non UTF8 (i.e accents)
+  # Check that errors work and also add begin / rescue with error notification
+  # Translated headers
+  def self.import_csv(file, organisation)
+    options = { row_sep: :auto, file_encoding: 'utf-8', :key_mapping => {:unwanted_row => nil, :fname => :fname}}
+    results = []
+    source_id = ClientSource.find_by(name: 'import').id
+    SmarterCSV.process(file, options) do |imported_client|
+      imported_client
+      client = organisation.clients.new(imported_client.first)
+      client.assign_attributes(source_created_at: Time.now) if client.source_created_at.nil?
+      client.assign_attributes(client_source_id: source_id)
+      if client.save
+        results.push(client: client)
+      else
+        results.push(client: client, errors: client.errors)
+      end
+    end
+    results
+  end
 end
