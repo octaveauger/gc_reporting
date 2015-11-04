@@ -85,7 +85,8 @@ class GocardlessPro
 		}
 		customer = @user.customers.find_by(gc_id: record['id'])
 		if customer.nil?
-			client = Client.find_by(customer_gc_id: params[:gc_id])
+			client = @user.clients.find_by(customer_gc_id: params[:gc_id])
+			client = @user.clients.find_by(email: record['email']) if client.nil? # Try to reconcile by email address if the first check fails
 			if client.nil? # We create a client based on GC data
 				source_id = ClientSource.where(name: 'gocardless').first.id
 				client = @user.clients.create!(
@@ -98,6 +99,14 @@ class GocardlessPro
 					customer_gc_id: params[:gc_id],
 					source_created_at: params[:gc_created_at]
 				)
+			else # Check if we can improve the client's data with the customer
+				if (client.fname.blank? and !params[:given_name].blank?) or (client.lname.blank? and !params[:family_name].blank?) or (client.email.blank? and !params[:email_name].blank?) or (client.company_name.blank? and !params[:company_name].blank?)
+					client.assign_attributes(fname: params[:given_name]) if client.fname.blank?
+					client.assign_attributes(lname: params[:family_name]) if client.lname.blank?
+					client.assign_attributes(email: params[:email]) if client.email.blank?
+					client.assign_attributes(company_name: params[:company_name]) if client.company_name.blank?
+					client.save
+				end
 			end
 			params[:client_id] = client.id
 			client.customers.create(params)
