@@ -49,6 +49,14 @@ class Organisation < ActiveRecord::Base
 		self.fname.to_s + ' ' + self.lname.to_s
 	end
 
+	def display_name
+		if self.company_name.blank?
+			self.full_name
+		else
+			self.company_name
+		end
+	end
+
 	def client_count
 		self.clients.count
 	end

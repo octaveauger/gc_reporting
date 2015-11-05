@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103213907) do
+ActiveRecord::Schema.define(version: 20151105192340) do
 
   create_table "admins", force: true do |t|
     t.string   "email"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20151103213907) do
     t.string   "token"
     t.string   "customer_gc_id"
     t.datetime "source_created_at"
+    t.string   "locale"
+    t.text     "mandate_request_description"
+    t.datetime "mandate_request_date"
   end
 
   add_index "clients", ["client_source_id"], name: "index_clients_on_client_source_id"

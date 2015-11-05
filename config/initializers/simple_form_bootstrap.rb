@@ -17,7 +17,7 @@ SimpleForm.setup do |config|
   config.input_class = 'form-control'
   config.error_notification_tag = :div
   config.error_notification_class = 'alert alert-danger'
-  config.wrapper_mappings = { :boolean => :checkbox} #, :select => :dropdown }
+  config.wrapper_mappings = { :boolean => :checkbox } #, :select => :dropdown }
 
   config.wrappers :checkbox, tag: :div, class: "col-xs-offset-3 col-xs-9", error_class: "has-error" do |b|
     b.use :html5

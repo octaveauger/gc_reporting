@@ -229,6 +229,13 @@ fr:
               too_little: 'doit être plus élevé'
             reference:
               too_long: 'doit contenir moins de %{chars} caractères'
+  activerecord:
+    errors:
+      models:
+        client:
+          attributes:
+            email:
+              email_required_for_mandate_request: 'requis pour pouvoir envoyer une demande de mandat'
   header:
     toggle: 'Changer navigation'
     app_name: 'Antilope'
@@ -271,6 +278,16 @@ fr:
       login_cta: 'Connection'
       thanks: 'Cordialement,'
       signature: 'Votre équipe Antilope'
+    mandate_request:
+      subject: '%{org_name} souhaite mettre en place un mandat de prélèvement bancaire avec vous'
+      title: '%{org_name} souhaite mettre en place un mandat de prélèvement'
+      salutations: 'Bonjour %{name},'
+      explanation: "%{org_name} souhaite mettre en place un mandat de prélèvement bancaire avec vous. Cela veut dire qu'ils prendront les paiements futurs de votre compte en banque. Vous serez toujours alertés avant chaque prélèvement. %{org_name} ne verra pas vos données bancaires."
+      organisation_comment: 'Raison pour ce mandat : '
+      create_mandate: 'Cliquez ici pour mettre en place le mandat:'
+      create_mandate_cta: 'Créer un mandat de prélèvement'
+      thanks: 'Merci,'
+      signature: 'Antilope.io pour %{org_name}'    
   gocardless:
     mandate:
       status:
@@ -285,6 +302,10 @@ fr:
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
         autogiro: 'Autogiro (Suède)'
+      state:
+        valid: 'Mandat valide'
+        pending: 'Mandat demandé'
+        none: 'Pas de mandat valide'
     payment:
       status:
         pending_submission: 'En attente de soumission'
@@ -355,6 +376,12 @@ fr:
       failed: 'Echoué'
       cancelled: 'Annulé'
       expired: 'Expiré'
+    valid_mandate:
+      label: 'et mandat'
+      any: 'Tous'
+      valid: 'Valide'
+      pending: 'Demandé'
+      none: 'Pas demandé'
     payment_status:
       label: 'et le statut'
       any: 'Tous'
@@ -406,6 +433,11 @@ fr:
       form_label_locale: 'Langue'
       form_button_submit: 'Complétez votre compte'      
   clients:
+    actions:
+      view: 'Voir client'
+      edit: 'Editer client'
+      request_mandate: 'Envoyer une demande de mandat'
+      remind_mandate: 'Relancer une demande de mandat'
     index:
       h1: 'Vos clients'
       link_export: 'Exporter'
@@ -440,6 +472,9 @@ fr:
       form_label_company_name: "Nom d'entreprise"
       form_label_source_client_id: 'Référence client'
       form_placeholder_source_client_id: "Indiquez l'éventuelle référence client propre à votre entreprise"
+      form_label_locale: 'Langue du client'
+      form_label_mandate_request_description: 'Explication de la demande de mandat'
+      form_placeholder_mandate_request_description: 'Cela sera envoyé à votre client'
       form_button_submit: 'Ajouter un client'
       client_success: 'Votre client a bien été créé'
     edit:

@@ -3,8 +3,9 @@ class ClientsController < ApplicationController
 
   def index
     begin
-      params_filters = params.slice(:time_filter)
+      params_filters = params.slice(:time_filter, :valid_mandate_filter)
       @time_filter = params[:time_filter] || 'any'
+      @valid_mandate_filter = params[:valid_mandate_filter] || 'any'
       respond_to do |format|
         format.html do
           @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('source_created_at desc').all.paginate(page: params[:page])
@@ -72,6 +73,6 @@ class ClientsController < ApplicationController
   private
 
     def client_params
-      params.require(:client).permit(:fname, :lname, :email, :company_name, :source_client_id)
+      params.require(:client).permit(:fname, :lname, :email, :company_name, :source_client_id, :locale, :mandate_request_description, :request_mandate)
     end
 end

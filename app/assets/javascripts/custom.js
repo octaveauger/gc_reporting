@@ -27,6 +27,11 @@ $(function () {
     });
     $(window).scroll(); // Triggers it at page load in case it's not below the fold
   }
+
+  // Horrible hack to fix Simple Form handling of checkbox classes on input for Bootstrap 3
+  $('label.checkbox').each(function() {
+    $(this).find('input[type="checkbox"]').removeClass('form-control');
+  });
 });
 
 function autorefresh_sync_loader() {

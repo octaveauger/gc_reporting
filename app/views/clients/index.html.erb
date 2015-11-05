@@ -19,15 +19,27 @@
 	<%= render partial: 'reporting/loading' %>
 <% end %>
 
-<form action="<%= clients_path %>" method="get" class="form-inline">
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.time.label') %></p>
+<div class="row">
+	<div class="col-sm-6">
 	</div>
-	<div class="form-group">
-		<%= select_tag(:time_filter, options_for_select(Client.time_filters, @time_filter), class: 'form-control') %>
+	<div class="col-sm-6">
+		<form action="<%= clients_path %>" method="get" class="form-inline pull-right">
+			<div class="form-group">
+				<p class='form-control-static'><%= t('filters.time.label') %></p>
+			</div>
+			<div class="form-group">
+				<%= select_tag(:time_filter, options_for_select(Client.time_filters, @time_filter), class: 'form-control') %>
+			</div>
+			<div class="form-group">
+				<p class='form-control-static'><%= t('filters.valid_mandate.label') %></p>
+			</div>
+			<div class="form-group">
+				<%= select_tag(:valid_mandate_filter, options_for_select(Client.valid_mandate_filters, @valid_mandate_filter), class: 'form-control') %>
+			</div>
+			<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+		</form>
 	</div>
-	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
-</form>
+</div>
 
 <table class="table" id="results">
 	<th><%= t('.table_title_creation_date') %></th>
@@ -36,6 +48,7 @@
 	<th><%= t('.table_title_email') %></th>
 	<th><%= t('.table_title_source_client_id') %></th>
 	<th><%= t('.table_title_source') %></th>
+	<th></th>
 	<th></th>
 	<% if !@clients.nil? and @clients.any? %>
 		<%= render partial: 'clients/client', collection: @clients %>
