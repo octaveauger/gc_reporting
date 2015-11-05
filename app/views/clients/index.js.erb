@@ -1,0 +1,7 @@
+$('#results').append("<%= j render partial: 'clients/client', collection: @clients %>");
+<% if @clients.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @clients %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>
