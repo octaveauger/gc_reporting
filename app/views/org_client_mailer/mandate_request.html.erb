@@ -12,6 +12,6 @@
 <%= link_to t('emails.mandate_request.create_mandate_cta'), authorisations_new_url(@client.organisation.gc_id, token: @client.token), class: 'btn btn-primary btn-centered' %>
 
 <p>
-	<%= t('emails.mandate_request.thanks') %>
+	<%= t('emails.mandate_request.thanks') %><br/>
 	<%= t('emails.mandate_request.signature', org_name: @client.organisation.display_name) %>
 </p>
