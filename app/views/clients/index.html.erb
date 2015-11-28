@@ -21,9 +21,7 @@
 
 <div class="row">
 	<div class="col-sm-6">
-	</div>
-	<div class="col-sm-6">
-		<form action="<%= clients_path %>" method="get" class="form-inline pull-right">
+		<form action="<%= clients_path %>" method="get" class="form-inline pull-left">
 			<div class="form-group">
 				<p class='form-control-static'><%= t('filters.time.label') %></p>
 			</div>
@@ -38,6 +36,8 @@
 			</div>
 			<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
 		</form>
+	</div>
+	<div class="col-sm-6">
 	</div>
 </div>
 
