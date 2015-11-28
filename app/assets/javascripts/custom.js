@@ -32,6 +32,15 @@ $(function () {
   $('label.checkbox').each(function() {
     $(this).find('input[type="checkbox"]').removeClass('form-control');
   });
+
+  // Management of tagsinput form
+  $('[data-role="tagsinput"]').tagsinput({
+    confirmKeys: [13, 32, 44] //comma, space and enter trigger it - TODO: space not working
+  });
+  // Fix for copy/paste - TODO: need to change the appearance, not only the valiue
+  $('[data-role="tagsinput"]').on('change', function(e) {
+    $(this).val($(this).val().split(/[ ,]+/).join(','));
+  });
 });
 
 function autorefresh_sync_loader() {

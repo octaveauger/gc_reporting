@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     get 'reporting/payouts', to: 'reporting#payouts'
     get 'reporting/payout/:payout_gc_id', to: 'reporting#payout', as: 'reporting_payout'
 
-    resources :clients, only: [:index, :show, :new, :create, :edit, :update]
+    resources :clients, only: [:index, :show, :new, :create, :edit, :update] do
+      get :mandate_link, on: :collection
+      get :new_pending, on: :collection
+      post :create_pending, on: :collection
+    end
     resources :payments, only: [:show, :new, :create]
     resources :refunds, only: [:new, :create]
   end

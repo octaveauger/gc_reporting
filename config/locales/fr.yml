@@ -229,6 +229,10 @@ fr:
               too_little: 'doit être plus élevé'
             reference:
               too_long: 'doit contenir moins de %{chars} caractères'
+        pending_client:
+          attributes:
+            emails:
+              invalid_emails: 'Email(s) invalide(s): %{emails}'
   activerecord:
     errors:
       models:
@@ -463,6 +467,10 @@ fr:
       item_description_customer_country: 'Pays'
       title_mandates: 'Mandats'
       title_payments: 'Paiements'
+    tabs:
+      add_client: 'Ajoutez un client'
+      add_clients: 'Ajoutez plusieurs clients'
+      send_link: 'Envoyez un lien'
     new:
       h1: 'Ajoutez un nouveau client'
       form_intro: 'Tous les champs sont optionnels - remplissez ceux que vous connaissez'
@@ -472,6 +480,7 @@ fr:
       form_label_company_name: "Nom d'entreprise"
       form_label_source_client_id: 'Référence client'
       form_placeholder_source_client_id: "Indiquez l'éventuelle référence client propre à votre entreprise"
+      form_label_mandate_request: 'Envoyer une demande de mandat à ce client par email'
       form_label_locale: 'Langue du client'
       form_label_mandate_request_description: 'Explication de la demande de mandat'
       form_placeholder_mandate_request_description: 'Cela sera envoyé à votre client'
@@ -482,6 +491,14 @@ fr:
       form_button_cancel: 'Annuler'
       form_button_submit: 'Editer le client'
       client_success: 'Votre client a bien été édité'
+    new_pending:
+      form_label_emails: 'Emails clients'
+      form_placeholder_emails: 'Indiquez les emails de vos clients séparés par une virgule ou la touche entrée'
+      form_button_submit: 'Demandez un mandat de ces clients'
+      client_success: 'Vos clients ont été créés et notifiés par email'
+    mandate_link:
+      explanation: "Vous pouvez envoyer votre lien personnel de mandat ci-dessous à tous vos clients. Une fois qu'ils auront rempli le mandat, ils apparaîtront automatiquement dans votre tableau de bord et vous serez autorisé à prendre des paiements de leur compte en banque."
+      send_link: 'Envoyez ce lien :'
   reporting:
     loading:
       loader_backup: 'Chargement...'

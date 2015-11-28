@@ -23,7 +23,7 @@ class Client < ActiveRecord::Base
   after_save :email_mandate_request, if: :request_mandate
 
   def email_present_if_mandate_request
-    if self.email.blank? and self.request_mandate
+    if self.email.blank? and self.request_mandate and self.request_mandate != '0'
       errors.add(:email, :email_required_for_mandate_request)
     end
   end

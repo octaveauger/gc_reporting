@@ -227,6 +227,10 @@ en:
               too_little: 'must be higher'
             reference:
               too_long: 'must be less than %{chars} characters'
+        pending_client:
+          attributes:
+            emails:
+              invalid_emails: 'Invalid email(s): %{emails}'
   activerecord:
     errors:
       models:
@@ -462,6 +466,10 @@ en:
       item_description_customer_country: 'Country'
       title_mandates: 'Mandates'
       title_payments: 'Payments'
+    tabs:
+      add_client: 'Add a client'
+      add_clients: 'Add several clients'
+      send_link: 'Send a link'
     new:
       h1: 'Add a new client'
       form_intro: 'All fields are optional - fill the ones you know'
@@ -471,6 +479,7 @@ en:
       form_label_company_name: 'Company name'
       form_label_source_client_id: 'Client reference'
       form_placeholder_source_client_id: 'Enter any custom reference for your client'
+      form_label_mandate_request: 'Send this client a mandate request by email'
       form_label_locale: 'Client language'
       form_label_mandate_request_description: 'Mandate request explanation'
       form_placeholder_mandate_request_description: 'This will be sent to your client'
@@ -481,6 +490,14 @@ en:
       form_button_cancel: 'Cancel'
       form_button_submit: 'Edit client'
       client_success: 'Your client was successfully edited'
+    new_pending:
+      form_label_emails: 'Client emails'
+      form_placeholder_emails: 'Enter the emails of your clients separated by a comma or the return key'
+      form_button_submit: 'Request a mandate from these clients'
+      client_success: 'Your clients were successfully created and emailed'
+    mandate_link:
+      explanation: 'You can send your personal mandate link below to all your customers. Once they fill it, they will automatically appear in the dashboard and you will be authorised to start taking payments from their bank account.'
+      send_link: 'Send this link:'
   reporting:
     loading:
       loader_backup: 'Loading...'

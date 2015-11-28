@@ -70,9 +70,31 @@ class ClientsController < ApplicationController
     render layout: !request.xhr?
   end
 
+  def new_pending
+    @clients = PendingClient.new(locale: I18n.locale.to_s)
+  end
+
+  def create_pending
+    @clients = PendingClient.new(pending_client_params)
+    @results = @clients.create_clients(current_user)
+    if @results[:full_success]
+      redirect_to clients_path, notice: I18n.t('clients.new_pending.client_success') and return
+    else
+      flash[:alert] = I18n.t('errors.form.please_correct_form')
+      render 'new_pending'
+    end
+  end
+
+  def mandate_link
+  end
+
   private
 
     def client_params
       params.require(:client).permit(:fname, :lname, :email, :company_name, :source_client_id, :locale, :mandate_request_description, :request_mandate)
+    end
+
+    def pending_client_params
+      params.require(:pending_client).permit(:emails, :locale, :mandate_request_description)
     end
 end
