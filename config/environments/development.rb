@@ -42,6 +42,16 @@ GcReporting::Application.configure do
     address:                 '127.0.0.1',
     port:                     1025
   }
+  # Uncomment to use Mandrill sandbox mode
+  #config.action_mailer.smtp_settings = {
+  #  address:                 'smtp.mandrillapp.com',
+  #  port:                     587,
+  #  user_name:                ENV['MANDRILL_USER_NAME'],
+  #  password:                 ENV['MANDRILL_API_KEY'],
+  #  authentication:          'login',
+  #  enable_starttls_auto:    true,
+  #  domain:                  ENV['MANDRILL_DOMAIN']
+  #}
 
   config.middleware.use ExceptionNotification::Rack,
      :email => {
