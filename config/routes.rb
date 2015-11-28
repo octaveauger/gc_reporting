@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :mandate_link, on: :collection
       get :new_pending, on: :collection
       post :create_pending, on: :collection
+      get :email_mandate
     end
     resources :payments, only: [:show, :new, :create]
     resources :refunds, only: [:new, :create]

@@ -15,11 +15,11 @@
 		</a>
 		<% client.mandate_actions[:actions].each do |action| %>
 			<% if action == 'request' %>
-				<a href="" class="btn-action">
+				<a href="" class="btn-action" data-role="ajax-get" data-target="<%= client_email_mandate_url(client.token) %>">
 					<span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="bottom" title="<%= t('clients.actions.request_mandate') %>"></span>
 				</a>
 			<% elsif action == 'remind' %>
-				<a href="" class="btn-action">
+				<a href="" class="btn-action" data-role="ajax-get" data-target="<%= client_email_mandate_url(client.token) %>">
 					<span class="glyphicon glyphicon-repeat" data-toggle="tooltip" data-placement="bottom" title="<%= t('clients.actions.remind_mandate') %>"></span>
 				</a>
 			<% end %>

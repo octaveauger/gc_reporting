@@ -88,6 +88,18 @@ class ClientsController < ApplicationController
   def mandate_link
   end
 
+  def email_mandate
+    @client = current_user.clients.find_by(token: params[:client_id])
+    if !@client.nil?
+      @client.update_mandate_request_date
+      @client.save
+      @client.email_mandate_request
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
     def client_params

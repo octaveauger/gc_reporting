@@ -69,20 +69,24 @@ class Client < ActiveRecord::Base
   def mandate_actions
     if self.mandates.can_take_payment.any?
       { state: 'valid', actions: [] }
+    elsif self.email.blank?
+      { state: 'none', actions: [] }
     else
       if self.mandate_request_date.nil?
         { state: 'none', actions: ['request'] }
-      else
+      elsif self.mandate_request_date < 2.days.ago
         { state: 'pending', actions: ['remind'] }
+      else
+        { state: 'pending', actions: [] }
       end
     end
   end
 
   def update_mandate_request_date
-    self.mandate_request_date = Time.now
+    self.mandate_request_date = Time.now if self.request_mandate != '0'
   end
 
   def email_mandate_request
-    MailerClientJob.new.async.perform(self, 'mandate_request')
+    MailerClientJob.new.async.perform(self, 'mandate_request') if self.request_mandate != '0'
   end
 end

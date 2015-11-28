@@ -1,20 +1,5 @@
 $(function () {
-  // Initialise tooltips
-  $('[data-toggle="tooltip"]').tooltip();
-
-  // Refresh the syncing loader
-  autorefresh_sync_loader();
-
-  // Calls the client modal via ajax
-  $('.modal-link[data-target="#client-modal"]').on('click', function(e) {
-  	$('#client-modal').find('.modal-content').load($(this).attr('data-path'));
-  });
-
-  // Trigger get actions via Ajax (e.g cancel mandate)
-  $('a[data-role="ajax-get"]').on('click', function(e) {
-  	e.preventDefault();
-  	$.getScript($(this).attr('data-target'));
-  });
+  initialize();
 
   // Infinite scrolling
   if($('#infinite-scrolling').size() > 0) {
@@ -27,6 +12,25 @@ $(function () {
     });
     $(window).scroll(); // Triggers it at page load in case it's not below the fold
   }
+});
+
+function initialize() {
+  // Initialise tooltips
+  $('[data-toggle="tooltip"]').tooltip();
+
+  // Refresh the syncing loader
+  autorefresh_sync_loader();
+
+  // Calls the client modal via ajax
+  $('.modal-link[data-target="#client-modal"]').off('click').on('click', function(e) {
+    $('#client-modal').find('.modal-content').load($(this).attr('data-path'));
+  });
+
+  // Trigger get actions via Ajax (e.g cancel mandate)
+  $('a[data-role="ajax-get"]').off('click').on('click', function(e) {
+    e.preventDefault();
+    $.getScript($(this).attr('data-target'));
+  });
 
   // Horrible hack to fix Simple Form handling of checkbox classes on input for Bootstrap 3
   $('label.checkbox').each(function() {
@@ -38,10 +42,10 @@ $(function () {
     confirmKeys: [13, 32, 44] //comma, space and enter trigger it - TODO: space not working
   });
   // Fix for copy/paste - TODO: need to change the appearance, not only the valiue
-  $('[data-role="tagsinput"]').on('change', function(e) {
+  $('[data-role="tagsinput"]').off('change').on('change', function(e) {
     $(this).val($(this).val().split(/[ ,]+/).join(','));
   });
-});
+}
 
 function autorefresh_sync_loader() {
   if($('#data-syncing-loader').size() > 0) {

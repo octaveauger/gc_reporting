@@ -6,7 +6,7 @@ class OrgClientMailer < ActionMailer::Base
   def mandate_request(client)
     @client = client
 
-    if !@client.email.nil? and ['en', 'fr'].include? @client.locale
+    if !@client.email.blank? and ['en', 'fr'].include? @client.locale
       I18n.with_locale(@client.locale) do
         mail(to: @client.email, subject: t('emails.mandate_request.subject', org_name: @client.organisation.display_name)) do |format|
           format.html { render layout: 'email_simple.html.erb' }
