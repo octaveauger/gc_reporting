@@ -13,9 +13,9 @@ class PaymentRequest
 		attributes.each do |name, value|
 			send("#{name}=", value)
     	end
-    	self.app_fee ||= 20 # Set to 20p unless specified
     	self.mandate = Mandate.can_take_payment.find_by(gc_id: self.mandate_id)
     	self.currency = self.mandate.currency unless self.mandate.nil?
+        self.app_fee ||= Revenue.standard_app_fee(self.currency)
 	end
 
 	def persisted?
