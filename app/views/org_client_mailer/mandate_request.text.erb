@@ -1,0 +1,15 @@
+<%= t('emails.mandate_request.title', org_name: @client.organisation.display_name) %>
+======================================
+
+<%= t('emails.mandate_request.salutations', name: @client.full_name) %>
+
+<%= t('emails.mandate_request.explanation', org_name: @client.organisation.display_name) %>
+
+<% if !@client.mandate_request_description.blank? %>
+	<%= t('emails.mandate_request.organisation_comment') + @client.mandate_request_description %>
+<% end %>
+
+<%= t('emails.mandate_request.create_mandate') %> <%= authorisations_new_url(@client.organisation.gc_id, token: @client.token) %>
+
+<%= t('emails.mandate_request.thanks') %>
+<%= t('emails.mandate_request.signature', org_name: @client.organisation.display_name) %>

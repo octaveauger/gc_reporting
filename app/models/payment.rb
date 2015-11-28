@@ -4,6 +4,7 @@ class Payment < ActiveRecord::Base
 	belongs_to :mandate, primary_key: 'gc_id', foreign_key: 'mandate_id'
 	delegate :customer_bank_account, to: :mandate
 	delegate :customer, to: :customer_bank_account
+	delegate :client, to: :customer
 	has_many :events, primary_key: 'gc_id', foreign_key: 'payment_id'
 	has_many :refunds, primary_key: 'gc_id', foreign_key: 'payment_id'
 	scope :can_be_refunded,  -> { where(:status => ['confirmed', 'paid_out']) }
@@ -46,13 +47,13 @@ class Payment < ActiveRecord::Base
 
 	# Cancels the payment with GoCardless and returns a hash with the results
 	def cancel
-		client = GocardlessPro.new(self.customer.organisation)
+		client = GocardlessPro.new(self.customer.client.organisation)
 		client.cancel_payment(self.gc_id)
 	end
 
 	# Retries the payment with GoCardless and returns a hash with the results
 	def retry
-		client = GocardlessPro.new(self.customer.organisation)
+		client = GocardlessPro.new(self.customer.client.organisation)
 		client.retry_payment(self.gc_id)
 	end
 

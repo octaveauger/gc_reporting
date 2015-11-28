@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('clients.show.item_description_customer_gc_id') %></strong></div>
+	<div class="col-md-10 col-xs-9"><span><%= customer.gc_id %></span></div>
+</div>
+<% if !customer.address_line1.blank? %>
+	<div class="row">
+		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('clients.show.item_description_customer_address') %></strong></div>
+		<div class="col-md-10 col-xs-9">
+			<% if !customer.address_line1.blank? %>
+				<span><%= customer.address_line1 %></span><br/>
+			<% end %>
+			<% if !customer.address_line2.blank? %>
+				<span><%= customer.address_line2 %></span><br/>
+			<% end %>
+			<% if !customer.address_line3.blank? %>
+				<span><%= customer.address_line3 %></span><br/>
+			<% end %>
+			<% if !customer.postal_code.blank? or !customer.city.blank? %>
+				<span><%= (customer.postal_code.blank? ? '' : customer.postal_code + ' ') + (customer.city) %></span><br/>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+<% if !customer.country_code.blank? %>
+	<div class="row">
+		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('clients.show.item_description_customer_country') %></strong></div>
+		<div class="col-md-10 col-xs-9">
+			<span><%= customer.country_code %></span>
+			<span><%= image_tag('blank.png', :class => 'flag flag-'+customer.country_code.downcase) %></span>
+		</div>
+	</div>
+<% end %>

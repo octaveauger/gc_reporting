@@ -30,21 +30,29 @@ module Filterable
 
 		# Filters results by usual time filters
 		def time_filter(selection)
+			if self.method_defined? :gc_created_at
+				time_column = 'gc_created_at'
+			elsif self.method_defined? :source_created_at
+				time_column = 'source_created_at'
+			else
+				time_column = 'created_at'
+			end
+			
 			case selection
 			when 'any'
 				self.all
 			when 'today'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today)
+				self.where(name_of_class + '.' + time_column + '>= ?', Date.today)
 			when 'yesterday'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 1)
+				self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 1)
 			when 'this_week'
-				self.where(name_of_class + '.gc_created_at >= ?', Time.now.beginning_of_week)
+				self.where(name_of_class + '.' + time_column + '>= ?', Time.now.beginning_of_week)
 			when 'this_month'
-				self.where(name_of_class + '.gc_created_at >= ?', Time.now.beginning_of_month)
+				self.where(name_of_class + '.' + time_column + '>= ?', Time.now.beginning_of_month)
 			when 'last_7_days'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 7)
+				self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 7)
 			when 'last_30_days'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 30)
+				self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 30)
 			else
 				self.all
 			end

@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ClientSource.create([
+	{ name: 'gocardless', display_name: 'GoCardless' },
+	{ name: 'import', display_name: 'Import' }
+])

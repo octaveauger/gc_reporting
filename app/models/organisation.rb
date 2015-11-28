@@ -1,5 +1,6 @@
 class Organisation < ActiveRecord::Base
-	has_many :customers
+	has_many :clients
+	has_many :customers, through: :clients
 	has_many :customer_bank_accounts, through: :customers
 	has_many :mandates, through: :customer_bank_accounts
 	has_many :payments, through: :mandates
@@ -46,6 +47,18 @@ class Organisation < ActiveRecord::Base
 
 	def full_name
 		self.fname.to_s + ' ' + self.lname.to_s
+	end
+
+	def display_name
+		if self.company_name.blank?
+			self.full_name
+		else
+			self.company_name
+		end
+	end
+
+	def client_count
+		self.clients.count
 	end
 
 	def mandate_count

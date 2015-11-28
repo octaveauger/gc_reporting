@@ -2,7 +2,7 @@ class ReportingController < ApplicationController
   before_action :logged_in_user
 
   def index
-    redirect_to reporting_mandates_path
+    redirect_to clients_path
   end
 
   def mandates

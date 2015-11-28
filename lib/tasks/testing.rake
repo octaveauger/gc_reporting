@@ -13,5 +13,6 @@ namespace :testing do
   	Event.destroy_all
     Fee.destroy_all
   	OrganisationUpdate.destroy_all
+    Client.destroy_all
   end
 end

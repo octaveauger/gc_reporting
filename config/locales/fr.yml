@@ -229,9 +229,21 @@ fr:
               too_little: 'doit être plus élevé'
             reference:
               too_long: 'doit contenir moins de %{chars} caractères'
+        pending_client:
+          attributes:
+            emails:
+              invalid_emails: 'Email(s) invalide(s): %{emails}'
+  activerecord:
+    errors:
+      models:
+        client:
+          attributes:
+            email:
+              email_required_for_mandate_request: 'requis pour pouvoir envoyer une demande de mandat'
   header:
     toggle: 'Changer navigation'
     app_name: 'Antilope'
+    link_clients: 'Clients'
     link_mandates: 'Mandats'
     link_payments: 'Paiements'
     link_payouts: 'Reversements'
@@ -270,6 +282,16 @@ fr:
       login_cta: 'Connection'
       thanks: 'Cordialement,'
       signature: 'Votre équipe Antilope'
+    mandate_request:
+      subject: '%{org_name} souhaite mettre en place un mandat de prélèvement bancaire avec vous'
+      title: '%{org_name} souhaite mettre en place un mandat de prélèvement'
+      salutations: 'Bonjour %{name},'
+      explanation: "%{org_name} souhaite mettre en place un mandat de prélèvement bancaire avec vous. Cela veut dire qu'ils prendront les paiements futurs de votre compte en banque. Vous serez toujours alertés avant chaque prélèvement. %{org_name} ne verra pas vos données bancaires."
+      organisation_comment: 'Raison pour ce mandat : '
+      create_mandate: 'Cliquez ici pour mettre en place le mandat:'
+      create_mandate_cta: 'Créer un mandat de prélèvement'
+      thanks: 'Merci,'
+      signature: 'Antilope.io pour %{org_name}'    
   gocardless:
     mandate:
       status:
@@ -284,6 +306,10 @@ fr:
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
         autogiro: 'Autogiro (Suède)'
+      state:
+        valid: 'Mandat valide'
+        pending: 'Mandat demandé'
+        none: 'Pas de mandat valide'
     payment:
       status:
         pending_submission: 'En attente de soumission'
@@ -354,6 +380,12 @@ fr:
       failed: 'Echoué'
       cancelled: 'Annulé'
       expired: 'Expiré'
+    valid_mandate:
+      label: 'et mandat'
+      any: 'Tous'
+      valid: 'Valide'
+      pending: 'Demandé'
+      none: 'Pas demandé'
     payment_status:
       label: 'et le statut'
       any: 'Tous'
@@ -366,16 +398,6 @@ fr:
       cancelled: 'Annulé'
     form:
       submit: 'Go'
-  connect:
-    new_account:
-      h1: 'Complétez votre compte Antilope'
-      form_label_fname: 'Prénom'
-      form_label_lname: 'Nom de famille'
-      form_label_email: 'Email'
-      form_label_company_name: 'Nom de société'
-      form_label_country: 'Pays'
-      form_label_locale: 'Langue'
-      form_button_submit: 'Complétez votre compte'      
   home:
     index:
       h1: 'Soyez payés plus vite avec Antilope.io'
@@ -404,6 +426,79 @@ fr:
       title_payment: 'Gérez vos paiements'
       description_payment: "Voyez d'un coup d'oeil le statut actuel de vos paiements, et annulez / représentez / remboursez-les facilement"
       alt_payment: 'Gestion des paiements'
+  connect:
+    new_account:
+      h1: 'Complétez votre compte Antilope'
+      form_label_fname: 'Prénom'
+      form_label_lname: 'Nom de famille'
+      form_label_email: 'Email'
+      form_label_company_name: 'Nom de société'
+      form_label_country: 'Pays'
+      form_label_locale: 'Langue'
+      form_button_submit: 'Complétez votre compte'      
+  clients:
+    actions:
+      view: 'Voir client'
+      edit: 'Editer client'
+      request_mandate: 'Envoyer une demande de mandat'
+      remind_mandate: 'Relancer une demande de mandat'
+    index:
+      h1: 'Vos clients'
+      link_export: 'Exporter'
+      csv_name: 'liste-client'
+      table_title_creation_date: 'Date de création'
+      table_title_customer_name: 'Nom'
+      table_title_customer_fname: 'Prénom'
+      table_title_customer_lname: 'Nom de famille'
+      table_title_company_name: "Nom d'entreprise"
+      table_title_email: 'Email'
+      table_title_source_client_id: 'Votre référence client'
+      table_title_source: 'Source'
+      no_clients: "Vous n'avez pas encore ajouté de clients"
+      create_client_button: 'Nouveau client'    
+      create_client_title: 'Nouveau client'
+    show:
+      title_customer: 'Client'
+      item_description_customer_gc_id: 'ID GoCardless'
+      item_description_customer_name: 'Nom'
+      item_description_company_name: "Nom d'entreprise"
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Addresse'
+      item_description_customer_country: 'Pays'
+      title_mandates: 'Mandats'
+      title_payments: 'Paiements'
+    tabs:
+      add_client: 'Ajoutez un client'
+      add_clients: 'Ajoutez plusieurs clients'
+      send_link: 'Envoyez un lien'
+    new:
+      h1: 'Ajoutez un nouveau client'
+      form_intro: 'Tous les champs sont optionnels - remplissez ceux que vous connaissez'
+      form_label_fname: 'Prénom'
+      form_label_lname: 'Nom de famille'
+      form_label_email: 'Email'
+      form_label_company_name: "Nom d'entreprise"
+      form_label_source_client_id: 'Référence client'
+      form_placeholder_source_client_id: "Indiquez l'éventuelle référence client propre à votre entreprise"
+      form_label_mandate_request: 'Envoyer une demande de mandat à ce client par email'
+      form_label_locale: 'Langue du client'
+      form_label_mandate_request_description: 'Explication de la demande de mandat'
+      form_placeholder_mandate_request_description: 'Cela sera envoyé à votre client'
+      form_button_submit: 'Ajouter un client'
+      client_success: 'Votre client a bien été créé'
+    edit:
+      h1: 'Editez votre client'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Editer le client'
+      client_success: 'Votre client a bien été édité'
+    new_pending:
+      form_label_emails: 'Emails clients'
+      form_placeholder_emails: 'Indiquez les emails de vos clients séparés par une virgule ou la touche entrée'
+      form_button_submit: 'Demandez un mandat de ces clients'
+      client_success: 'Vos clients ont été créés et notifiés par email'
+    mandate_link:
+      explanation: "Vous pouvez envoyer votre lien personnel de mandat ci-dessous à tous vos clients. Une fois qu'ils auront rempli le mandat, ils apparaîtront automatiquement dans votre tableau de bord et vous serez autorisé à prendre des paiements de leur compte en banque."
+      send_link: 'Envoyez ce lien :'
   reporting:
     loading:
       loader_backup: 'Chargement...'
@@ -488,16 +583,6 @@ fr:
       table_title_fees: 'Frais'
       refund: 'Remboursement'
       payment: 'Paiement'
-  customers:
-    show:
-      title_customer: 'Client'
-      item_description_customer_gc_id: 'ID GoCardless'
-      item_description_customer_name: 'Nom'
-      item_description_customer_email: 'Email'
-      item_description_customer_address: 'Addresse'
-      item_description_customer_country: 'Pays'
-      title_mandates: 'Mandats'
-      title_payments: 'Paiements'
   payments:
     new:
       h1: 'Prenez un paiement'

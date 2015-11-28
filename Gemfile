@@ -41,17 +41,13 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'roadie-rails', '~> 1.0.6'
 gem 'i18n_country_select'
+gem 'bootstrap-tagsinput-rails'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
 
-group :production do
-  gem 'pg', '0.15.1'
-  gem 'rails_12factor', '0.0.2'
-end
-
-group :staging do
+group :production, :staging do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
