@@ -6,7 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-ClientSource.create([
+# Initialising client sources
+sources = ClientSource.all
+sources = sources.map { |s| s.name }
+sources_seed = [
 	{ name: 'gocardless', display_name: 'GoCardless' },
 	{ name: 'import', display_name: 'Import' }
-])
+]
+sources_seed.each do |source|
+	ClientSource.create(source) unless sources_seed.include? source
+end
