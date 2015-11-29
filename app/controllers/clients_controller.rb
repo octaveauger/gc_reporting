@@ -72,7 +72,7 @@ class ClientsController < ApplicationController
   def show
     @client = current_user.clients.find_by(token: params[:id])
     if @client.nil?
-      redirect_to reporting_path, alert: I18n.t('notices.client_not_found') and return
+      redirect_to clients_path, alert: I18n.t('notices.client_not_found') and return
     end
     @payments = @client.payments.includes(:events).order('gc_created_at desc').all.paginate(page: params[:page])
 

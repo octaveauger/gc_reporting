@@ -270,6 +270,9 @@ en:
     customer_not_found: 'This customer could not be found'
     invalid_link: 'This link is invalid'
     mandate_success: 'Your mandate was successfully created'
+  loading:
+    loader_backup: 'Loading...'
+    notice: 'Your data is currently being synchronised. This page will reload when it is ready.'
   emails:
     welcome:
       subject: 'Welcome to Antilope, the way to get paid on time'
@@ -501,14 +504,8 @@ en:
     mandate_link:
       explanation: 'You can send your personal mandate link below to all your customers. Once they fill it, they will automatically appear in the dashboard and you will be authorised to start taking payments from their bank account.'
       send_link: 'Send this link:'
-  reporting:
-    loading:
-      loader_backup: 'Loading...'
-      notice: 'Your data is currently being synchronised. This page will reload when it is ready.'
+  mandates:
     index:
-      h1: 'Payment reporting'
-      link_payments: 'Your payments'
-    mandates:
       h1: 'Mandate summary'
       link_export: 'Export'
       csv_name: 'mandate-list'
@@ -528,7 +525,8 @@ en:
       create_mandate_title: 'New mandate'    
       create_mandate_explanation: 'Send this link to your customers:'
       cancel_mandate: 'Cancel mandate'
-    payments:
+  payments:
+    index:
       h1: 'Payment summary'
       link_export: 'Export'
       csv_name: 'payment-list'
@@ -555,7 +553,21 @@ en:
       cancel_payment: 'Cancel payment'
       retry_payment: 'Retry payment'
       refund_payment: 'Refund payment'
-    payouts:
+    new:
+      h1: 'Take a payment'
+      form_label_customer: 'Customer'
+      form_label_amount: 'Amount'
+      form_label_description: 'Description'
+      form_hint_description: 'What is this payment for?'
+      form_label_reference: 'Reference'
+      form_hint_reference: 'This will appear on the customer bank statement'
+      form_label_charge_date_start: 'Take payment on (earliest '
+      form_label_charge_date_end: ')'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Create'
+      success_message: 'Your payment will be taken on the %{charge_date}'
+  payouts:
+    index:
       h1: 'Payout summary'
       fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
       table_title_payout_date: 'Payout creation date'
@@ -564,7 +576,7 @@ en:
       table_title_status: 'Status'
       table_title_reference: 'Reference'
       no_payouts: 'There are no corresponding payouts or your data is synchronising'
-    payout:
+    show:
       h1: 'Payout'
       link_export: 'Export'
       csv_name: 'payout-list'
@@ -587,20 +599,6 @@ en:
       table_title_fees: 'Fees'
       refund: 'Refund'
       payment: 'Payment'
-  payments:
-    new:
-      h1: 'Take a payment'
-      form_label_customer: 'Customer'
-      form_label_amount: 'Amount'
-      form_label_description: 'Description'
-      form_hint_description: 'What is this payment for?'
-      form_label_reference: 'Reference'
-      form_hint_reference: 'This will appear on the customer bank statement'
-      form_label_charge_date_start: 'Take payment on (earliest '
-      form_label_charge_date_end: ')'
-      form_button_cancel: 'Cancel'
-      form_button_submit: 'Create'
-      success_message: 'Your payment will be taken on the %{charge_date}'
   refunds:
     new:
       h1: 'Refund a payment'

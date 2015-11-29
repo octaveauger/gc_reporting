@@ -3,14 +3,14 @@
 	<div class="col-sm-8"><h1><%= t('.h1') %> <small><%= @payout.reference %></small></h1></div>
 	<div class="col-sm-4">
 		<div class="pull-right">
-			<a href="reporting_payout_path(@payout.gc_id, format: :csv) %>" class='btn pop h1-btn' %>
+			<a href="payouts_show_path(@payout.gc_id, format: :csv) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>
 			</a>
 		</div>
 	</div>
 </div>
-<p><%= t('reporting.payouts.fee_disclaimer') %></p>
+<p><%= t('payouts.index.fee_disclaimer') %></p>
 
 <div class="panel panel-default">
 	<div class="row">
@@ -28,7 +28,7 @@
 </div>
 
 <% if !current_user.recent_update? %>
-	<%= render partial: 'reporting/loading' %>
+	<%= render partial: 'layouts/loading' %>
 <% end %>
 <table class="table" id="results">
 	<th><%= t('.table_title_type') %></th>
@@ -38,7 +38,7 @@
 	<th><%= t('.table_title_credit') %></th>
 	<th><%= t('.table_title_debit') %></th>
 	<th><%= t('.table_title_fees') %></th>
-	<%= render partial: 'reporting/payout_event', collection: @events %>
+	<%= render partial: 'payouts/payout_event', collection: @events %>
 </table>
 <div id="infinite-scrolling">
 	<%= will_paginate @events %>

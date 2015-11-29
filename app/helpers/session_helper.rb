@@ -31,7 +31,7 @@ module SessionHelper
 	def after_sign_in_path
 		redirect = session[:return_to]
 		session.delete(:return_to)
-		redirect || reporting_path
+		redirect || clients_path
 	end
 
 	def redirect_flow_session_token

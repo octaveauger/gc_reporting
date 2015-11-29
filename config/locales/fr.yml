@@ -272,6 +272,9 @@ fr:
     customer_not_found: "Ce client n'a pas pu être trouvé"
     invalid_link: "Ce lien n'existe pas"
     mandate_success: 'Votre mandat a bien été créé'
+  loading:
+    loader_backup: 'Chargement...'
+    notice: 'Vos données sont en cours de synchronisation. Cette page sera rafraîchie automatiquement.'
   emails:
     welcome:
       subject: "Bienvenue chez Antilope, le moyen d'être payé à temps"
@@ -502,14 +505,8 @@ fr:
     mandate_link:
       explanation: "Vous pouvez envoyer votre lien personnel de mandat ci-dessous à tous vos clients. Une fois qu'ils auront rempli le mandat, ils apparaîtront automatiquement dans votre tableau de bord et vous serez autorisé à prendre des paiements de leur compte en banque."
       send_link: 'Envoyez ce lien :'
-  reporting:
-    loading:
-      loader_backup: 'Chargement...'
-      notice: 'Vos données sont en cours de synchronisation. Cette page sera rafraîchie automatiquement.'
+  mandates:
     index:
-      h1: 'Rapport de paiements'
-      link_payments: 'Vos paiements'
-    mandates:
       h1: 'Rapport de mandats'
       link_export: 'Exporter'
       csv_name: 'liste-mandats'
@@ -529,7 +526,8 @@ fr:
       create_mandate_title: 'Nouveau mandat'    
       create_mandate_explanation: 'Envoyez ce lien à vos clients :'
       cancel_mandate: 'Annuler le mandat'
-    payments:
+  payments:
+    index:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'
       csv_name: 'liste-paiements'
@@ -556,7 +554,21 @@ fr:
       cancel_payment: 'Annuler le paiement'
       retry_payment: 'Représenter le paiement'
       refund_payment: 'Rembourser le paiement'
-    payouts:
+    new:
+      h1: 'Prenez un paiement'
+      form_label_customer: 'Client'
+      form_label_amount: 'Somme'
+      form_label_description: 'Description'
+      form_hint_description: 'A quoi correspond ce paiement ?'
+      form_label_reference: 'Référence'
+      form_hint_reference: 'Cela apparaîtra sur le compte en banque du client'
+      form_label_charge_date_start: 'Prenez le paiement le (au plus tôt '
+      form_label_charge_date_end: ')'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Créer'
+      success_message: 'Votre paiement sera pris le %{charge_date}'
+  payouts:
+    index:
       h1: 'Rapport de reversements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
       table_title_payout_date: 'Date de création du reversement'
@@ -565,7 +577,7 @@ fr:
       table_title_status: 'Statut'
       table_title_reference: 'Référence'
       no_payouts: "Il n'y a pas de reversements correspondants ou vos données sont encore en train de synchroniser"
-    payout:
+    show:
       h1: 'Reversement'
       link_export: 'Exporter'
       csv_name: 'liste-reversements'
@@ -588,20 +600,6 @@ fr:
       table_title_fees: 'Frais'
       refund: 'Remboursement'
       payment: 'Paiement'
-  payments:
-    new:
-      h1: 'Prenez un paiement'
-      form_label_customer: 'Client'
-      form_label_amount: 'Somme'
-      form_label_description: 'Description'
-      form_hint_description: 'A quoi correspond ce paiement ?'
-      form_label_reference: 'Référence'
-      form_hint_reference: 'Cela apparaîtra sur le compte en banque du client'
-      form_label_charge_date_start: 'Prenez le paiement le (au plus tôt '
-      form_label_charge_date_end: ')'
-      form_button_cancel: 'Annuler'
-      form_button_submit: 'Créer'
-      success_message: 'Votre paiement sera pris le %{charge_date}'
   refunds:
     new:
       h1: 'Rembourser un paiement'

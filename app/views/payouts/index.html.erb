@@ -3,10 +3,10 @@
 <p><%= t('.fee_disclaimer') %></p>
 
 <% if !current_user.recent_update? %>
-	<%= render partial: 'reporting/loading' %>
+	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<form action="<%= reporting_payouts_path %>" method="get" class="form-inline">
+<form action="<%= payouts_path %>" method="get" class="form-inline">
 	<div class="form-group">
 		<p class='form-control-static'><%= t('filters.time.label') %></p>
 	</div>
@@ -35,7 +35,7 @@
 	<th><%= t('.table_title_status') %></th>
 	<th></th>
 	<% if !@payouts.nil? and @payouts.any? %>
-		<%= render partial: 'reporting/payout', collection: @payouts %>
+		<%= render partial: 'payouts/payout', collection: @payouts %>
 	<% end %>
 </table>
 

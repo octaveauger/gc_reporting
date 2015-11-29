@@ -11,7 +11,7 @@
 		<% if mandate.can_take_payment? %>
 			<a href="<%= new_payment_path(mandate_id: mandate.gc_id) %>" class='btn btn-xs pop' %>
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				<%= t('reporting.payments.create_payment_button') %>
+				<%= t('payments.index.create_payment_button') %>
 			</a>
 		<% end %>
 	</td>

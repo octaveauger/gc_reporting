@@ -3,23 +3,30 @@ Rails.application.routes.draw do
   
   localized do
     root to: 'home#index'
+    
     get 'signup', to: 'connect#signup'
     get 'connect/account', to: 'connect#new_account'
     patch 'connect/create', to: 'connect#create_account'
-    get 'reporting', to: 'reporting#index'
-    get 'reporting/mandates', to: 'reporting#mandates'
-    get 'reporting/payments', to: 'reporting#payments'
-    get 'reporting/payouts', to: 'reporting#payouts'
-    get 'reporting/payout/:payout_gc_id', to: 'reporting#payout', as: 'reporting_payout'
-
+    
     resources :clients, only: [:index, :show, :new, :create, :edit, :update] do
       get :mandate_link, on: :collection
       get :new_pending, on: :collection
       post :create_pending, on: :collection
       get :email_mandate
     end
-    resources :payments, only: [:show, :new, :create]
+
+    resources :mandates, only: [:index, :show] do
+      get :cancel, on: :collection
+    end
+
+    resources :payments, only: [:index, :show, :new, :create] do
+      get :cancel, on: :collection
+      get :retry, on: :collection
+    end
+    
     resources :refunds, only: [:new, :create]
+
+    resources :payouts, only: [:index, :show]
   end
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
@@ -34,12 +41,7 @@ Rails.application.routes.draw do
   get "authorisations/confirm/:flow_id", to: 'authorisations#confirm', as: 'authorisations_confirm'
   get "authorisations/error"
   get "authorisations/success"
-  get "mandates/cancel"
-  get "payments/cancel"
-  get "payments/retry"
   get "organisations/sync_status"
-
-  resources :mandates, only: [:show]
 
   namespace :admin do
     resources :sessions, only: [:new, :create, :destroy]

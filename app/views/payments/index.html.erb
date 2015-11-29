@@ -8,7 +8,7 @@
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<%= t('.create_payment_button') %>
 			</a>
-			<a href="<%= reporting_payments_path(format: :csv, time_filter: @time_filter, currency_filter: @currency_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
+			<a href="<%= payments_path(format: :csv, time_filter: @time_filter, currency_filter: @currency_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>
 			</a>
@@ -17,10 +17,10 @@
 </div>
 
 <% if !current_user.recent_update? %>
-	<%= render partial: 'reporting/loading' %>
+	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<form action="<%= reporting_payments_path %>" method="get" class="form-inline">
+<form action="<%= payments_path %>" method="get" class="form-inline">
 	<div class="form-group">
 		<p class='form-control-static'><%= t('filters.time.label') %></p>
 	</div>
@@ -61,7 +61,7 @@
 	<th><%= t('.table_title_error_cause') %></th>
 	<th></th>
 	<% if !@payments.nil? and @payments.any? %>
-		<%= render partial: 'reporting/payment', collection: @payments %>
+		<%= render partial: 'payments/payment', collection: @payments %>
 	<% end %>
 </table>
 
