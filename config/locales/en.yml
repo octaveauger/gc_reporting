@@ -357,6 +357,8 @@ en:
       last_month: 'Last month'
       last_7_days: 'Last 7 days'
       last_30_days: 'Last 30 days'
+      between: 'Between'
+      and: 'and'
     currency:
       label: 'with currency'
       any: 'Any'

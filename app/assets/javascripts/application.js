@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-tagsinput
+//= require_directory ../../../vendor/assets/javascripts
+//= require_directory ../../../vendor/assets/javascripts/locales
 //= require_tree .

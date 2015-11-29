@@ -3,8 +3,17 @@ class ClientsController < ApplicationController
 
   def index
     begin
+      if params[:time_filter] and params[:time_filter] == 'between' # Handling the case of "between"
+        @time_filter = 'between'
+        @time_filter_from = (params[:time_filter_from].blank? ? 5.years.ago.strftime('%d/%m/%Y') : params[:time_filter_from])
+        @time_filter_to = (params[:time_filter_to].blank? ? Date.tomorrow.strftime('%d/%m/%Y') : params[:time_filter_to])
+        params[:time_filter] = { filter: 'between', from: @time_filter_from, to: @time_filter_to }
+      else
+        @time_filter = params[:time_filter] || 'any'
+        @time_filter_from = nil
+        @time_filter_to = nil
+      end
       params_filters = params.slice(:time_filter, :valid_mandate_filter)
-      @time_filter = params[:time_filter] || 'any'
       @valid_mandate_filter = params[:valid_mandate_filter] || 'any'
       respond_to do |format|
         format.html do
