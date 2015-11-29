@@ -23,12 +23,14 @@ module Filterable
 				[I18n.t('filters.time.yesterday'), 'yesterday'],
 				[I18n.t('filters.time.this_week'), 'this_week'],
 				[I18n.t('filters.time.this_month'), 'this_month'],
+				[I18n.t('filters.time.last_month'), 'last_month'],
 				[I18n.t('filters.time.last_7_days'), 'last_7_days'],
 				[I18n.t('filters.time.last_30_days'), 'last_30_days']
 			]
 		end
 
 		# Filters results by usual time filters
+		# http://api.rubyonrails.org/classes/DateAndTime/Calculations.html
 		def time_filter(selection)
 			if self.method_defined? :gc_created_at
 				time_column = 'gc_created_at'
@@ -49,6 +51,9 @@ module Filterable
 				self.where(name_of_class + '.' + time_column + '>= ?', Time.now.beginning_of_week)
 			when 'this_month'
 				self.where(name_of_class + '.' + time_column + '>= ?', Time.now.beginning_of_month)
+			when 'last_month'
+				self.where(name_of_class + '.' + time_column + '>= ?', Time.now.last_month.beginning_of_month)
+					.where(name_of_class + '.' + time_column + '<= ?', Time.now.last_month.end_of_month)
 			when 'last_7_days'
 				self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 7)
 			when 'last_30_days'

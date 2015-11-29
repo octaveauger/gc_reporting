@@ -356,6 +356,7 @@ fr:
       yesterday: 'Hier'
       this_week: 'Cette semaine'
       this_month: 'Ce mois'
+      last_month: 'Le mois dernier'
       last_7_days: '7 derniers jours'
       last_30_days: '30 derniers jours'
     currency:
