@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'connect/account', to: 'connect#new_account'
     patch 'connect/create', to: 'connect#create_account'
     
+    resources :account, only: [:index]
+    
     resources :clients, only: [:index, :show, :new, :create, :edit, :update] do
       get :mandate_link, on: :collection
       get :new_pending, on: :collection

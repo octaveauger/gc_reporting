@@ -250,6 +250,7 @@ fr:
     link_signup: 'Créer compte'
     link_login: 'Connection'
     link_logout: 'Déconnection'
+    link_account: 'Mon compte'
   locales:
     en: 'Anglais'
     fr: 'Français'
@@ -442,6 +443,17 @@ fr:
       form_label_country: 'Pays'
       form_label_locale: 'Langue'
       form_button_submit: 'Complétez votre compte'      
+  account:
+    index:
+      h1: 'Bonjour %{fname}'
+      account_summary: 'Aperçu de votre compte'
+      account_summary_signup_date: "Date d'inscription"
+      account_summary_name: 'Nom'
+      account_summary_company_name: "Nom d'entreprise"
+      account_summary_email: 'Email'
+      account_summary_country: 'Pays'
+      account_summary_locale: 'Langue'
+      account_summary_button_edit: 'Mettre à jour'
   clients:
     actions:
       view: 'Voir client'

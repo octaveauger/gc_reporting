@@ -41,6 +41,7 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'roadie-rails', '~> 1.0.6'
 gem 'i18n_country_select'
+gem 'i18n-country-translations'
 gem 'bootstrap-tagsinput-rails'
 
 group :doc do

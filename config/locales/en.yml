@@ -248,6 +248,7 @@ en:
     link_signup: 'Signup'
     link_login: 'Login'
     link_logout: 'Log out'
+    link_account: 'My account'
   locales:
     en: 'English'
     fr: 'French'
@@ -440,6 +441,17 @@ en:
       form_label_country: 'Country'
       form_label_locale: 'Language'
       form_button_submit: 'Complete your account'      
+  account:
+    index:
+      h1: 'Hello %{fname}'
+      account_summary: 'Your account at a glance'
+      account_summary_signup_date: 'Signup date'
+      account_summary_name: 'Name'
+      account_summary_company_name: 'Company name'
+      account_summary_email: 'Email'
+      account_summary_country: 'Country'
+      account_summary_locale: 'Language'
+      account_summary_button_edit: 'Update informations'
   clients:
     actions:
       view: 'View client'
