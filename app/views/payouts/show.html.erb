@@ -13,18 +13,14 @@
 <p><%= t('payouts.index.fee_disclaimer') %></p>
 
 <div class="panel panel-default">
-	<div class="row">
-		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.payout_date') %></strong></div>
-		<div class="col-md-10 col-xs-9"><span><%= @payout.gc_created_at.strftime('%d/%m/%Y') %></span></div>
-	</div>
-	<div class="row">
-		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.payout_amount') %></strong></div>
-		<div class="col-md-10 col-xs-9"><span><%= number_to_currency(@payout.amount/100.0, precision: 2, unit: currency_symbol(@payout.currency)) %></span></div>
-	</div>
-	<div class="row">
-		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.payout_fees') %></strong></div>
-		<div class="col-md-10 col-xs-9"><span><%= number_to_currency(@payout.sum_fees/100.0, precision: 2, unit: currency_symbol(@payout.currency)) %></span></div>
-	</div>
+	<dl class="dl-horizontal">
+		<dt><%= t('.payout_date') %></dt>
+		<dd><%= @payout.gc_created_at.strftime('%d/%m/%Y') %></dd>
+		<dt><%= t('.payout_amount') %></dt>
+		<dd><%= number_to_currency(@payout.amount/100.0, precision: 2, unit: currency_symbol(@payout.currency)) %></dd>
+		<dt><%= t('.payout_fees') %></dt>
+		<dd><%= number_to_currency(@payout.sum_fees/100.0, precision: 2, unit: currency_symbol(@payout.currency)) %></dd>
+	</dl>
 </div>
 
 <% if !current_user.recent_update? %>

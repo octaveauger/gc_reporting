@@ -1,23 +1,19 @@
 <h1><%= @client.display_name %></h1>
 <h2><%= t('.title_customer') %></h2>
 
-<div class="row">
-	<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.item_description_customer_name') %></strong></div>
-	<div class="col-md-10 col-xs-9"><span><%= @client.full_name %></span></div>
-</div>
-<div class="row">
-	<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.item_description_company_name') %></strong></div>
-	<div class="col-md-10 col-xs-9"><span><%= @client.company_name %></span></div>
-</div>
-<% if !@client.email.blank? %>
-	<div class="row">
-		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.item_description_customer_email') %></strong></div>
-		<div class="col-md-10 col-xs-9"><span><%= @client.email %></span></div>
-	</div>
-<% end %>
-<% if @client.customers.any? %>
-	<%= render partial: 'clients/customer', locals: { customer: @client.customers.last } %>
-<% end %>
+<dl class="dl-horizontal">
+	<dt><%= t('.item_description_customer_name') %></dt>
+	<dd><%= @client.full_name %></dd>
+	<dt><%= t('.item_description_company_name') %></dt>
+	<dd><span><%= @client.company_name %></span></dd>
+	<% if !@client.email.blank? %>
+		<dt><%= t('.item_description_customer_email') %></dt>
+		<dd><%= @client.email %></dd>
+	<% end %>
+	<% if @client.customers.any? %>
+		<%= render partial: 'clients/customer', locals: { customer: @client.customers.last } %>
+	<% end %>
+</dl>
 
 <h2><%= t('.title_mandates') %></h2>
 
