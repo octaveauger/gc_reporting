@@ -47,7 +47,6 @@ class GocardlessPro
 			end
 		rescue => e
 	    	Utility.log_exception e
-	    	flash[:alert] = "Something went wrong and we've been notified"
 	    end
 	end
 
