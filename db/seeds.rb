@@ -14,5 +14,5 @@ sources_seed = [
 	{ name: 'import', display_name: 'Import' }
 ]
 sources_seed.each do |source|
-	ClientSource.create(source) unless sources_seed.include? source
+	ClientSource.create(source) unless sources.include? source[:name]
 end
