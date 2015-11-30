@@ -10,7 +10,8 @@
 	t('.table_title_reference'), 
 	t('.table_title_charge_date'), 
 	t('.table_title_currency'), 
-	t('.table_title_amount'), 
+	t('.table_title_gross_amount'), 
+	t('.table_title_net_amount'), 
 	t('.table_title_amount_refunded'), 
 	t('.table_title_status'), 
 	t('.table_title_error_cause')] -%>
@@ -29,6 +30,7 @@
 	  		payment.charge_date.strftime('%d/%m/%Y'),
 	  		payment.currency,
 	  		payment.amount/100.0,
+	  		(payment.amount - payment.amount_refunded)/100.0,
 	  		payment.amount_refunded/100.0,
 	  		t('gocardless.payment.status.' + payment.status),
 	  		payment.failure_cause == '' ? '' : t('gocardless.payment.cause.' + payment.failure_cause)], 

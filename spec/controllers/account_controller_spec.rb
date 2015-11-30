@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe ReportingController do
+describe AccountController do
 
-  describe "GET 'export_customers'" do
+  describe "GET 'index'" do
     it "returns http success" do
-      get 'export_customers'
+      get 'index'
       response.should be_success
     end
   end

@@ -7,7 +7,7 @@
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<%= t('.create_mandate_button') %>
 			</button>
-			<a href="<%= reporting_mandates_path(format: :csv, time_filter: @time_filter, scheme_filter: @scheme_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
+			<a href="<%= mandates_path(format: :csv, time_filter: @time_filter, scheme_filter: @scheme_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>
 			</a>
@@ -16,15 +16,20 @@
 </div>
 
 <% if !current_user.recent_update? %>
-	<%= render partial: 'reporting/loading' %>
+	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<form action="<%= reporting_mandates_path %>" method="get" class="form-inline">
+<form action="<%= mandates_path %>" method="get" class="form-inline">
 	<div class="form-group">
 		<p class='form-control-static'><%= t('filters.time.label') %></p>
 	</div>
 	<div class="form-group">
 		<%= select_tag(:time_filter, options_for_select(Mandate.time_filters, @time_filter), class: 'form-control') %>
+	</div>
+	<div class="input-group input-range hide" id="time-filters-between">
+		<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
+    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
+		<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
 	</div>
 	<div class="form-group">
 		<p class='form-control-static'><%= t('filters.scheme.label') %></p>
@@ -50,7 +55,7 @@
 	<th><%= t('.table_title_mandate_status') %></th>
 	<th></th>
 	<% if !@mandates.nil? and @mandates.any? %>
-		<%= render partial: 'reporting/mandate', collection: @mandates %>
+		<%= render partial: 'mandates/mandate', collection: @mandates %>
 	<% end %>
 </table>
 

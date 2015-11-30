@@ -12,6 +12,19 @@ $(function () {
     });
     $(window).scroll(); // Triggers it at page load in case it's not below the fold
   }
+
+  //Initialise datepickers - http://bootstrap-datepicker.readthedocs.org/en/stable/
+  $('.datepicker').datepicker({
+    language: $('#locale').attr('data-value'),
+    autoclose: true
+  });
+
+  // Show / hide between time filters
+  $('select[name="time_filter"]').on('change', function(e) {
+    if($(this).val() == 'between') { $('#time-filters-between').removeClass('hide'); }
+    else { $('#time-filters-between').addClass('hide'); }
+  }).change();
+
 });
 
 function initialize() {

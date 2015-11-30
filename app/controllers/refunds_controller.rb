@@ -30,7 +30,7 @@ class RefundsController < ApplicationController
         client = GocardlessPro.new(current_user)
         result = client.create_refund(@refund.params_for_gocardless)
         if result[:success]
-          redirect_to reporting_payments_path, notice: I18n.t('refunds.new.success_message')
+          redirect_to payments_path, notice: I18n.t('refunds.new.success_message')
         else
           result[:errors].each do |error|
             @refund.errors.add(error['field'], error['message']) if !error['field'].nil? and @refund.respond_to?(error['field'].to_sym)

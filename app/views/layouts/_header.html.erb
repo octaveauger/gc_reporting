@@ -14,14 +14,15 @@
         <li class="brand-name"><%= link_to 'Antilope.io', root_path %></li>
         <% if signed_in? %>
           <li><%= link_to t('header.link_clients'), clients_path %></li>
-          <li><%= link_to t('header.link_mandates'), reporting_mandates_path %></li>
-          <li><%= link_to t('header.link_payments'), reporting_payments_path %></li>
-          <li><%= link_to t('header.link_payouts'), reporting_payouts_path %></li>
+          <li><%= link_to t('header.link_mandates'), mandates_path %></li>
+          <li><%= link_to t('header.link_payments'), payments_path %></li>
+          <li><%= link_to t('header.link_payouts'), payouts_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">
         <% if signed_in? %>
   	        <li><%= link_to t('header.link_logout'), logout_connect_path %></li>
+            <li><%= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> '.html_safe + t('header.link_account'), account_index_path %></li>
   	    <% else %>
             <li class="list-button"><%= link_to t('header.link_login'), authorise_connect_path %></li>
             <li class="list-button"><%= link_to t('header.link_signup'), signup_path, :class => 'btn pop' %></li>

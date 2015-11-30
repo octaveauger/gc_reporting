@@ -250,6 +250,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.0)
   faker (= 1.1.2)
   gocardless_pro
+  i18n-country-translations
   i18n_country_select
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)

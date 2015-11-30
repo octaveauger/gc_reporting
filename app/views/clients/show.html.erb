@@ -1,54 +1,50 @@
 <h1><%= @client.display_name %></h1>
 <h2><%= t('.title_customer') %></h2>
 
-<div class="row">
-	<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.item_description_customer_name') %></strong></div>
-	<div class="col-md-10 col-xs-9"><span><%= @client.full_name %></span></div>
-</div>
-<div class="row">
-	<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.item_description_company_name') %></strong></div>
-	<div class="col-md-10 col-xs-9"><span><%= @client.company_name %></span></div>
-</div>
-<% if !@client.email.blank? %>
-	<div class="row">
-		<div class="col-md-2 col-xs-3"><strong class="pull-right"><%= t('.item_description_customer_email') %></strong></div>
-		<div class="col-md-10 col-xs-9"><span><%= @client.email %></span></div>
-	</div>
-<% end %>
-<% if @client.customers.any? %>
-	<%= render partial: 'clients/customer', locals: { customer: @client.customers.last } %>
-<% end %>
+<dl class="dl-horizontal">
+	<dt><%= t('.item_description_customer_name') %></dt>
+	<dd><%= @client.full_name %></dd>
+	<dt><%= t('.item_description_company_name') %></dt>
+	<dd><span><%= @client.company_name %></span></dd>
+	<% if !@client.email.blank? %>
+		<dt><%= t('.item_description_customer_email') %></dt>
+		<dd><%= @client.email %></dd>
+	<% end %>
+	<% if @client.customers.any? %>
+		<%= render partial: 'clients/customer', locals: { customer: @client.customers.last } %>
+	<% end %>
+</dl>
 
 <h2><%= t('.title_mandates') %></h2>
 
 <% if @client.mandates.any? %>
 	<table class="table">
-		<th><%= t('reporting.mandates.table_title_mandate_id') %></th>
-		<th><%= t('reporting.mandates.table_title_creation_date') %></th>
-		<th><%= t('reporting.mandates.table_title_mandate_reference') %></th>
-		<th><%= t('reporting.mandates.table_title_mandate_scheme') %></th>
-		<th><%= t('reporting.mandates.table_title_mandate_status') %></th>
+		<th><%= t('mandates.index.table_title_mandate_id') %></th>
+		<th><%= t('mandates.index.table_title_creation_date') %></th>
+		<th><%= t('mandates.index.table_title_mandate_reference') %></th>
+		<th><%= t('mandates.index.table_title_mandate_scheme') %></th>
+		<th><%= t('mandates.index.table_title_mandate_status') %></th>
 		<th></th>
 		<%= render partial: 'clients/mandate', collection: @client.mandates.order('gc_created_at desc') %>
 	</table>
 <% else %>
-	<p><%= t('reporting.mandates.no_mandates') %></p>
+	<p><%= t('mandates.index.no_mandates') %></p>
 <% end %>
 
 <h2><%= t('.title_payments') %></h2>
 
 <% if @payments.any? %>
 	<table class="table">
-		<th><%= t('reporting.payments.table_title_payment_date') %></th>
-		<th><%= t('reporting.payments.table_title_description') %></th>
-		<th><%= t('reporting.payments.table_title_charge_date') %></th>
-		<th><%= t('reporting.payments.table_title_amount') %></th>
-		<th><%= t('reporting.payments.table_title_reference') %></th>
-		<th><%= t('reporting.payments.table_title_status') %></th>
-		<th><%= t('reporting.payments.table_title_error_cause') %></th>
+		<th><%= t('payments.index.table_title_payment_date') %></th>
+		<th><%= t('payments.index.table_title_description') %></th>
+		<th><%= t('payments.index.table_title_reference') %></th>
+		<th><%= t('payments.index.table_title_charge_date') %></th>
+		<th><%= t('payments.index.table_title_gross_amount') %></th>
+		<th><%= t('payments.index.table_title_status') %></th>
+		<th><%= t('payments.index.table_title_error_cause') %></th>
 		<%= render partial: 'clients/payment', collection: @payments %>
 	</table>
 	<%= will_paginate @payments %>
 <% else %>
-	<p><%= t('reporting.payments.no_payments') %></p>
+	<p><%= t('payments.index.no_payments') %></p>
 <% end %>

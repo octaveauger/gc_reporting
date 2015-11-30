@@ -12,6 +12,8 @@
 </head>
 <body id= "page-top" class="index <%= 'home' if yield(:title) == 'Home' %>">
 
+<div id="locale" data-value="<%= I18n.locale.to_s == 'en' ? 'en-GB' : I18n.locale.to_s  %>"></div>
+
 <%= render 'layouts/header' %>
 
 <div class="container">
