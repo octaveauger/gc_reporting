@@ -23,4 +23,17 @@ namespace :data_migrations do
     end
   end
 
+  desc "Synchronise GC data for all organisations"
+  task synchronise_gocardless_for_all_orgs: :environment do
+    Organisation.all.each do |org|
+      begin
+        org.organisation_updates.delete_all
+        client = GocardlessPro.new(org)
+        client.sync_data
+      rescue => e
+        Utility.log_exception e
+      end
+    end
+  end
+
 end
