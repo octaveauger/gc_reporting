@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   private
 
   	def redirect_to_custom_domain
-		redirect_to("https://www.antilope.io", status: 301) if request.host == 'grim-skull-6724.herokuapp.com' #'gc-reporting.herokuapp.com'
+		redirect_to("https://www.antilope.io", status: 301) if request.host == 'gc-reporting.herokuapp.com'
 	end
 end
