@@ -14,7 +14,8 @@
 <div id="locale" data-value="<%= I18n.locale.to_s == 'en' ? 'en-GB' : I18n.locale.to_s  %>"></div>
 
 <%= render 'layouts/header' %>
-
+<%= request.host %>
+<%= request.domain %>
 <div class="container">
   <%= render 'layouts/alerts' %>
 	<%= yield %>
