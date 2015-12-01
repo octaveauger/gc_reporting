@@ -206,25 +206,94 @@ en:
     previous_label: '&#8592; Previous'
     next_label: 'Next &#8594;'
     page_gap: '&hellip;'
+  activemodel:
+    errors:
+      models:
+        payment_request:
+          attributes:
+            charge_date:
+              later_charge_date: 'must be on or later than %{charge_date}'
+            reference:
+              too_long: 'must be less than %{chars} characters'
+            amount:
+              blank: "can't be blank"
+              not_a_number: "is not a number"
+        refund_request:
+          attributes:
+            amount:
+              blank: "can't be blank"
+              not_a_number: "is not a number"
+              too_much: 'must be less than the maximum refundable amount'
+              too_little: 'must be higher'
+            reference:
+              too_long: 'must be less than %{chars} characters'
+        pending_client:
+          attributes:
+            emails:
+              invalid_emails: 'Invalid email(s): %{emails}'
+  activerecord:
+    errors:
+      models:
+        client:
+          attributes:
+            email:
+              email_required_for_mandate_request: 'required to be able to email a mandate request'
   header:
     toggle: 'Toggle navigation'
-    app_name: 'GoCardless Reporting'
+    app_name: 'Antilope'
+    link_clients: 'Clients'
     link_mandates: 'Mandates'
     link_payments: 'Payments'
     link_payouts: 'Payouts'
-    link_connect: 'Connect'
+    link_signup: 'Signup'
+    link_login: 'Login'
     link_logout: 'Log out'
+    link_account: 'My account'
+  locales:
+    en: 'English'
+    fr: 'French'
   errors:
     gocardless:
       auth_cancelled: 'You have cancelled the authorisation flow with GoCardless'
       auth_failed: 'There was an issue with the connection to GoCardless: %{error_description}'
     exceptions:
       default: 'Something went wrong and we have been notified'
+    form:
+      please_correct_form: 'Please correct the form errors below'
+      payments:
+        select_valid_mandate: 'Please select a valid mandate'
+      refunds:
+        select_valid_payment: 'Please select a valid payment'
   notices:
     logged_out: 'You have been logged out successfully'
     close: 'close'
     payout_not_found: 'This payout could not be found'
     customer_not_found: 'This customer could not be found'
+    invalid_link: 'This link is invalid'
+    mandate_success: 'Your mandate was successfully created'
+  loading:
+    loader_backup: 'Loading...'
+    notice: 'Your data is currently being synchronised. This page will reload when it is ready.'
+  emails:
+    welcome:
+      subject: 'Welcome to Antilope, the way to get paid on time'
+      title: 'Welcome to Antilope.io'
+      salutations: 'Dear %{name},'
+      explanation: 'With Antilope you can manage your customers and get paid on time using Direct Debit.'
+      login: 'To login, just click here:'
+      login_cta: 'Login'
+      thanks: 'Thanks,'
+      signature: 'Your Antilope team'
+    mandate_request:
+      subject: '%{org_name} would like to setup a Direct Debit with you'
+      title: '%{org_name} would like to setup a Direct Debit with you'
+      salutations: 'Dear %{name},'
+      explanation: '%{org_name} would like to setup an online Direct Debit mandate with you. This means that they will take future payments from your bank account. You will always be notified before each payment. %{org_name} will not see your bank details.'
+      organisation_comment: 'Reason for this mandate: '
+      create_mandate: 'To setup your mandate, click here:'
+      create_mandate_cta: 'Setup a Direct Debit mandate'
+      thanks: 'Thanks,'
+      signature: 'Antilope.io on behalf of %{org_name}'    
   gocardless:
     mandate:
       status:
@@ -239,6 +308,10 @@ en:
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
         autogiro: 'Autogiro (Sweden)'
+      state:
+        valid: 'Valid mandate'
+        pending: 'Mandate requested'
+        none: 'No valid mandate'
     payment:
       status:
         pending_submission: 'Pending submission'
@@ -285,8 +358,11 @@ en:
       yesterday: 'Yesterday'
       this_week: 'This week'
       this_month: 'This month'
+      last_month: 'Last month'
       last_7_days: 'Last 7 days'
       last_30_days: 'Last 30 days'
+      between: 'Between'
+      and: 'and'
     currency:
       label: 'with currency'
       any: 'Any'
@@ -309,6 +385,12 @@ en:
       failed: 'Failed'
       cancelled: 'Cancelled'
       expired: 'Expired'
+    valid_mandate:
+      label: 'and mandate'
+      any: 'Any'
+      valid: 'Valid'
+      pending: 'Requested'
+      none: 'Not requested'
     payment_status:
       label: 'and status'
       any: 'any'
@@ -323,22 +405,119 @@ en:
       submit: 'Go'
   home:
     index:
-      h1: 'The Unofficial GoCardless Reporting App'
-      hero_text: 'This unofficial GoCardless application retrieves all data relating to your customers and payments from GoCardless and lets you export useful reports, in English and French.'
-      title_customers: 'Your customers'
-      alt_customers: 'Mandate report'
-      title_payments: 'Your payments'
-      alt_payments: 'Payment report'
-      title_payouts: 'Your payouts and fees'
-      alt_payouts: 'Payout report'
-  reporting:
-    loading:
-      loader_backup: 'Loading...'
-      notice: 'Your data is currently being synchronised. Please reload your page in 10s.'
+      h1: 'Get paid faster with Antilope.io'
+      intro: "Antilope works with <a href='https://gocardless.com/en-eu' target='_blank'>GoCardless</a>, the leading European Direct Debit provider: by connecting a GoCardless account, you'll be able to take payments via Direct Debit across the UK and the Eurozone."
+      button_connect: 'Connect a GoCardless account'
+      trusted_title: 'Trusted'
+      trusted_description: 'We work with GoCardless, a trusted Payment Institution which manages your funds entirely'
+      global_title: 'European'
+      global_description: 'Take payments from your clients in 23 countries: the UK, the Eurozone and Sweden'
+      simple_title: 'Simple'
+      simple_description: 'Create online mandates, take payments and retry failed payments in one click'
+      automated_title: 'Automated'
+      automated_description: 'No more files: GoCardless submits your payments and shows their real time status'
+      economical_title: 'Economical'
+      economical_description: 'GoCardless charges 1%, capped at €/£2. Antilope will add €/£0.20 per payment'
+      sme_title: 'For SMEs'
+      sme_description: 'Antilope is perfect for sole traders, associations and small and medium companies'
+      clients_lead: 'You will be in good company, amongst 12,000 other companies'
+      clients_alt: 'GoCardless clients'
+      title_mandate: 'Online Direct Debit mandates'
+      description_mandate: 'Email the link to your personal branded mandate page to your clients'
+      alt_mandate: 'Online Mandate'
+      title_payments: 'Easily take payments'
+      description_payments: 'No need to create complex files: just indicate the amount and date, and GoCardless will process it'
+      alt_payments: 'Easy Payments'
+      title_payment: 'Manage your payments'
+      description_payment: 'See at a glance the current status of your payments, and easily cancel / retry / refund them'
+      alt_payment: 'Payment management'
+  connect:
+    new_account:
+      h1: 'Complete your Antilope account'
+      form_label_fname: 'First name'
+      form_label_lname: 'Last name'
+      form_label_email: 'Email'
+      form_label_company_name: 'Company name'
+      form_label_country: 'Country'
+      form_label_locale: 'Language'
+      form_button_submit: 'Complete your account'      
+  account:
     index:
-      h1: 'Payment reporting'
-      link_payments: 'Your payments'
-    mandates:
+      h1: 'Hello %{fname}'
+      account_summary: 'Your account at a glance'
+      account_summary_signup_date: 'Signup date'
+      account_summary_name: 'Name'
+      account_summary_company_name: 'Company name'
+      account_summary_email: 'Email'
+      account_summary_country: 'Country'
+      account_summary_locale: 'Language'
+      account_summary_button_edit: 'Update informations'
+  clients:
+    actions:
+      view: 'View client'
+      edit: 'Edit client'
+      request_mandate: 'Email a mandate request'
+      remind_mandate: 'Send a mandate reminder'
+    index:
+      h1: 'Your clients'
+      link_export: 'Export'
+      csv_name: 'client-list'
+      table_title_creation_date: 'Creation date'
+      table_title_customer_name: 'Name'
+      table_title_customer_fname: 'First name'
+      table_title_customer_lname: 'Family name'
+      table_title_company_name: 'Company name'
+      table_title_email: 'Email'
+      table_title_source_client_id: 'Client reference'
+      table_title_source: 'Source'
+      table_title_mandate: 'Mandate'
+      no_clients: 'You have not added any client yet'
+      create_client_button: 'New client'    
+      create_client_title: 'New client'
+    show:
+      title_customer: 'Customer'
+      item_description_customer_gc_id: 'GoCardless ID'
+      item_description_customer_name: 'Name'
+      item_description_company_name: 'Company name'
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Address'
+      item_description_customer_country: 'Country'
+      title_mandates: 'Mandates'
+      title_payments: 'Payments'
+    tabs:
+      add_client: 'Add a client'
+      add_clients: 'Add several clients'
+      send_link: 'Send a link'
+    new:
+      h1: 'Add a new client'
+      form_intro: 'All fields are optional - fill the ones you know'
+      form_label_fname: 'First name'
+      form_label_lname: 'Last name'
+      form_label_email: 'Email'
+      form_label_company_name: 'Company name'
+      form_label_source_client_id: 'Client reference'
+      form_placeholder_source_client_id: 'Enter any custom reference for your client'
+      form_label_mandate_request: 'Send this client a mandate request by email'
+      form_label_locale: 'Client language'
+      form_label_mandate_request_description: 'Mandate request explanation'
+      form_placeholder_mandate_request_description: 'This will be sent to your client'
+      form_button_submit: 'Add client'
+      client_success: 'Your client was successfully created'
+    edit:
+      h1: 'Edit your client'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Edit client'
+      client_success: 'Your client was successfully edited'
+    new_pending:
+      form_label_emails: 'Client emails'
+      form_placeholder_emails: 'Enter the emails of your clients separated by a comma or the return key'
+      form_button_submit: 'Request a mandate from these clients'
+      client_success: 'Your clients were successfully created and emailed'
+    mandate_link:
+      explanation: 'You can send your personal mandate link below to all your customers. Once they fill it, they will automatically appear in the dashboard and you will be authorised to start taking payments from their bank account.'
+      send_link: 'Send this link:'
+  mandates:
+    index:
       h1: 'Mandate summary'
       link_export: 'Export'
       csv_name: 'mandate-list'
@@ -353,8 +532,13 @@ en:
       table_title_mandate_scheme: 'Scheme'
       table_title_mandate_reference: 'Reference'
       table_title_mandate_status: 'Mandate status'
-      no_mandates: 'There are no corresponding mandates or your data is synchronising'    
-    payments:
+      no_mandates: 'There are no corresponding mandates or your data is synchronising'
+      create_mandate_button: 'New mandate'    
+      create_mandate_title: 'New mandate'    
+      create_mandate_explanation: 'Send this link to your customers:'
+      cancel_mandate: 'Cancel mandate'
+  payments:
+    index:
       h1: 'Payment summary'
       link_export: 'Export'
       csv_name: 'payment-list'
@@ -367,15 +551,35 @@ en:
       table_title_email: 'Email'
       table_title_customer: 'Customer'
       table_title_description: 'Description'
-      table_title_charge_date: 'Expected charge date'
+      table_title_charge_date: 'Charge date'
       table_title_currency: 'Currency'
-      table_title_amount: 'Amount'
+      table_title_gross_amount: 'Gross'
+      table_title_net_amount: 'Net'
+      table_tooltip_net_amount: 'The difference between the payment amount and refunds'
       table_title_amount_refunded: 'Amount refunded'
       table_title_reference: 'Reference'
       table_title_status: 'Status'
       table_title_error_cause: 'Failure cause'
       no_payments: 'There are no corresponding payments or your data is synchronising'
-    payouts:
+      create_payment_button: 'New payment'
+      cancel_payment: 'Cancel payment'
+      retry_payment: 'Retry payment'
+      refund_payment: 'Refund payment'
+    new:
+      h1: 'Take a payment'
+      form_label_customer: 'Customer'
+      form_label_amount: 'Amount'
+      form_label_description: 'Description'
+      form_hint_description: 'What is this payment for?'
+      form_label_reference: 'Reference'
+      form_hint_reference: 'This will appear on the customer bank statement'
+      form_label_charge_date_start: 'Take payment on (earliest '
+      form_label_charge_date_end: ')'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Create'
+      success_message: 'Your payment will be taken on the %{charge_date}'
+  payouts:
+    index:
       h1: 'Payout summary'
       fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
       table_title_payout_date: 'Payout creation date'
@@ -384,7 +588,7 @@ en:
       table_title_status: 'Status'
       table_title_reference: 'Reference'
       no_payouts: 'There are no corresponding payouts or your data is synchronising'
-    payout:
+    show:
       h1: 'Payout'
       link_export: 'Export'
       csv_name: 'payout-list'
@@ -407,13 +611,14 @@ en:
       table_title_fees: 'Fees'
       refund: 'Refund'
       payment: 'Payment'
-  customers:
-    show:
-      title_customer: 'Customer'
-      item_description_customer_gc_id: 'GoCardless ID'
-      item_description_customer_name: 'Name'
-      item_description_customer_email: 'Email'
-      item_description_customer_address: 'Address'
-      item_description_customer_country: 'Country'
-      title_mandates: 'Mandates'
-      title_payments: 'Payments'
+  refunds:
+    new:
+      h1: 'Refund a payment'
+      form_label_payment: 'Payment'
+      form_label_amount: 'Amount'
+      form_label_amount_max: 'max: '
+      form_label_reference: 'Reference'
+      form_hint_reference: 'This will appear on the customer bank statement'
+      form_button_cancel: 'Cancel'
+      form_button_submit: 'Refund'
+      success_message: 'Your refund will be paid out to the customer in the next 2 working days'

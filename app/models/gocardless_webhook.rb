@@ -8,7 +8,6 @@ class GocardlessWebhook
 			calculated_signature == request_signature
 		rescue => e
 	    	Utility.log_exception e
-	    	flash[:alert] = "Something went wrong and we've been notified"
 	    end
 	end
 
@@ -39,7 +38,7 @@ class GocardlessWebhook
 						resource_type = key + 's'
 					end
 					resource = client.get_resource(value, resource_type)
-					client.method('add_' + resource_type).call(resource.as_json) unless !PROCESS_EVENTS.include?(resource_type)
+					client.method('add_' + resource_type).call(resource.as_json) unless !PROCESS_EVENTS.include?(resource_type) or (event['resource_type'] == 'mandates' and event['action'] == 'created')
 				end
 			end
 
@@ -50,13 +49,13 @@ class GocardlessWebhook
 				customer = client.get_resource(customer_bank_account['links']['customer'], 'customers').as_json
 				client.add_customer_bank_accounts(customer_bank_account)
 				client.add_customers(customer)
+				client.add_mandates(mandate)
 			end
 			
 			# Add event into DB
 			client.add_events(event)
 		rescue => e
 	    	Utility.log_exception e
-	    	flash[:alert] = "Something went wrong and we've been notified"
 	    end
 	end
 end

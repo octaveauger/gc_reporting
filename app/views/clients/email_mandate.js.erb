@@ -1,0 +1,3 @@
+$('#<%= @client.token %>').replaceWith('<%= j render partial: "clients/client", locals: { client: @client } %>');
+$('#ajax-alerts').html('').appendTo('<%= j render partial "layouts/alert", locals: { alert: @alert } if !@alert.nil?');
+initialize();

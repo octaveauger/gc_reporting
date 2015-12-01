@@ -1,0 +1,18 @@
+<tr>
+	<td><%= mandate.gc_id %></td>
+	<td><%= mandate.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td><%= mandate.reference %></td>
+	<td><%= t('gocardless.mandate.scheme.' + mandate.scheme) %></td>
+	<td>
+		<div class="status-disc status-disc-<%= status_meaning(mandate.status) %>"></div>
+		<%= t('gocardless.mandate.status.' + mandate.status) %>
+	</td>
+	<td>
+		<% if mandate.can_take_payment? %>
+			<a href="<%= new_payment_path(mandate_id: mandate.gc_id) %>" class='btn btn-xs pop' %>
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				<%= t('payments.index.create_payment_button') %>
+			</a>
+		<% end %>
+	</td>
+</tr>

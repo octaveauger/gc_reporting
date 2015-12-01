@@ -1,0 +1,6 @@
+<ul class="centered-tabs">
+  <li class="<%= 'active' if active_tab == 'add_client' %>"><a href="<%= new_client_path %>"><%= t('clients.tabs.add_client') %></a></li>
+  <li class="<%= 'active' if active_tab == 'add_clients' %>"><a href="<%= new_pending_clients_path %>"><%= t('clients.tabs.add_clients') %></a></li>
+  <li class="<%= 'active' if active_tab == 'send_link' %>"><a href="<%= mandate_link_clients_path %>"><%= t('clients.tabs.send_link') %></a></li>
+</ul>
+<hr/>

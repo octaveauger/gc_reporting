@@ -1,7 +1,0 @@
-$('#results').append("<%= j render partial: 'reporting/mandate', collection: @mandates %>");
-<% if @mandates.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @mandates %>');
-<% else %>
-  $(window).off('scroll');
-  $('.pagination').remove();
-<% end %>

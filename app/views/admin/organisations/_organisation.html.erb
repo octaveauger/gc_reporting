@@ -1,0 +1,13 @@
+<tr>
+	<td><%= organisation.created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td><%= organisation.last_login.strftime('%d/%m/%Y  %k:%M') unless organisation.last_login.nil? %></td>	
+	<td><%= organisation.gc_id %></td>
+	<td><%= organisation.company_name %></td>
+	<td><%= organisation.full_name %></td>
+	<td><%= organisation.email %></td>
+	<td><%= organisation.country %></td>
+	<td><%= organisation.locale %></td>
+	<td><%= organisation.client_count %></td>
+	<td><%= organisation.mandate_count %></td>
+	<td><%= organisation.payment_count %></td>
+</tr>

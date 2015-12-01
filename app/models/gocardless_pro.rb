@@ -9,7 +9,7 @@ class GocardlessPro
 	end
 
 	SYNC_TABLES = ['customers', 'customer_bank_accounts', 'mandates', 'payments', 
-		'payouts', 'refunds', 'subscriptions', 'events'].freeze # No creditos synced because this is restricted
+		'payouts', 'refunds', 'subscriptions', 'events'].freeze # No creditors synced because this is restricted
 
 	def sync_data
 		SYNC_TABLES.each do |sync|
@@ -47,7 +47,6 @@ class GocardlessPro
 			end
 		rescue => e
 	    	Utility.log_exception e
-	    	flash[:alert] = "Something went wrong and we've been notified"
 	    end
 	end
 
@@ -85,7 +84,31 @@ class GocardlessPro
 		}
 		customer = @user.customers.find_by(gc_id: record['id'])
 		if customer.nil?
-			@user.customers.create(params)
+			client = @user.clients.find_by(customer_gc_id: params[:gc_id])
+			client = @user.clients.find_by(email: record['email']) if client.nil? # Try to reconcile by email address if the first check fails
+			if client.nil? # We create a client based on GC data
+				source_id = ClientSource.where(name: 'gocardless').first.id
+				client = @user.clients.create!(
+					fname: params[:given_name],
+					lname: params[:family_name],
+					company_name: params[:company_name],
+					email: params[:email],
+					client_source_id: source_id,
+					source_client_id: nil,
+					customer_gc_id: params[:gc_id],
+					source_created_at: params[:gc_created_at]
+				)
+			else # Check if we can improve the client's data with the customer
+				if (client.fname.blank? and !params[:given_name].blank?) or (client.lname.blank? and !params[:family_name].blank?) or (client.email.blank? and !params[:email_name].blank?) or (client.company_name.blank? and !params[:company_name].blank?)
+					client.assign_attributes(fname: params[:given_name]) if client.fname.blank?
+					client.assign_attributes(lname: params[:family_name]) if client.lname.blank?
+					client.assign_attributes(email: params[:email]) if client.email.blank?
+					client.assign_attributes(company_name: params[:company_name]) if client.company_name.blank?
+					client.save
+				end
+			end
+			params[:client_id] = client.id
+			client.customers.create(params)
 		else
 			customer.update(params)
 		end
@@ -262,4 +285,71 @@ class GocardlessPro
 		end
 	end
 
+	def create_redirect_flow(redirect_flow_session_token, redirect_url)
+		begin
+			flow = @client.redirect_flows.create(params: {
+				session_token: redirect_flow_session_token,
+				success_redirect_url: redirect_url
+			})
+			{ success: true, flow_link: flow.redirect_url }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def complete_redirect_flow(redirect_flow_id, redirect_flow_session_token)
+		begin
+			flow = @client.redirect_flows.complete(redirect_flow_id, params: {
+				session_token: redirect_flow_session_token
+			})
+			{ success: true, mandate_id: flow.links['mandate'], customer_id: flow.links['customer'] }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def create_payment(params)
+		begin
+			gc_payment = @client.payments.create(params: params)
+			{ success: true, payment_id: gc_payment.id, charge_date: gc_payment.charge_date }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def cancel_payment(payment_id)
+		begin
+			gc_payment = @client.payments.cancel(payment_id)
+			{ success: true }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def retry_payment(payment_id)
+		begin
+			gc_payment = @client.payments.retry(payment_id)
+			{ success: true }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def create_refund(params)
+		begin
+			gc_refund = @client.refunds.create(params: params)
+			{ success: true, refund_id: gc_refund.id }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
+
+	def cancel_mandate(mandate_id)
+		begin
+			gc_mandate = @client.mandates.cancel(mandate_id)
+			{ success: true }
+		rescue GoCardlessPro::Error => gc_error
+  			{ success: false, message: gc_error.message, errors: gc_error.errors }
+		end
+	end
 end

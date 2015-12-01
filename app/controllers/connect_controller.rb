@@ -1,10 +1,17 @@
 class ConnectController < ApplicationController
   READ_ONLY = 'read_only'.freeze
+  FULL_ACCESS = 'full_access'.freeze
 
   def authorise
-  	auth_url = oauth.auth_code.authorize_url(
+  	if params[:oauth_view] == 'signup'
+      initial_view = 'signup'
+    else
+      initial_view = 'login'
+    end
+    auth_url = oauth.auth_code.authorize_url(
   		redirect_uri: ENV['GOCARDLESS_REDIRECT_URI'],
-  		scope: READ_ONLY
+  		scope: FULL_ACCESS,
+      initial_view: initial_view
   	)
   	redirect_to auth_url
   end
@@ -14,21 +21,35 @@ class ConnectController < ApplicationController
       if params[:error].present?
     		case params[:error]
     		when 'access_denied' then
-    			return redirect_to root_path, notice: I18n.t('errors.gocardless.auth_cancelled')
+    			return redirect_to root_path, alert: I18n.t('errors.gocardless.auth_cancelled')
     		else
-    			return redirect_to root_path, notice: I18n.t('errors.gocardless.auth_failed', error_description: params[:error_description])
+    			return redirect_to root_path, alert: I18n.t('errors.gocardless.auth_failed', error_description: params[:error_description])
     		end
     	end
 
     	token = oauth.auth_code.get_token(params[:code],
     		redirect_uri: ENV['GOCARDLESS_REDIRECT_URI'])
-    	Organisation.find_or_create_by(
-    		gc_id: token['organisation_id'],
-    		access_token: token.token)
+    	org = Organisation.find_by(gc_id: token['organisation_id'])
+      if org.nil?
+        org = Organisation.create!(
+      		gc_id: token['organisation_id'],
+      		access_token: token.token,
+          last_login: DateTime.current
+        )
+      elsif org.access_token != token.token
+        org.update!(
+          access_token: token.token,
+          last_login: DateTime.current
+        )
+      end
     	session[:gc_token] = token.token
 
       SyncerJob.new.async.perform(current_user)
-      redirect_to after_sign_in_path
+      if org.profile_complete?
+        redirect_to after_sign_in_path
+      else
+        redirect_to connect_account_path
+      end
     rescue => e
       Utility.log_exception e
       redirect_to root_path, alert: I18n.t('errors.exceptions.default')
@@ -38,6 +59,31 @@ class ConnectController < ApplicationController
   def logout
   	session[:gc_token] = nil
   	redirect_to root_path, notice: I18n.t('notices.logged_out')
+  end
+
+  def signup
+    redirect_to authorise_connect_path(oauth_view: 'signup')
+  end
+
+  def new_account
+    redirect_to root_path if !signed_in?
+    @organisation = current_user
+    if @organisation.country.blank?
+      @organisation.assign_attributes(country: 'GB') if I18n.locale.to_s == 'en'
+      @organisation.assign_attributes(country: 'FR') if I18n.locale.to_s == 'fr'
+    end
+    @organisation.assign_attributes(locale: I18n.locale.to_s) if @organisation.locale.blank?
+  end
+
+  def create_account
+    redirect_to root_path if !signed_in?
+    @organisation = current_user
+    if @organisation.update_attributes(organisation_params)
+      OrganisationMailer.welcome(@organisation).deliver if @organisation.created_at > 1.hour.ago
+      redirect_to after_sign_in_path
+    else
+      render 'new_account'
+    end
   end
 
   private
@@ -51,4 +97,8 @@ class ConnectController < ApplicationController
   			token_url: ENV['GOCARDLESS_TOKEN_PATH']
   		)
   	end
+
+    def organisation_params
+      params.require(:organisation).permit(:fname, :lname, :email, :company_name, :country, :locale)
+    end
 end

@@ -1,0 +1,11 @@
+<%= t('emails.welcome.title') %>
+======================================
+
+<%= t('emails.welcome.salutations', name: @organisation.fname) %>
+
+<%= t('emails.welcome.explanation') %>
+
+<%= t('emails.welcome.login') %> <%= authorise_connect_url %>
+
+<%= t('emails.welcome.thanks') %>
+<%= t('emails.welcome.signature') %>

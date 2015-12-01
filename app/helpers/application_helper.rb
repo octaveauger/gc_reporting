@@ -20,7 +20,19 @@ module ApplicationHelper
 	# Analyses a status (from any GC object) - returns something to use in the CSS status-disc class
 	def status_meaning(status)
 		return 'pending' if ['pending', 'pending_submission','submitted'].include?(status)
-		return 'positive' if ['active', 'confirmed', 'paid_out', 'paid'].include?(status)
+		return 'positive' if ['active', 'confirmed', 'paid_out', 'paid', 'valid'].include?(status)
 		return 'negative'
+	end
+
+	# Returns the right flag css class based on the locale
+	def locale_flag(locale)
+		case locale
+		when 'en'
+			'flag-gb'
+		when 'fr'
+			'flag-fr'
+		else
+			'flag-gb'
+		end
 	end
 end

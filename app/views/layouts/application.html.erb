@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GoCardless Reporting | <%= yield(:title) %></title>
-  <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+  <title><%= t('header.app_name') %> | <%= yield(:title) %></title>
+  <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <link rel="stylesheet" href="http://css-spinners.com/css/spinners.css" type="text/css">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= favicon_link_tag %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body id= "page-top" class="index <%= 'home' if yield(:title) == 'Home' %>">
+
+<div id="locale" data-value="<%= I18n.locale.to_s == 'en' ? 'en-GB' : I18n.locale.to_s  %>"></div>
 
 <%= render 'layouts/header' %>
 
@@ -18,6 +20,8 @@
 	<%= yield %>
 	<%= debug(params) if Rails.env.development? %>
 </div>
+
+<%= render 'layouts/tracking' %>
 
 </body>
 </html>

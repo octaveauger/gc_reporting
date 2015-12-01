@@ -23,30 +23,53 @@ module Filterable
 				[I18n.t('filters.time.yesterday'), 'yesterday'],
 				[I18n.t('filters.time.this_week'), 'this_week'],
 				[I18n.t('filters.time.this_month'), 'this_month'],
+				[I18n.t('filters.time.last_month'), 'last_month'],
 				[I18n.t('filters.time.last_7_days'), 'last_7_days'],
-				[I18n.t('filters.time.last_30_days'), 'last_30_days']
+				[I18n.t('filters.time.last_30_days'), 'last_30_days'],
+				[I18n.t('filters.time.between'), 'between']
 			]
 		end
 
 		# Filters results by usual time filters
+		# http://api.rubyonrails.org/classes/DateAndTime/Calculations.html
 		def time_filter(selection)
-			case selection
-			when 'any'
-				self.all
-			when 'today'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today)
-			when 'yesterday'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 1)
-			when 'this_week'
-				self.where(name_of_class + '.gc_created_at >= ?', Time.now.beginning_of_week)
-			when 'this_month'
-				self.where(name_of_class + '.gc_created_at >= ?', Time.now.beginning_of_month)
-			when 'last_7_days'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 7)
-			when 'last_30_days'
-				self.where(name_of_class + '.gc_created_at >= ?', Date.today - 30)
+			if self.method_defined? :gc_created_at
+				time_column = 'gc_created_at'
+			elsif self.method_defined? :source_created_at
+				time_column = 'source_created_at'
 			else
-				self.all
+				time_column = 'created_at'
+			end
+			
+			if selection.is_a?(Hash)
+				if selection[:filter] == 'between'
+					self.where(name_of_class + '.' + time_column + '>= ?', Time.parse(selection[:from]))
+						.where(name_of_class + '.' + time_column + '<= ?', Time.parse(selection[:to]))
+				else
+					self.all
+				end
+			else
+				case selection
+				when 'any'
+					self.all
+				when 'today'
+					self.where(name_of_class + '.' + time_column + '>= ?', Date.today)
+				when 'yesterday'
+					self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 1)
+				when 'this_week'
+					self.where(name_of_class + '.' + time_column + '>= ?', Time.now.beginning_of_week)
+				when 'this_month'
+					self.where(name_of_class + '.' + time_column + '>= ?', Time.now.beginning_of_month)
+				when 'last_month'
+					self.where(name_of_class + '.' + time_column + '>= ?', Time.now.last_month.beginning_of_month)
+						.where(name_of_class + '.' + time_column + '<= ?', Time.now.last_month.end_of_month)
+				when 'last_7_days'
+					self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 7)
+				when 'last_30_days'
+					self.where(name_of_class + '.' + time_column + '>= ?', Date.today - 30)
+				else
+					self.all
+				end
 			end
 		end
 

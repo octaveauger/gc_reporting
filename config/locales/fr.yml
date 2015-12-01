@@ -208,25 +208,94 @@ fr:
     previous_label: '&#8592; Précédent'
     next_label: 'Suivant &#8594;'
     page_gap: '&hellip;'
+  activemodel:
+    errors:
+      models:
+        payment_request:
+          attributes:
+            charge_date:
+              later_charge_date: 'doit être le, ou après le %{charge_date}'
+            reference:
+              too_long: 'doit contenir moins de %{chars} caractères'
+            amount:
+              blank: "doit être rempli(e)"
+              not_a_number: "n'est pas un nombre"
+        refund_request:
+          attributes:
+            amount:
+              blank: "doit être rempli(e)"
+              not_a_number: "n'est pas un nombre"
+              too_much: 'doit être inférieur au montant remboursable maximum'
+              too_little: 'doit être plus élevé'
+            reference:
+              too_long: 'doit contenir moins de %{chars} caractères'
+        pending_client:
+          attributes:
+            emails:
+              invalid_emails: 'Email(s) invalide(s): %{emails}'
+  activerecord:
+    errors:
+      models:
+        client:
+          attributes:
+            email:
+              email_required_for_mandate_request: 'requis pour pouvoir envoyer une demande de mandat'
   header:
     toggle: 'Changer navigation'
-    app_name: 'Rapports GoCardless'
+    app_name: 'Antilope'
+    link_clients: 'Clients'
     link_mandates: 'Mandats'
     link_payments: 'Paiements'
     link_payouts: 'Reversements'
-    link_connect: 'Connection'
+    link_signup: 'Créer compte'
+    link_login: 'Connection'
     link_logout: 'Déconnection'
+    link_account: 'Mon compte'
+  locales:
+    en: 'Anglais'
+    fr: 'Français'
   errors:
     gocardless:
       auth_cancelled: "Vous avez annulé l'autorisation avec votre compte GoCardless"
       auth_failed: 'Il y eu un problème avec la connection vers GoCardless: %{error_description}'
     exceptions:
       default: 'Il y eu une erreur et nous en avons été alertés'
+    form:
+      please_correct_form: 'Veuillez corriger les erreurs du formulaire ci-dessous'
+      payments:
+        select_valid_mandate: 'Veuillez sélectionner un mandat valide'
+      refunds:
+        select_valid_payment: 'Veuillez sélectionner un paiement valide'
   notices:
     logged_out: 'Vous avez bien été déconnecté'
     close: 'fermer'
     payout_not_found: "Ce reversement n'a pas pu être trouvé"
     customer_not_found: "Ce client n'a pas pu être trouvé"
+    invalid_link: "Ce lien n'existe pas"
+    mandate_success: 'Votre mandat a bien été créé'
+  loading:
+    loader_backup: 'Chargement...'
+    notice: 'Vos données sont en cours de synchronisation. Cette page sera rafraîchie automatiquement.'
+  emails:
+    welcome:
+      subject: "Bienvenue chez Antilope, le moyen d'être payé à temps"
+      title: 'Bienvenue chez Antilope.io'
+      salutations: 'Bonjour %{name},'
+      explanation: 'Avec Antilope vous pouvez gérer vos clients et être payé à temps grâce au prélèvement automatique.'
+      login: 'Cliquez ici pour vous connecter :'
+      login_cta: 'Connection'
+      thanks: 'Cordialement,'
+      signature: 'Votre équipe Antilope'
+    mandate_request:
+      subject: '%{org_name} souhaite mettre en place un mandat de prélèvement bancaire avec vous'
+      title: '%{org_name} souhaite mettre en place un mandat de prélèvement'
+      salutations: 'Bonjour %{name},'
+      explanation: "%{org_name} souhaite mettre en place un mandat de prélèvement bancaire avec vous. Cela veut dire qu'ils prendront les paiements futurs de votre compte en banque. Vous serez toujours alertés avant chaque prélèvement. %{org_name} ne verra pas vos données bancaires."
+      organisation_comment: 'Raison pour ce mandat : '
+      create_mandate: 'Cliquez ici pour mettre en place le mandat:'
+      create_mandate_cta: 'Créer un mandat de prélèvement'
+      thanks: 'Merci,'
+      signature: 'Antilope.io pour %{org_name}'    
   gocardless:
     mandate:
       status:
@@ -241,6 +310,10 @@ fr:
         sepa_core: 'SEPA Core'
         sepa_cor1: 'SEPA Cor1'
         autogiro: 'Autogiro (Suède)'
+      state:
+        valid: 'Mandat valide'
+        pending: 'Mandat demandé'
+        none: 'Pas de mandat valide'
     payment:
       status:
         pending_submission: 'En attente de soumission'
@@ -287,8 +360,11 @@ fr:
       yesterday: 'Hier'
       this_week: 'Cette semaine'
       this_month: 'Ce mois'
+      last_month: 'Le mois dernier'
       last_7_days: '7 derniers jours'
       last_30_days: '30 derniers jours'
+      between: 'Entre'
+      and: 'et'
     currency:
       label: 'avec la devise'
       any: 'Toutes'
@@ -311,6 +387,12 @@ fr:
       failed: 'Echoué'
       cancelled: 'Annulé'
       expired: 'Expiré'
+    valid_mandate:
+      label: 'et mandat'
+      any: 'Tous'
+      valid: 'Valide'
+      pending: 'Demandé'
+      none: 'Pas demandé'
     payment_status:
       label: 'et le statut'
       any: 'Tous'
@@ -325,22 +407,118 @@ fr:
       submit: 'Go'
   home:
     index:
-      h1: "Le site non-officiel de rapports GoCardless"
-      hero_text: "Ce site non-officiel récupère toutes les informations de vos clients et paiements depuis GoCardless et vous permet d'exporter des rapports utiles, en Français et Anglais."
-      title_customers: 'Vos clients'
-      alt_customers: 'Rapport mandats'
-      title_payments: 'Vos paiements'
-      alt_payments: 'Rapport paiements'
-      title_payouts: 'Vos reversements et frais'
-      alt_payouts: 'Rapport reversements'
-  reporting:
-    loading:
-      loader_backup: 'Chargement...'
-      notice: 'Vos données sont en cours de synchronisation. Rafraichissez cette page dans 10 secondes.'
+      h1: 'Soyez payés plus vite avec Antilope.io'
+      intro: "Antilope travaille avec <a href='https://gocardless.com/fr-fr' target='_blank'>GoCardless</a>, le leader européen du prélèvement automatique : en connectant un compte GoCardless, vous pourrez commencer à prendre des paiements par prélèvement SEPA dans la zone Euro."
+      button_connect: 'Connectez un compte GoCardless'
+      trusted_title: 'De confiance'
+      trusted_description: 'Nous travaillons avec GoCardless, une Institution de Paiement réputée qui gère vos fonds de bout en bout'
+      global_title: 'Européen'
+      global_description: 'Prenez des paiements de vos clients dans 23 pays : la zone Euro, la Grande Bretagne et la Suède'
+      simple_title: 'Simple'
+      simple_description: 'Créez des mandats en ligne, prenez des paiements et représentez les échecs en un clic'
+      automated_title: 'Automatisé'
+      automated_description: 'Plus besoin de fichiers: GoCardless soumet vos paiements et montre leur statut en temps réel'
+      economical_title: 'Economique'
+      economical_description: 'GoCardless facture 1%, plafonné à 2€. Antilope ajoute 0,20€ par paiement'
+      sme_title: 'Pour PME'
+      sme_description: 'Antilope est parfait pour les auto-entrepreneurs, associations et les TPE et PME'
+      clients_lead: 'Vous serez en bonne companie, avec 12 000 autres entreprises'
+      clients_alt: 'Clients GoCardless'
+      title_mandate: 'Mandats de prélèvement en ligne'
+      description_mandate: 'Envoyez par email le lien vers votre page de mandat personnelle à vos clients'
+      alt_mandate: 'Mandat en ligne'
+      title_payments: 'Prenez des paiements facilement'
+      description_payments: "Pas besoin de créer des fichiers complexes : indiquez juste le montant et la date, et GoCardless s'en chargera"
+      alt_payments: 'Paiements faciles'
+      title_payment: 'Gérez vos paiements'
+      description_payment: "Voyez d'un coup d'oeil le statut actuel de vos paiements, et annulez / représentez / remboursez-les facilement"
+      alt_payment: 'Gestion des paiements'
+  connect:
+    new_account:
+      h1: 'Complétez votre compte Antilope'
+      form_label_fname: 'Prénom'
+      form_label_lname: 'Nom de famille'
+      form_label_email: 'Email'
+      form_label_company_name: 'Nom de société'
+      form_label_country: 'Pays'
+      form_label_locale: 'Langue'
+      form_button_submit: 'Complétez votre compte'      
+  account:
     index:
-      h1: 'Rapport de paiements'
-      link_payments: 'Vos paiements'
-    mandates:
+      h1: 'Bonjour %{fname}'
+      account_summary: 'Aperçu de votre compte'
+      account_summary_signup_date: "Date d'inscription"
+      account_summary_name: 'Nom'
+      account_summary_company_name: "Nom d'entreprise"
+      account_summary_email: 'Email'
+      account_summary_country: 'Pays'
+      account_summary_locale: 'Langue'
+      account_summary_button_edit: 'Mettre à jour'
+  clients:
+    actions:
+      view: 'Voir client'
+      edit: 'Editer client'
+      request_mandate: 'Envoyer une demande de mandat'
+      remind_mandate: 'Relancer une demande de mandat'
+    index:
+      h1: 'Vos clients'
+      link_export: 'Exporter'
+      csv_name: 'liste-client'
+      table_title_creation_date: 'Date de création'
+      table_title_customer_name: 'Nom'
+      table_title_customer_fname: 'Prénom'
+      table_title_customer_lname: 'Nom de famille'
+      table_title_company_name: "Nom d'entreprise"
+      table_title_email: 'Email'
+      table_title_source_client_id: 'Votre référence client'
+      table_title_source: 'Source'
+      no_clients: "Vous n'avez pas encore ajouté de clients"
+      create_client_button: 'Nouveau client'    
+      create_client_title: 'Nouveau client'
+    show:
+      title_customer: 'Client'
+      item_description_customer_gc_id: 'ID GoCardless'
+      item_description_customer_name: 'Nom'
+      item_description_company_name: "Nom d'entreprise"
+      item_description_customer_email: 'Email'
+      item_description_customer_address: 'Addresse'
+      item_description_customer_country: 'Pays'
+      title_mandates: 'Mandats'
+      title_payments: 'Paiements'
+    tabs:
+      add_client: 'Ajoutez un client'
+      add_clients: 'Ajoutez plusieurs clients'
+      send_link: 'Envoyez un lien'
+    new:
+      h1: 'Ajoutez un nouveau client'
+      form_intro: 'Tous les champs sont optionnels - remplissez ceux que vous connaissez'
+      form_label_fname: 'Prénom'
+      form_label_lname: 'Nom de famille'
+      form_label_email: 'Email'
+      form_label_company_name: "Nom d'entreprise"
+      form_label_source_client_id: 'Référence client'
+      form_placeholder_source_client_id: "Indiquez l'éventuelle référence client propre à votre entreprise"
+      form_label_mandate_request: 'Envoyer une demande de mandat à ce client par email'
+      form_label_locale: 'Langue du client'
+      form_label_mandate_request_description: 'Explication de la demande de mandat'
+      form_placeholder_mandate_request_description: 'Cela sera envoyé à votre client'
+      form_button_submit: 'Ajouter un client'
+      client_success: 'Votre client a bien été créé'
+    edit:
+      h1: 'Editez votre client'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Editer le client'
+      client_success: 'Votre client a bien été édité'
+    new_pending:
+      form_label_emails: 'Emails clients'
+      form_placeholder_emails: 'Indiquez les emails de vos clients séparés par une virgule ou la touche entrée'
+      form_button_submit: 'Demandez un mandat de ces clients'
+      client_success: 'Vos clients ont été créés et notifiés par email'
+    mandate_link:
+      explanation: "Vous pouvez envoyer votre lien personnel de mandat ci-dessous à tous vos clients. Une fois qu'ils auront rempli le mandat, ils apparaîtront automatiquement dans votre tableau de bord et vous serez autorisé à prendre des paiements de leur compte en banque."
+      send_link: 'Envoyez ce lien :'
+  mandates:
+    index:
       h1: 'Rapport de mandats'
       link_export: 'Exporter'
       csv_name: 'liste-mandats'
@@ -356,12 +534,17 @@ fr:
       table_title_mandate_reference: 'Référence'
       table_title_mandate_status: 'Statut du mandat'
       no_mandates: "Il n'y a pas de mandats correspondants ou vos données sont encore en train de synchroniser"
-    payments:
+      create_mandate_button: 'Nouveau mandat'    
+      create_mandate_title: 'Nouveau mandat'    
+      create_mandate_explanation: 'Envoyez ce lien à vos clients :'
+      cancel_mandate: 'Annuler le mandat'
+  payments:
+    index:
       h1: 'Rapport de paiements'
       link_export: 'Exporter'
       csv_name: 'liste-paiements'
       table_title_payment_id: 'Identifiant paiement'
-      table_title_payment_date: 'Date de création du paiement'
+      table_title_payment_date: 'Date de création'
       table_title_customer_id: 'Identifiant client'
       table_title_customer_fname: 'Prénom'
       table_title_customer_lname: 'Nom de famille'
@@ -369,15 +552,35 @@ fr:
       table_title_email: 'Email'
       table_title_customer: 'Client'
       table_title_description: 'Description'
-      table_title_charge_date: 'Date de prélèvement prévue'
+      table_title_charge_date: 'Date de paiement'
       table_title_currency: 'Devise'
-      table_title_amount: 'Somme'
+      table_title_gross_amount: 'Brut'
+      table_title_net_amount: 'Net'
+      table_tooltip_net_amount: 'La différence entre le montant du paiement et les remboursements'
       table_title_amount_refunded: 'Somme remboursée'
       table_title_reference: 'Référence'
       table_title_status: 'Statut'
       table_title_error_cause: 'Cause de rejet'
       no_payments: "Il n'y a pas de paiements correspondants ou vos données sont encore en train de synchroniser"
-    payouts:
+      create_payment_button: 'Nouveau paiement'
+      cancel_payment: 'Annuler le paiement'
+      retry_payment: 'Représenter le paiement'
+      refund_payment: 'Rembourser le paiement'
+    new:
+      h1: 'Prenez un paiement'
+      form_label_customer: 'Client'
+      form_label_amount: 'Somme'
+      form_label_description: 'Description'
+      form_hint_description: 'A quoi correspond ce paiement ?'
+      form_label_reference: 'Référence'
+      form_hint_reference: 'Cela apparaîtra sur le compte en banque du client'
+      form_label_charge_date_start: 'Prenez le paiement le (au plus tôt '
+      form_label_charge_date_end: ')'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Créer'
+      success_message: 'Votre paiement sera pris le %{charge_date}'
+  payouts:
+    index:
       h1: 'Rapport de reversements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
       table_title_payout_date: 'Date de création du reversement'
@@ -386,7 +589,7 @@ fr:
       table_title_status: 'Statut'
       table_title_reference: 'Référence'
       no_payouts: "Il n'y a pas de reversements correspondants ou vos données sont encore en train de synchroniser"
-    payout:
+    show:
       h1: 'Reversement'
       link_export: 'Exporter'
       csv_name: 'liste-reversements'
@@ -409,13 +612,14 @@ fr:
       table_title_fees: 'Frais'
       refund: 'Remboursement'
       payment: 'Paiement'
-  customers:
-    show:
-      title_customer: 'Client'
-      item_description_customer_gc_id: 'ID GoCardless'
-      item_description_customer_name: 'Nom'
-      item_description_customer_email: 'Email'
-      item_description_customer_address: 'Addresse'
-      item_description_customer_country: 'Pays'
-      title_mandates: 'Mandats'
-      title_payments: 'Paiements'
+  refunds:
+    new:
+      h1: 'Rembourser un paiement'
+      form_label_payment: 'Paiement'
+      form_label_amount: 'Montant'
+      form_label_amount_max: 'max : '
+      form_label_reference: 'Référence'
+      form_hint_reference: 'Cela apparaîtra sur le compte en banque du client'
+      form_button_cancel: 'Annuler'
+      form_button_submit: 'Rembourser'
+      success_message: 'Votre remboursement sera versé au client dans les 2 prochains jours ouvrés'

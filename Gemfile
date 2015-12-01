@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'rails', '4.0.8'
-gem 'bootstrap-sass', '3.2.0.2'
+gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'sprockets', '2.11.0'
 
 group :development, :test do
@@ -37,12 +37,18 @@ gem 'celluloid', '0.16.0'
 gem 'sucker_punch', '~> 1.0'
 gem 'exception_notification'
 gem 'route_translator'
+gem 'validates_timeliness', '~> 3.0'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'roadie-rails', '~> 1.0.6'
+gem 'i18n_country_select'
+gem 'i18n-country-translations'
+gem 'bootstrap-tagsinput-rails'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
 
-group :production do
+group :production, :staging do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end

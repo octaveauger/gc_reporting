@@ -1,0 +1,13 @@
+<%= render partial: 'clients/add_client_tabs', locals: { active_tab: 'add_clients' } %>
+
+<div class="col-md-8 col-md-offset-2">
+	<%= simple_form_for @clients, :url => create_pending_clients_path do |f| %>
+		<%= f.input :emails, label: t('.form_label_emails'), placeholder: t('.form_placeholder_emails'), input_html: { data: { role: 'tagsinput' } }, autofocus: true %>
+		<div class="form-group">
+			<%= label_tag(:locale, t('clients.new.form_label_locale'), class: 'control-label col-xs-3') %>
+			<div class="col-xs-9"><%= f.select :locale, [[t('locales.en'), 'en'], [t('locales.fr'), 'fr']], {}, { class: 'form-control' } %></div>
+		</div>
+		<%= f.input :mandate_request_description, label: t('clients.new.form_label_mandate_request_description'), placeholder: t('clients.new.form_placeholder_mandate_request_description') %>
+		<div class="col-xs-offset-3"><%= f.button :submit, t('.form_button_submit'), :class => 'btn btn-primary btn-block' %></div>
+	<% end %>
+</div>

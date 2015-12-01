@@ -1,0 +1,4 @@
+<%= render partial: 'clients/add_client_tabs', locals: { active_tab: 'send_link' } %>
+
+<p><%= t('.explanation') %></p>
+<p><%= t('.send_link') %> <%= link_to authorisations_new_url(current_user.gc_id), authorisations_new_url(current_user.gc_id), target: '_blank' %></p>

@@ -1,0 +1,12 @@
+<tr>
+	<td><%= payment.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td><%= payment.description %></td>
+	<td><%= payment.reference %></td>
+	<td><%= payment.charge_date.strftime('%d/%m/%Y') %></td>
+	<td><%= number_to_currency(payment.amount/100.0, precision: 2, unit: currency_symbol(payment.currency)) %></td>
+	<td>
+		<div class="status-disc status-disc-<%= status_meaning(payment.status) %>"></div>
+		<%= t('gocardless.payment.status.' + payment.status) %>
+	</td>
+	<td><%= t('gocardless.payment.cause.' + payment.failure_cause) unless payment.failure_cause.empty? %></td>
+</tr>

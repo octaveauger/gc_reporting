@@ -1,0 +1,13 @@
+<h1><%= t('emails.welcome.title') %></h1>
+
+<p><%= t('emails.welcome.salutations', name: @organisation.fname) %></p>
+
+<p><%= t('emails.welcome.explanation') %><p>
+
+<p><%= t('emails.welcome.login') %><p>
+<%= link_to t('emails.welcome.login_cta'), authorise_connect_url, class: 'btn btn-primary btn-centered' %>
+
+<p>
+	<%= t('emails.welcome.thanks') %><br/>
+	<%= t('emails.welcome.signature') %>
+</p>

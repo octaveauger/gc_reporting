@@ -1,0 +1,28 @@
+<tr id="<%= mandate.gc_id %>">
+	<td><%= mandate.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td><%= mandate.customer.gc_id %></td>
+	<td><%= mandate.gc_id %></td>
+	<td>
+		<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(mandate.client.token) %>">
+			<%= mandate.client.display_name %><br/>
+			<%= mandate.client.email %>
+		</a>
+	</td>
+	<td><%= t('gocardless.mandate.scheme.' + mandate.scheme) %></td>
+	<td>
+		<% if @cancelled # if cancelled via API, the webhook is not instant so we fake it %>
+			<div class="status-disc status-disc-<%= status_meaning('cancelled') %>"></div>
+			<%= t('gocardless.mandate.status.cancelled') %>
+		<% else %>
+			<div class="status-disc status-disc-<%= status_meaning(mandate.status) %>"></div>
+			<%= t('gocardless.mandate.status.' + mandate.status) %>
+		<% end %>
+	</td>
+	<td>
+		<% if mandate.status != 'cancelled' and !@cancelled %>
+			<a href="" data-role="ajax-get" data-target="<%= cancel_mandates_path(mandate_id: mandate.gc_id) %>">
+				<span class="glyphicon glyphicon-remove negative" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<%= t('mandates.index.cancel_mandate') %>"></span>
+			</a>
+		<% end %>
+	</td>
+</tr>

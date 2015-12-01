@@ -1,0 +1,28 @@
+<tr id="<%= client.token %>">
+	<td><%= client.source_created_at.strftime('%d/%m/%Y %k:%M') %></td>
+	<td><%= client.full_name %></td>
+	<td><%= client.company_name %></td>
+	<td><%= client.email %></td>
+	<td><%= client.source_client_id %></td>
+	<td><%= client.client_source.display_name %></td>
+	<td><div class="status-disc status-disc-<%= status_meaning(client.mandate_actions[:state]) %>" data-toggle="tooltip" data-placement="bottom" title="<%= t('gocardless.mandate.state.' + client.mandate_actions[:state]) %>"></div></td>
+	<td>
+		<a class="modal-link btn-action" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(client.token) %>">
+			<span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" data-placement="bottom" title="<%= t('clients.actions.view') %>"></span>
+		</a>
+		<a href="<%= edit_client_path(client.token) %>" class="btn-action" data-toggle="tooltip" data-placement="bottom" title="<%= t('clients.actions.edit') %>">
+			<span class="glyphicon glyphicon-edit"></span>
+		</a>
+		<% client.mandate_actions[:actions].each do |action| %>
+			<% if action == 'request' %>
+				<a href="" class="btn-action" data-role="ajax-get" data-target="<%= client_email_mandate_url(client.token) %>">
+					<span class="glyphicon glyphicon-envelope" data-toggle="tooltip" data-placement="bottom" title="<%= t('clients.actions.request_mandate') %>"></span>
+				</a>
+			<% elsif action == 'remind' %>
+				<a href="" class="btn-action" data-role="ajax-get" data-target="<%= client_email_mandate_url(client.token) %>">
+					<span class="glyphicon glyphicon-repeat" data-toggle="tooltip" data-placement="bottom" title="<%= t('clients.actions.remind_mandate') %>"></span>
+				</a>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

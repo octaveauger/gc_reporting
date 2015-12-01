@@ -1,0 +1,3 @@
+$('#<%= @payment.gc_id %>').replaceWith('<%= j render partial: "payments/payment", locals: { payment: @payment } %>');
+$('#ajax-alerts').html('').appendTo('<%= j render partial "layouts/alert", locals: { alert: @alert } if !@alert.nil?');
+initialize();

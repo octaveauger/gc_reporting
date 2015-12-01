@@ -1,0 +1,11 @@
+<tr>
+	<td><%= payout.gc_created_at.strftime('%d/%m/%Y') %></td>
+	<td><%= number_to_currency(payout.amount/100.0, precision: 2, unit: currency_symbol(payout.currency)) %></td>
+	<td><%= number_to_currency(payout.sum_fees/100.0, precision: 2, unit: currency_symbol(payout.currency)) %></td>
+	<td><%= payout.reference %></td>
+	<td>
+		<div class="status-disc status-disc-<%= status_meaning(payout.status) %>"></div>
+		<%= t('gocardless.payout.status.' + payout.status) %>
+	</td>
+	<td><a href="<%= payout_path(payout.gc_id) %>" class="btn btn-xs"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+</tr>

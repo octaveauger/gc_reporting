@@ -1,0 +1,26 @@
+<dt><%= t('clients.show.item_description_customer_gc_id') %></dt>
+<dd><%= customer.gc_id %></dd>
+<% if !customer.address_line1.blank? %>
+	<dt><%= t('clients.show.item_description_customer_address') %></dt>
+	<dd>
+		<% if !customer.address_line1.blank? %>
+			<span><%= customer.address_line1 %></span><br/>
+		<% end %>
+		<% if !customer.address_line2.blank? %>
+			<span><%= customer.address_line2 %></span><br/>
+		<% end %>
+		<% if !customer.address_line3.blank? %>
+			<span><%= customer.address_line3 %></span><br/>
+		<% end %>
+		<% if !customer.postal_code.blank? or !customer.city.blank? %>
+			<span><%= (customer.postal_code.blank? ? '' : customer.postal_code + ' ') + (customer.city) %></span><br/>
+		<% end %>
+	</dd>
+<% end %>
+<% if !customer.country_code.blank? %>
+	<dt><%= t('clients.show.item_description_customer_country') %></dt>
+	<dd>
+		<span><%= customer.country_code %></span>
+		<span><%= image_tag('blank.png', :class => 'flag flag-'+customer.country_code.downcase) %></span>
+	</dd>
+<% end %>

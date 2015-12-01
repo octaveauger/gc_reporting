@@ -1,0 +1,17 @@
+<% if payment_action.can_be_cancelled? and !@cancelled %>
+	<a href="" data-role="ajax-get" data-target="<%= cancel_payments_path(payment_id: payment_action.gc_id) %>">
+		<span class="glyphicon glyphicon-remove negative" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<%= t('payments.index.cancel_payment') %>"></span>
+	</a>
+<% end %>
+
+<% if payment_action.can_be_retried? and !@retried %>
+	<a href="" data-role="ajax-get" data-target="<%= retry_payments_path(payment_id: payment_action.gc_id) %>">
+		<span class="glyphicon glyphicon-repeat positive" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<%= t('payments.index.retry_payment') %>"></span>
+	</a>
+<% end %>
+
+<% if payment_action.can_be_refunded? and !@refunded %>
+	<a href="<%= new_refund_path(payment_id: payment_action.gc_id) %>" target="_blank">
+		<span class="glyphicon glyphicon-share-alt positive" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="<%= t('payments.index.refund_payment') %>"></span>
+	</a>
+<% end %>

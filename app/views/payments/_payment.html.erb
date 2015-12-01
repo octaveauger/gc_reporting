@@ -1,0 +1,30 @@
+<tr id="<%= payment.gc_id %>">
+	<td><%= payment.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
+	<td>
+		<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(payment.client.token) %>">
+			<%= payment.client.display_name %><br/>
+			<%= payment.client.email %>
+		</a>
+	</td>
+	<td><%= payment.description %></td>
+	<td><%= payment.reference %></td>
+	<td><%= payment.charge_date.strftime('%d/%m/%Y') %></td>
+	<td><%= number_to_currency(payment.amount/100.0, precision: 2, unit: currency_symbol(payment.currency)) %></td>
+	<td><%= number_to_currency((payment.amount - payment.amount_refunded)/100.0, precision: 2, unit: currency_symbol(payment.currency)) %></td>
+	<td>
+		<% if @cancelled %>
+			<div class="status-disc status-disc-<%= status_meaning('cancelled') %>"></div>
+			<%= t('gocardless.payment.status.cancelled') %>
+		<% elsif @retried %>
+			<div class="status-disc status-disc-<%= status_meaning('pending_submission') %>"></div>
+			<%= t('gocardless.payment.status.pending_submission') %>
+		<% else %>
+			<div class="status-disc status-disc-<%= status_meaning(payment.status) %>"></div>
+			<%= t('gocardless.payment.status.' + payment.status) %>
+		<% end %>
+	</td>
+	<td><%= t('gocardless.payment.cause.' + payment.failure_cause) unless payment.failure_cause.empty? or @retried %></td>
+	<td>
+		<%= render partial: 'payments/payment_action', locals: { payment_action: payment } %>
+	</td>
+</tr>

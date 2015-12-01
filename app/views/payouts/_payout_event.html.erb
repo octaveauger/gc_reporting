@@ -1,0 +1,28 @@
+<tr>
+	<% if payout_event.action == 'refund_settled' %>
+		<td><%= t('payouts.show.refund') %></td>
+		<td><%= t('gocardless.refund.action.' + payout_event.action) %></td>
+		<td><%= payout_event.refund.gc_created_at.strftime('%d/%m/%Y') %></td>
+		<td>
+			<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(payout_event.refund.payment.client.token) %>"><%= payout_event.refund.payment.client.display_name %></a>
+		</td>
+		<td>-</td>
+		<td><%= number_to_currency(payout_event.refund.amount/100.0, precision: 2, unit: currency_symbol(payout_event.refund.currency)) %></td>
+		<td><%= number_to_currency(payout_event.fee.amount/100.0, precision: 2, unit: currency_symbol(payout_event.fee.currency)) %></td>
+	<% else %>
+		<td><%= t('payouts.show.payment') %></td>
+		<td><%= t('gocardless.payment.cause.' + payout_event.action) %></td>
+		<td><%= payout_event.payment.charge_date.strftime('%d/%m/%Y') %></td>
+		<td>
+			<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(payout_event.payment.client.token) %>"><%= payout_event.payment.client.display_name %></a>
+		</td>
+		<% if payout_event.action == 'paid_out' %>
+			<td><%= number_to_currency(payout_event.payment.amount/100.0, precision: 2, unit: currency_symbol(payout_event.payment.currency)) %></td>
+			<td>-</td>
+		<% else %>
+			<td>-</td>
+			<td><%= number_to_currency(payout_event.payment.amount/100.0, precision: 2, unit: currency_symbol(payout_event.payment.currency)) %></td>
+		<% end %>
+		<td><%= number_to_currency(payout_event.fee.amount/100.0, precision: 2, unit: currency_symbol(payout_event.fee.currency)) %></td>
+	<% end %>
+</tr>
