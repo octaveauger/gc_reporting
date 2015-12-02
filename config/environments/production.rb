@@ -98,5 +98,6 @@ GcReporting::Application.configure do
       :webhook_url => ENV['SLACK_WEBHOOK_EXCEPTION'],
       :additional_parameters => {
         :mrkdwn => true
+      }
     }
 end
