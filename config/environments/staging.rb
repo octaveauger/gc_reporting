@@ -94,9 +94,9 @@ GcReporting::Application.configure do
   }
 
   config.middleware.use ExceptionNotification::Rack,
-     :email => {
-      :email_prefix => "[Antilope Staging] ",
-      :sender_address => %{"notifier" <octave@gocardless.com>},
-      :exception_recipients => %w{octave@gocardless.com}
+    :slack => {
+      :webhook_url => ENV['SLACK_WEBHOOK_EXCEPTION'],
+      :additional_parameters => {
+        :mrkdwn => true
     }
 end

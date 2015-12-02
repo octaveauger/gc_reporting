@@ -43,6 +43,7 @@ gem 'roadie-rails', '~> 1.0.6'
 gem 'i18n_country_select'
 gem 'i18n-country-translations'
 gem 'bootstrap-tagsinput-rails'
+gem 'slack-notifier'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
