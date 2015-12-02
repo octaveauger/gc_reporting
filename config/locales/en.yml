@@ -588,6 +588,7 @@ en:
       table_title_status: 'Status'
       table_title_reference: 'Reference'
       no_payouts: 'There are no corresponding payouts or your data is synchronising'
+      view_breakdown_button: 'View monthly breakdown'
     show:
       h1: 'Payout'
       link_export: 'Export'

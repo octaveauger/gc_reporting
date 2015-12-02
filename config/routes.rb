@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     resources :refunds, only: [:new, :create]
 
     resources :payouts, only: [:index, :show]
+
+    resources :events, only: [] do
+      get :payouts, on: :collection
+    end
   end
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
