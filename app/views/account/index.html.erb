@@ -26,5 +26,5 @@
   <dt><%= t('.account_summary_country') %></dt>
   <dd><%= t(@account.country, :scope => :countries) %></dd>
   <dt><%= t('.account_summary_locale') %></dt>
-  <dd><%= t('locales.' + @account.locale) %></dd>
+  <dd><%= t('locales.' + @account.locale.to_s) unless @account.locale.nil? %></dd>
 </dl>
