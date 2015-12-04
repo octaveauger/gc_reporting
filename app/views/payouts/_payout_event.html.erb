@@ -1,7 +1,7 @@
 <tr>
 	<% if payout_event.action == 'refund_settled' %>
 		<td><%= t('payouts.show.refund') %></td>
-		<td><%= t('gocardless.refund.action.' + payout_event.action) %></td>
+		<td><%= t('gocardless.refund.actions.' + payout_event.action) %></td>
 		<td><%= payout_event.refund.gc_created_at.strftime('%d/%m/%Y') %></td>
 		<td>
 			<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(payout_event.refund.payment.client.token) %>"><%= payout_event.refund.payment.client.display_name %></a>

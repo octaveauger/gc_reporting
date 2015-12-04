@@ -18,7 +18,7 @@
   	<%= CSV.generate_line [
   		event.refund.gc_id,
   		t('.refund'),
-  		t('gocardless.refund.action.' + event.action),
+  		t('gocardless.refund.actions.' + event.action),
   		event.refund.gc_created_at.strftime('%d/%m/%Y'),
   		event.refund.payment.customer.gc_id,
   		event.refund.payment.customer.given_name,
