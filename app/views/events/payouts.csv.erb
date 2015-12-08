@@ -1,24 +1,24 @@
 <%- headers = [
-	t('.table_title_resource_id'), 
-	t('.table_title_type'),
-	t('.table_title_action'),
-	t('.table_title_charge_date'), 
-  t('.table_title_description'), 
-	t('.table_title_customer_id'), 
-	t('.table_title_customer_fname'), 
-	t('.table_title_customer_lname'), 
-	t('.table_title_company_name'), 
-	t('.table_title_email'), 
-	t('.table_title_currency'), 
-	t('.table_title_credit'), 
-	t('.table_title_debit'), 
-	t('.table_title_fees')] -%>
+	t('payouts.show.table_title_resource_id'), 
+	t('payouts.show.table_title_type'),
+	t('payouts.show.table_title_action'),
+	t('payouts.show.table_title_charge_date'), 
+  t('payouts.show.table_title_description'), 
+	t('payouts.show.table_title_customer_id'), 
+	t('payouts.show.table_title_customer_fname'), 
+	t('payouts.show.table_title_customer_lname'), 
+	t('payouts.show.table_title_company_name'), 
+	t('payouts.show.table_title_email'), 
+	t('payouts.show.table_title_currency'), 
+	t('payouts.show.table_title_credit'), 
+	t('payouts.show.table_title_debit'), 
+	t('payouts.show.table_title_fees')] -%>
 <%= CSV.generate_line headers, :row_sep => ?\t, :quote_char => ?\ %>
 <%- @events.each do |event| -%>
   <% if event.action == 'refund_settled' %>
   	<%= CSV.generate_line [
   		event.refund.gc_id,
-  		t('.refund'),
+  		t('payouts.show.refund'),
   		t('gocardless.refund.action.' + event.action),
   		event.refund.gc_created_at.strftime('%d/%m/%Y'),
       event.refund.payment.description,
@@ -35,7 +35,7 @@
   <% else %>
   	<%= CSV.generate_line [
   		event.payment.gc_id,
-  		t('.payment'),
+  		t('payouts.show.payment'),
   		t('gocardless.payment.cause.' + event.action),
   		event.payment.charge_date.strftime('%d/%m/%Y'),
       event.payment.description,

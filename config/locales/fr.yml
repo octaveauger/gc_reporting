@@ -246,7 +246,7 @@ fr:
     link_clients: 'Clients'
     link_mandates: 'Mandats'
     link_payments: 'Paiements'
-    link_payouts: 'Reversements'
+    link_payouts: 'Versements'
     link_signup: 'Créer compte'
     link_login: 'Connection'
     link_logout: 'Déconnection'
@@ -269,7 +269,7 @@ fr:
   notices:
     logged_out: 'Vous avez bien été déconnecté'
     close: 'fermer'
-    payout_not_found: "Ce reversement n'a pas pu être trouvé"
+    payout_not_found: "Ce versement n'a pas pu être trouvé"
     customer_not_found: "Ce client n'a pas pu être trouvé"
     invalid_link: "Ce lien n'existe pas"
     mandate_success: 'Votre mandat a bien été créé'
@@ -321,14 +321,14 @@ fr:
         confirmed: 'Confirmé'
         failed: 'Echoué'
         charged_back: 'Contesté'
-        paid_out: 'Reversé'
+        paid_out: 'Versé'
         cancelled: 'Annulé'
       cause:
         payment_created: 'Paiement créé'
         payment_cancelled: 'Paiement annulé'
         payment_submitted: 'Paiement soumis'
         payment_confirmed: 'Paiement confirmé'
-        payment_paid_out: 'Paiement reversé'
+        payment_paid_out: 'Paiement versé'
         payment_retried: 'Paiement représenté'
         late_failure_settled: 'Erreur tardive recouvrée'
         chargeback_settled: 'Contestation recouvrée'
@@ -401,7 +401,7 @@ fr:
       confirmed: 'Confirmé'
       failed: 'Echoué'
       charged_back: 'Contesté'
-      paid_out: 'Reversé'
+      paid_out: 'Versé'
       cancelled: 'Annulé'
     form:
       submit: 'Go'
@@ -517,6 +517,12 @@ fr:
     mandate_link:
       explanation: "Vous pouvez envoyer votre lien personnel de mandat ci-dessous à tous vos clients. Une fois qu'ils auront rempli le mandat, ils apparaîtront automatiquement dans votre tableau de bord et vous serez autorisé à prendre des paiements de leur compte en banque."
       send_link: 'Envoyez ce lien :'
+  events:
+    payouts:
+      h1: 'Rapport de versements'
+      summary_volume: 'Total crédité'
+      summary_fees: 'Total commission'
+      csv_name: 'liste-versements'
   mandates:
     index:
       h1: 'Rapport de mandats'
@@ -581,18 +587,19 @@ fr:
       success_message: 'Votre paiement sera pris le %{charge_date}'
   payouts:
     index:
-      h1: 'Rapport de reversements'
+      h1: 'Rapport de versements'
       fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
-      table_title_payout_date: 'Date de création du reversement'
+      table_title_payout_date: 'Date de création du versement'
       table_title_amount: 'Somme'
       table_title_fees: 'Frais'
       table_title_status: 'Statut'
       table_title_reference: 'Référence'
-      no_payouts: "Il n'y a pas de reversements correspondants ou vos données sont encore en train de synchroniser"
+      no_payouts: "Il n'y a pas de versements correspondants ou vos données sont encore en train de synchroniser"
+      view_breakdown_button: 'Voir le résumé mensuel'
     show:
-      h1: 'Reversement'
+      h1: 'Versement'
       link_export: 'Exporter'
-      csv_name: 'liste-reversements'
+      csv_name: 'liste-versements'
       payout_date: 'Date'
       payout_amount: 'Somme'
       payout_fees: 'Frais'
@@ -600,6 +607,7 @@ fr:
       table_title_type: 'Type'
       table_title_action: 'Action'
       table_title_charge_date: 'Date de paiement'
+      table_title_description: 'Description'
       table_title_customer_id: 'Identifiant client'
       table_title_customer_fname: 'Prénom'
       table_title_customer_lname: 'Nom de famille'

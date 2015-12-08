@@ -19,13 +19,14 @@ class EventsController < ApplicationController
       respond_to do |format|
         format.html do
           @events = Event.where(parent_event_id: parent_events).includes(:payment, :refund).order('events.gc_created_at desc').all.paginate(page: params[:page])
+          @statistics = Event.statistics_payouts(payouts)
         end
         format.js do
           @events = Event.where(parent_event_id: parent_events).includes(:payment, :refund).order('events.gc_created_at desc').all.paginate(page: params[:page])
         end
         format.csv do
-          @clients = current_user.clients.filter(params_filters).includes(:customers, :mandates).order('source_created_at desc').all
-          headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('clients.index.csv_name') + ".csv\""
+          @events = Event.where(parent_event_id: parent_events).includes(:payment, :refund).order('events.gc_created_at desc').all
+          headers['Content-Disposition'] = "attachment; filename=\"" + I18n.t('events.payouts.csv_name') + ".csv\""
           headers['Content-Type'] ||= 'text/csv'
         end
       end
