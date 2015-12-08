@@ -516,6 +516,12 @@ en:
     mandate_link:
       explanation: 'You can send your personal mandate link below to all your customers. Once they fill it, they will automatically appear in the dashboard and you will be authorised to start taking payments from their bank account.'
       send_link: 'Send this link:'
+  events:
+    payouts:
+      h1: 'Payout summary'
+      summary_volume: 'Total credited'
+      summary_fees: 'Total fees'
+      csv_name: 'payout-list'
   mandates:
     index:
       h1: 'Mandate summary'
@@ -588,6 +594,7 @@ en:
       table_title_status: 'Status'
       table_title_reference: 'Reference'
       no_payouts: 'There are no corresponding payouts or your data is synchronising'
+      view_breakdown_button: 'View monthly breakdown'
     show:
       h1: 'Payout'
       link_export: 'Export'
@@ -599,6 +606,7 @@ en:
       table_title_type: 'Type'
       table_title_action: 'Action'
       table_title_charge_date: 'Charge date'
+      table_title_description: 'Description'
       table_title_customer_id: 'Customer ID'
       table_title_customer_fname: 'First name'
       table_title_customer_lname: 'Family name'

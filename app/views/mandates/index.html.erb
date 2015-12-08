@@ -7,7 +7,7 @@
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<%= t('.create_mandate_button') %>
 			</button>
-			<a href="<%= mandates_path(format: :csv, time_filter: @time_filter, scheme_filter: @scheme_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
+			<a href="<%= mandates_path(format: :csv, time_filter: @time_filter, time_filter_from: @time_filter_from, time_filter_to: @time_filter_to, scheme_filter: @scheme_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>
 			</a>

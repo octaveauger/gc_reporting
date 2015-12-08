@@ -1,5 +1,15 @@
 <% provide(:title, t('.h1')) %>
-<h1><%= t('.h1') %></h1>
+<div class="row">
+	<div class="col-sm-8"><h1><%= t('.h1') %></h1></div>
+	<div class="col-sm-4">
+		<div class="pull-right">
+			<a href="<%= payouts_events_path %>" class="btn pop h1-btn">
+				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+				<%= t('.view_breakdown_button') %>
+			</a>
+		</div>
+	</div>
+</div>
 <p><%= t('.fee_disclaimer') %></p>
 
 <% if !current_user.recent_update? %>
