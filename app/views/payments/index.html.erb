@@ -8,7 +8,7 @@
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				<%= t('.create_payment_button') %>
 			</a>
-			<a href="<%= payments_path(format: :csv, time_filter: @time_filter, currency_filter: @currency_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
+			<a href="<%= payments_path(format: :csv, time_filter: @time_filter, time_filter_from: @time_filter_from, time_filter_to: @time_filter_to, currency_filter: @currency_filter, status_filter: @status_filter) %>" class='btn pop h1-btn' %>
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<%= t('.link_export') %>
 			</a>
