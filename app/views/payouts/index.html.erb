@@ -16,43 +16,49 @@
 	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<form action="<%= payouts_path %>" method="get" class="form-inline">
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.time.label') %></p>
-	</div>
-	<div class="form-group">
-		<%= select_tag(:time_filter, options_for_select(Payout.time_filters, @time_filter), class: 'form-control') %>
-	</div>
-	<div class="input-group input-range hide" id="time-filters-between">
-		<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
-    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
-		<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
-	</div>
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.currency.label') %></p>
-	</div>
-	<div class="form-group">
-		<%= select_tag(:currency_filter, options_for_select(Payout.currency_filters, @currency_filter), class: 'form-control') %>
-	</div>
-	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
-</form>
+<div class="panel panel-white">
+	<form action="<%= payouts_path %>" method="get" class="form-inline">
+		<div class="form-group">
+			<p class='form-control-static'><%= t('filters.time.label') %></p>
+		</div>
+		<div class="form-group">
+			<%= select_tag(:time_filter, options_for_select(Payout.time_filters, @time_filter), class: 'form-control') %>
+		</div>
+		<div class="input-group input-range hide" id="time-filters-between">
+			<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
+	    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
+			<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
+		</div>
+		<div class="form-group">
+			<p class='form-control-static'><%= t('filters.currency.label') %></p>
+		</div>
+		<div class="form-group">
+			<%= select_tag(:currency_filter, options_for_select(Payout.currency_filters, @currency_filter), class: 'form-control') %>
+		</div>
+		<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+	</form>
+</div>
 
-<table class="table">
-	<th><%= t('.table_title_payout_date') %></th>
-	<th><%= t('.table_title_amount') %></th>
-	<th><%= t('.table_title_fees') %></th>
-	<th><%= t('.table_title_reference') %></th>
-	<th><%= t('.table_title_status') %></th>
-	<th></th>
-	<% if !@payouts.nil? and @payouts.any? %>
-		<%= render partial: 'payouts/payout', collection: @payouts %>
-	<% end %>
-</table>
+<div class="panel panel-white">
+	<table class="table">
+		<th><%= t('.table_title_payout_date') %></th>
+		<th><%= t('.table_title_amount') %></th>
+		<th><%= t('.table_title_fees') %></th>
+		<th><%= t('.table_title_reference') %></th>
+		<th><%= t('.table_title_status') %></th>
+		<th></th>
+		<% if !@payouts.nil? and @payouts.any? %>
+			<%= render partial: 'payouts/payout', collection: @payouts %>
+		<% end %>
+	</table>
+</div>
 
 <% if !@payouts.nil? and @payouts.any? %>
 	<div id="infinite-scrolling">
 		<%= will_paginate @payouts %>
 	</div>
 <% else %>
-	<p><%= t('.no_payouts') %></p>
+	<div class="panel panel-white">
+		<p><%= t('.no_payouts') %></p>
+	</div>
 <% end %>

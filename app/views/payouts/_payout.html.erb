@@ -7,5 +7,5 @@
 		<div class="status-disc status-disc-<%= status_meaning(payout.status) %>"></div>
 		<%= t('gocardless.payout.status.' + payout.status) %>
 	</td>
-	<td><a href="<%= payout_path(payout.gc_id) %>" class="btn btn-xs"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+	<td><a href="<%= payout_path(payout.gc_id) %>"><span class="glyphicon glyphicon-eye-open"></span></a></td>
 </tr>

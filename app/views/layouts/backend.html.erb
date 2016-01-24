@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('header.app_name') %> | <%= yield(:title) %></title>
+  <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= favicon_link_tag %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body id= "page-top" class="index <%= 'home' if yield(:title) == 'Home' %>">
+
+<div id="locale" data-value="<%= I18n.locale.to_s == 'en' ? 'en-GB' : I18n.locale.to_s  %>"></div>
+
+<%= render 'layouts/header_backend' %>
+
+<div id="wrapper">
+  <div id="wrapper-sidebar">
+    <% if signed_in? %>
+      <%= render 'layouts/sidebar_backend' %>
+    <% end %>
+  </div>
+  <div id="wrapper-page" class="clearfix">
+    <%= render 'layouts/alerts' %>
+  	<%= yield %>
+  	<%= debug(params) if Rails.env.development? %>
+  </div>
+</div>
+
+<%= render 'layouts/tracking' %>
+
+</body>
+</html>

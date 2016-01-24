@@ -1,7 +1,5 @@
 <tr id="<%= mandate.gc_id %>">
 	<td><%= mandate.gc_created_at.strftime('%d/%m/%Y  %k:%M') %></td>
-	<td><%= mandate.customer.gc_id %></td>
-	<td><%= mandate.gc_id %></td>
 	<td>
 		<a class="modal-link" data-toggle="modal" data-target="#client-modal" data-path="<%= client_path(mandate.client.token) %>">
 			<%= mandate.client.display_name %><br/>

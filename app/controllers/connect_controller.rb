@@ -73,6 +73,7 @@ class ConnectController < ApplicationController
       @organisation.assign_attributes(country: 'FR') if I18n.locale.to_s == 'fr'
     end
     @organisation.assign_attributes(locale: I18n.locale.to_s) if @organisation.locale.blank?
+    render layout: 'backend'
   end
 
   def create_account

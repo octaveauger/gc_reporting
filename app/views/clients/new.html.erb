@@ -1,21 +1,29 @@
-<%= render partial: 'clients/add_client_tabs', locals: { active_tab: 'add_client' } %>
+<div class="panel panel-white">
+	<div class="row">
+		<%= render partial: 'clients/add_client_tabs', locals: { active_tab: 'add_client' } %>
+	</div>
+</div>
 
-<div class="col-md-8 col-md-offset-2">
-	<div class="col-xs-offset-3"><p><%= t('.form_intro') %></p></div>
+<div class="panel panel-white">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="col-xs-offset-3"><p><%= t('.form_intro') %></p></div>
 
-	<%= simple_form_for @client, :url => clients_path do |f| %>
-		<%= f.input :fname, label: t('.form_label_fname'), autofocus: true %>
-		<%= f.input :lname, label: t('.form_label_lname')%>
-		<%= f.input :email, label: t('.form_label_email') %>
-		<%= f.input :company_name, label: t('.form_label_company_name') %>
-		<%= f.input :source_client_id, label: t('.form_label_source_client_id'), placeholder: t('.form_placeholder_source_client_id') %>
-		<hr/>
-		<%= f.input :request_mandate, as: :boolean, wrapper: :checkbox, inline_label: t('.form_label_mandate_request') %>
-		<div class="form-group">
-			<%= label_tag(:locale, t('.form_label_locale'), class: 'control-label col-xs-3') %>
-			<div class="col-xs-9"><%= f.select :locale, [[t('locales.en'), 'en'], [t('locales.fr'), 'fr']], {}, { class: 'form-control' } %></div>
+			<%= simple_form_for @client, :url => clients_path do |f| %>
+				<%= f.input :fname, label: t('.form_label_fname'), autofocus: true %>
+				<%= f.input :lname, label: t('.form_label_lname')%>
+				<%= f.input :email, label: t('.form_label_email') %>
+				<%= f.input :company_name, label: t('.form_label_company_name') %>
+				<%= f.input :source_client_id, label: t('.form_label_source_client_id'), placeholder: t('.form_placeholder_source_client_id') %>
+				<hr/>
+				<%= f.input :request_mandate, as: :boolean, wrapper: :checkbox, inline_label: t('.form_label_mandate_request') %>
+				<div class="form-group">
+					<%= label_tag(:locale, t('.form_label_locale'), class: 'control-label col-xs-3') %>
+					<div class="col-xs-9"><%= f.select :locale, [[t('locales.en'), 'en'], [t('locales.fr'), 'fr']], {}, { class: 'form-control' } %></div>
+				</div>
+				<%= f.input :mandate_request_description, label: t('.form_label_mandate_request_description'), placeholder: t('.form_placeholder_mandate_request_description') %>
+				<div class="col-xs-offset-3"><%= f.button :submit, t('.form_button_submit'), :class => 'btn btn-primary btn-block' %></div>
+			<% end %>
 		</div>
-		<%= f.input :mandate_request_description, label: t('.form_label_mandate_request_description'), placeholder: t('.form_placeholder_mandate_request_description') %>
-		<div class="col-xs-offset-3"><%= f.button :submit, t('.form_button_submit'), :class => 'btn btn-primary btn-block' %></div>
-	<% end %>
+	</div>
 </div>
