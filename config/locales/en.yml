@@ -587,7 +587,7 @@ en:
   payouts:
     index:
       h1: 'Payout summary'
-      fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
+      fee_disclaimer: 'Please note that all fees are calculated taking into account the GoCardless standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
       table_title_payout_date: 'Creation date'
       table_title_amount: 'Amount'
       table_title_fees: 'Fees'
