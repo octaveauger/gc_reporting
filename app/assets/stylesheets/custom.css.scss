@@ -104,21 +104,30 @@ body {
 
 /* Nav sidebar */
 
-#wrapper {
+.wrapper-lg {
   padding-left: 160px;
 }
+.wrapper-sm {
+  padding-left: 60px;
+}
 
-#wrapper-sidebar {
+.wrapper-sidebar {
   background: #34425A;
-  left: 160px;
-  margin-left: -160px;
   margin-top: 0px;
   position: fixed;
   height: 100%;
   overflow-y: auto;
 }
+.wrapper-sidebar-lg {
+  left: 160px;
+  margin-left: -160px;
+}
+.wrapper-sidebar-sm {
+  left: 60px;
+  margin-left: -60px;
+}
 
-#wrapper-page {
+.wrapper-page {
   padding-left: 20px;
   padding-right: 20px;
   position: relative;
@@ -128,11 +137,17 @@ body {
 .menu.accordion-menu {
   padding: 0;
   margin: 0;
-  width: 160px;
   color: #fff;
   position: relative;
   display: block;
 }
+.menu.accordion-menu-lg {
+  width: 160px;
+}
+.menu.accordion-menu-sm {
+  width: 60px;
+}
+
 .menu {
   background: #34425A;
 }
@@ -364,6 +379,10 @@ tr:first-of-type {
 
 .modal-header{
   padding: 5px 15px;
+}
+
+.modal-content {
+  background-color: #F1F4F9;
 }
 
 .no-padding-left {

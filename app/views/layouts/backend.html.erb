@@ -16,13 +16,13 @@
 
 <%= render 'layouts/header_backend' %>
 
-<div id="wrapper">
-  <div id="wrapper-sidebar">
+<div class="wrapper-lg">
+  <div class="wrapper-sidebar wrapper-sidebar-lg">
     <% if signed_in? %>
       <%= render 'layouts/sidebar_backend' %>
     <% end %>
   </div>
-  <div id="wrapper-page" class="clearfix">
+  <div class="wrapper-page" class="clearfix">
     <%= render 'layouts/alerts' %>
   	<%= yield %>
   	<%= debug(params) if Rails.env.development? %>

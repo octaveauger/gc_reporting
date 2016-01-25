@@ -549,7 +549,7 @@ en:
       link_export: 'Export'
       csv_name: 'payment-list'
       table_title_payment_id: 'Payment ID'
-      table_title_payment_date: 'Payment creation date'
+      table_title_payment_date: 'Creation date'
       table_title_customer_id: 'Customer ID'
       table_title_customer_fname: 'First name'
       table_title_customer_lname: 'Family name'
@@ -588,7 +588,7 @@ en:
     index:
       h1: 'Payout summary'
       fee_disclaimer: 'Please note that all fees are calculated taking into account our standard 1% capped at €2/£2. If this is not your case, your actual fees will be different.'
-      table_title_payout_date: 'Payout creation date'
+      table_title_payout_date: 'Creation date'
       table_title_amount: 'Amount'
       table_title_fees: 'Fees'
       table_title_status: 'Status'
