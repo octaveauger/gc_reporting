@@ -1,41 +1,46 @@
-<div class="col-md-8 col-md-offset-2">
-	<h1><%= t('.h1') %></h1>
+<% provide(:title, t('.h1')) %>
+<h1><%= t('.h1') %></h1>
 
-	<%= simple_form_for @payment, :url => payments_path  do |f| %>
-		<div class="form-group <%= 'has-error' unless @payment.errors[:mandate_id].empty? %>">
-			<%= label_tag(:mandate_id, t('.form_label_customer'), class: 'control-label') %>
-			<%= f.select :mandate_id, @mandates.map{ |m| [m.customer_name, m.gc_id]}, {}, { class: 'form-control', target: mandate_url(@mandate_selected.gc_id).sub(@mandate_selected.gc_id, '') } %>
-			<%= f.error :mandate_id %>
+<div class="panel panel-white">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<%= simple_form_for @payment, :url => payments_path  do |f| %>
+				<div class="form-group <%= 'has-error' unless @payment.errors[:mandate_id].empty? %>">
+					<%= label_tag(:mandate_id, t('.form_label_customer'), class: 'control-label') %>
+					<%= f.select :mandate_id, @mandates.map{ |m| [m.customer_name, m.gc_id]}, {}, { class: 'form-control', target: mandate_url(@mandate_selected.gc_id).sub(@mandate_selected.gc_id, '') } %>
+					<%= f.error :mandate_id %>
+				</div>
+				<div class="form-group <%= 'has-error' unless @payment.errors[:amount].empty? %>">
+					<label class="control-label" for="amount"><%= t('.form_label_amount') %> (<span id="payment_currency"><%= currency_symbol(@mandate_selected.currency) %></span>)</label>
+					<%= f.text_field :amount, placeholder: 10, class: 'form-control' %>
+					<%= f.error :amount %>
+				</div>
+				<div class="form-group <%= 'has-error' unless @payment.errors[:description].empty? %>">
+					<%= label_tag(:description, t('.form_label_description'), class: 'control-label') %>
+					<%= f.text_field :description, placeholder: t('.form_hint_description'), class: 'form-control' %>
+					<%= f.error :description %>
+				</div>
+				<div class="form-group <%= 'has-error' unless @payment.errors[:reference].empty? %>">
+					<%= label_tag(:reference, t('.form_label_reference'), class: 'control-label') %>
+					<%= f.text_field :reference, placeholder: t('.form_hint_reference'), class: 'form-control' %>
+					<%= f.error :reference %>
+				</div>
+				<div class="form-group <%= 'has-error' unless @payment.errors[:charge_date].empty? %>">
+					<label class="control-label" for="charge_date">
+						<%= t('.form_label_charge_date_start') %> <span id="next_possible_charge_date"><%= @next_possible_charge_date.to_date.strftime('%d/%m/%Y') %></span><%= t('.form_label_charge_date_end') %>
+					</label>
+					<%= f.date_field :charge_date, value: @payment.charge_date || @next_possible_charge_date, class: 'form-control' %>
+					<%= f.error :charge_date %>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 no-padding-left">
+						<a href="<%= payments_path %>" class="btn btn-default btn-block col-xs-4"><%= t('.form_button_cancel') %></a>
+					</div>
+					<div class="col-xs-8 no-padding-right">
+						<button type="submit" class="btn btn-primary btn-block"><%= t('.form_button_submit') %></button>
+					</div>
+				</div>
+			<% end %>
 		</div>
-		<div class="form-group <%= 'has-error' unless @payment.errors[:amount].empty? %>">
-			<label class="control-label" for="amount"><%= t('.form_label_amount') %> (<span id="payment_currency"><%= currency_symbol(@mandate_selected.currency) %></span>)</label>
-			<%= f.text_field :amount, placeholder: 10, class: 'form-control' %>
-			<%= f.error :amount %>
-		</div>
-		<div class="form-group <%= 'has-error' unless @payment.errors[:description].empty? %>">
-			<%= label_tag(:description, t('.form_label_description'), class: 'control-label') %>
-			<%= f.text_field :description, placeholder: t('.form_hint_description'), class: 'form-control' %>
-			<%= f.error :description %>
-		</div>
-		<div class="form-group <%= 'has-error' unless @payment.errors[:reference].empty? %>">
-			<%= label_tag(:reference, t('.form_label_reference'), class: 'control-label') %>
-			<%= f.text_field :reference, placeholder: t('.form_hint_reference'), class: 'form-control' %>
-			<%= f.error :reference %>
-		</div>
-		<div class="form-group <%= 'has-error' unless @payment.errors[:charge_date].empty? %>">
-			<label class="control-label" for="charge_date">
-				<%= t('.form_label_charge_date_start') %> <span id="next_possible_charge_date"><%= @next_possible_charge_date.to_date.strftime('%d/%m/%Y') %></span><%= t('.form_label_charge_date_end') %>
-			</label>
-			<%= f.date_field :charge_date, value: @payment.charge_date || @next_possible_charge_date, class: 'form-control' %>
-			<%= f.error :charge_date %>
-		</div>
-		<div class="row">
-			<div class="col-xs-4 no-padding-left">
-				<a href="<%= payments_path %>" class="btn btn-default btn-block col-xs-4"><%= t('.form_button_cancel') %></a>
-			</div>
-			<div class="col-xs-8 no-padding-right">
-				<button type="submit" class="btn btn-primary btn-block"><%= t('.form_button_submit') %></button>
-			</div>
-		</div>
-	<% end %>
+	</div>
 </div>

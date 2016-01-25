@@ -36,7 +36,9 @@ function initialize() {
 
   // Calls the client modal via ajax
   $('.modal-link[data-target="#client-modal"]').off('click').on('click', function(e) {
-    $('#client-modal').find('.modal-content').load($(this).attr('data-path'));
+    $('#client-modal').find('.modal-content').load($(this).attr('data-path'), function() {
+      initialize(); //make sure the usual JS is available post-loading, e.g tooltips
+    });
   });
 
   // Trigger get actions via Ajax (e.g cancel mandate)

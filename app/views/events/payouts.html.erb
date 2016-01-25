@@ -16,43 +16,49 @@
 	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<form action="<%= payouts_events_path %>" method="get" class="form-inline">
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.time.label') %></p>
-	</div>
-	<div class="form-group">
-		<%= select_tag(:time_filter, options_for_select(Event.time_filters, @time_filter), class: 'form-control') %>
-	</div>
-	<div class="input-group input-range hide" id="time-filters-between">
-		<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
-    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
-		<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
-	</div>
-	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
-</form>
-
-<div class="panel panel-default row" style="margin-top:20px">
-	<% ['gbp', 'eur', 'sek'].each do |currency| %>
-		<dl class="dl-horizontal col-sm-4" style="margin-bottom: 0">
-			<dt><%= t('.summary_volume') + ' ' + currency.upcase %></dt>
-			<dd><%= number_to_currency(@statistics[currency][:volume]/100.0, precision: 2, unit: currency_symbol(currency.upcase)) %></dd>
-			<dt><%= t('.summary_fees') + ' ' + currency.upcase %></dt>
-			<dd><%= number_to_currency(@statistics[currency][:fees]/100.0, precision: 2, unit: currency_symbol(currency.upcase)) %></dd>
-		</dl>
-	<% end %>
+<div class="panel panel-white">
+	<form action="<%= payouts_events_path %>" method="get" class="form-inline">
+		<div class="form-group">
+			<p class='form-control-static'><%= t('filters.time.label') %></p>
+		</div>
+		<div class="form-group">
+			<%= select_tag(:time_filter, options_for_select(Event.time_filters, @time_filter), class: 'form-control') %>
+		</div>
+		<div class="input-group input-range hide" id="time-filters-between">
+			<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
+	    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
+			<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
+		</div>
+		<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+	</form>
 </div>
 
-<table class="table" id="results">
-	<th><%= t('payouts.show.table_title_type') %></th>
-	<th><%= t('payouts.show.table_title_action') %></th>
-	<th><%= t('payouts.show.table_title_charge_date') %></th>
-	<th><%= t('payouts.show.table_title_description') %></th>
-	<th><%= t('payouts.show.table_title_customer') %></th>
-	<th><%= t('payouts.show.table_title_credit') %></th>
-	<th><%= t('payouts.show.table_title_debit') %></th>
-	<th><%= t('payouts.show.table_title_fees') %></th>
-	<%= render partial: 'payouts/payout_event', collection: @events %>
-</table>
+<div class="panel panel-white">
+	<div class="row">
+		<% ['gbp', 'eur', 'sek'].each do |currency| %>
+			<dl class="dl-horizontal col-sm-4" style="margin-bottom: 0">
+				<dt><%= t('.summary_volume') + ' ' + currency.upcase %></dt>
+				<dd><%= number_to_currency(@statistics[currency][:volume]/100.0, precision: 2, unit: currency_symbol(currency.upcase)) %></dd>
+				<dt><%= t('.summary_fees') + ' ' + currency.upcase %></dt>
+				<dd><%= number_to_currency(@statistics[currency][:fees]/100.0, precision: 2, unit: currency_symbol(currency.upcase)) %></dd>
+			</dl>
+		<% end %>
+	</div>
+</div>
+
+<div class="panel panel-white">
+	<table class="table" id="results">
+		<th><%= t('payouts.show.table_title_type') %></th>
+		<th><%= t('payouts.show.table_title_action') %></th>
+		<th><%= t('payouts.show.table_title_charge_date') %></th>
+		<th><%= t('payouts.show.table_title_description') %></th>
+		<th><%= t('payouts.show.table_title_customer') %></th>
+		<th><%= t('payouts.show.table_title_credit') %></th>
+		<th><%= t('payouts.show.table_title_debit') %></th>
+		<th><%= t('payouts.show.table_title_fees') %></th>
+		<%= render partial: 'payouts/payout_event', collection: @events %>
+	</table>
+</div>
 <div id="infinite-scrolling">
 	<%= will_paginate @events %>
 </div>

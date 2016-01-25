@@ -19,53 +19,57 @@
 	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<div class="row">
-	<div class="col-sm-12">
-		<form action="<%= clients_path %>" method="get" class="form-inline pull-left">
-			<div class="form-group">
-				<p class='form-control-static'><%= t('filters.time.label') %></p>
-			</div>
-			<div class="form-group">
-				<%= select_tag(:time_filter, options_for_select(Client.time_filters, @time_filter), class: 'form-control') %>
-			</div>
-			<div class="input-group input-range hide" id="time-filters-between">
-				<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
-		    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
-				<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
-			</div>
-			<div class="form-group">
-				<p class='form-control-static'><%= t('filters.valid_mandate.label') %></p>
-			</div>
-			<div class="form-group">
-				<%= select_tag(:valid_mandate_filter, options_for_select(Client.valid_mandate_filters, @valid_mandate_filter), class: 'form-control') %>
-			</div>
-			<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
-		</form>
-	</div>
-	<div class="col-sm-6">
+<div class="panel panel-white">
+	<div class="row">
+		<div class="col-sm-12">
+			<form action="<%= clients_path %>" method="get" class="form-inline pull-left">
+				<div class="form-group">
+					<p class='form-control-static'><%= t('filters.time.label') %></p>
+				</div>
+				<div class="form-group">
+					<%= select_tag(:time_filter, options_for_select(Client.time_filters, @time_filter), class: 'form-control') %>
+				</div>
+				<div class="input-group input-range hide" id="time-filters-between">
+					<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
+			    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
+					<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
+				</div>
+				<div class="form-group">
+					<p class='form-control-static'><%= t('filters.valid_mandate.label') %></p>
+				</div>
+				<div class="form-group">
+					<%= select_tag(:valid_mandate_filter, options_for_select(Client.valid_mandate_filters, @valid_mandate_filter), class: 'form-control') %>
+				</div>
+				<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+			</form>
+		</div>
 	</div>
 </div>
 
-<table class="table" id="results">
-	<th><%= t('.table_title_creation_date') %></th>
-	<th><%= t('.table_title_customer_name') %></th>
-	<th><%= t('.table_title_company_name') %></th>
-	<th><%= t('.table_title_email') %></th>
-	<th><%= t('.table_title_source_client_id') %></th>
-	<th><%= t('.table_title_source') %></th>
-	<th></th>
-	<th></th>
-	<% if !@clients.nil? and @clients.any? %>
-		<%= render partial: 'clients/client', collection: @clients %>
-	<% end %>
-</table>
+<div class="panel panel-white">
+	<table class="table" id="results">
+		<th><%= t('.table_title_creation_date') %></th>
+		<th><%= t('.table_title_customer_name') %></th>
+		<th><%= t('.table_title_company_name') %></th>
+		<th><%= t('.table_title_email') %></th>
+		<th><%= t('.table_title_source_client_id') %></th>
+		<th><%= t('.table_title_source') %></th>
+		<th></th>
+		<th></th>
+		<% if !@clients.nil? and @clients.any? %>
+			<%= render partial: 'clients/client', collection: @clients %>
+		<% end %>
+	</table>
+</div>
 
 <% if !@clients.nil? and @clients.any? %>
 	<div id="infinite-scrolling">
 		<%= will_paginate @clients %>
 	</div>
 <% else %>
-	<p><%= t('.no_clients') %></p>
+	<div class="panel panel-white">
+		<p><%= t('.no_clients') %></p>
+	</div>
 <% end %>
 
 <%= render partial: 'clients/modal' %>

@@ -36,7 +36,7 @@ class Client < ActiveRecord::Base
   	if self.fname.blank? and self.lname.blank?
   		self.company_name
   	else
-	  	company_name = (self.company_name.blank? ? '' : '(' + self.company_name.to_s + ')')
+	  	company_name = (self.company_name.blank? ? '' : ' (' + self.company_name.to_s + ')')
 	  	self.fname.to_s + ' ' + self.lname.to_s + company_name
     end
   end

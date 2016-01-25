@@ -588,8 +588,8 @@ fr:
   payouts:
     index:
       h1: 'Rapport de versements'
-      fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte de notre tarif standard de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
-      table_title_payout_date: 'Date de création du versement'
+      fee_disclaimer: "Veuillez noter que tous les frais sont calculés en tenant compte des tarifs standards de GoCardless de 1% plafonné à 2€/2£. Si cela n'est pas votre cas, vos frais réels seront différents."
+      table_title_payout_date: 'Date de création'
       table_title_amount: 'Somme'
       table_title_fees: 'Frais'
       table_title_status: 'Statut'

@@ -20,57 +20,63 @@
 	<%= render partial: 'layouts/loading' %>
 <% end %>
 
-<form action="<%= payments_path %>" method="get" class="form-inline">
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.time.label') %></p>
-	</div>
-	<div class="form-group">
-		<%= select_tag(:time_filter, options_for_select(Payment.time_filters, @time_filter), class: 'form-control') %>
-	</div>
-	<div class="input-group input-range hide" id="time-filters-between">
-		<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
-    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
-		<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
-	</div>
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.currency.label') %></p>
-	</div>
-	<div class="form-group">
-		<%= select_tag(:currency_filter, options_for_select(Payment.currency_filters, @currency_filter), class: 'form-control') %>
-	</div>
-	<div class="form-group">
-		<p class='form-control-static'><%= t('filters.payment_status.label') %></p>
-	</div>
-	<div class="form-group">
-		<%= select_tag(:status_filter, options_for_select(Payment.status_filters, @status_filter), class: 'form-control') %>
-	</div>
-	<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
-</form>
+<div class="panel panel-white">
+	<form action="<%= payments_path %>" method="get" class="form-inline">
+		<div class="form-group">
+			<p class='form-control-static'><%= t('filters.time.label') %></p>
+		</div>
+		<div class="form-group">
+			<%= select_tag(:time_filter, options_for_select(Payment.time_filters, @time_filter), class: 'form-control') %>
+		</div>
+		<div class="input-group input-range hide" id="time-filters-between">
+			<%= text_field_tag(:time_filter_from, @time_filter_from, class: 'form-control datepicker') %>
+	    	<span class="input-group-addon"><%= t('filters.time.and') %></span>
+			<%= text_field_tag(:time_filter_to, @time_filter_to, class: 'form-control datepicker') %>
+		</div>
+		<div class="form-group">
+			<p class='form-control-static'><%= t('filters.currency.label') %></p>
+		</div>
+		<div class="form-group">
+			<%= select_tag(:currency_filter, options_for_select(Payment.currency_filters, @currency_filter), class: 'form-control') %>
+		</div>
+		<div class="form-group">
+			<p class='form-control-static'><%= t('filters.payment_status.label') %></p>
+		</div>
+		<div class="form-group">
+			<%= select_tag(:status_filter, options_for_select(Payment.status_filters, @status_filter), class: 'form-control') %>
+		</div>
+		<button type="submit" class="btn btn-primary"><%= t('filters.form.submit') %></button>
+	</form>
+</div>
 
-<table class="table" id="results">
-	<th><%= t('.table_title_payment_date') %></th>
-	<th><%= t('.table_title_customer') %></th>
-	<th><%= t('.table_title_description') %></th>
-	<th><%= t('.table_title_reference') %></th>
-	<th><%= t('.table_title_charge_date') %></th>
-	<th><%= t('.table_title_gross_amount') %></th>
-	<th data-toggle="tooltip" data-placement="top" data-container="body" title="<%= t('.table_tooltip_net_amount') %>">
-		<%= t('.table_title_net_amount') %>
-	</th>
-	<th><%= t('.table_title_status') %></th>
-	<th><%= t('.table_title_error_cause') %></th>
-	<th></th>
-	<% if !@payments.nil? and @payments.any? %>
-		<%= render partial: 'payments/payment', collection: @payments %>
-	<% end %>
-</table>
+<div class="panel panel-white">
+	<table class="table" id="results">
+		<th><%= t('.table_title_payment_date') %></th>
+		<th><%= t('.table_title_customer') %></th>
+		<th><%= t('.table_title_description') %></th>
+		<th><%= t('.table_title_reference') %></th>
+		<th><%= t('.table_title_charge_date') %></th>
+		<th><%= t('.table_title_gross_amount') %></th>
+		<th data-toggle="tooltip" data-placement="top" data-container="body" title="<%= t('.table_tooltip_net_amount') %>">
+			<%= t('.table_title_net_amount') %>
+		</th>
+		<th><%= t('.table_title_status') %></th>
+		<th><%= t('.table_title_error_cause') %></th>
+		<th></th>
+		<% if !@payments.nil? and @payments.any? %>
+			<%= render partial: 'payments/payment', collection: @payments %>
+		<% end %>
+	</table>
+</div>
 
 <% if !@payments.nil? and @payments.any? %>
 	<div id="infinite-scrolling">
 		<%= will_paginate @payments %>
 	</div>
 <% else %>
-	<p><%= t('.no_payments') %></p>
+	<div class="panel panel-white">
+		<p><%= t('.no_payments') %></p>
+	</div>
 <% end %>
 
 <%= render partial: 'clients/modal' %>

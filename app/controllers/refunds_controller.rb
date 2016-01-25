@@ -1,5 +1,6 @@
 class RefundsController < ApplicationController
   before_action :logged_in_user
+  layout 'backend'
 
   def new
   	@payments = current_user.payments.can_be_refunded.all
