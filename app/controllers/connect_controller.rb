@@ -1,6 +1,6 @@
 class ConnectController < ApplicationController
   READ_ONLY = 'read_only'.freeze
-  FULL_ACCESS = 'full_access'.freeze
+  FULL_ACCESS = 'read_write'.freeze
 
   def authorise
   	if params[:oauth_view] == 'signup'
