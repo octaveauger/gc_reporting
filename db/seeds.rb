@@ -16,3 +16,13 @@ sources_seed = [
 sources_seed.each do |source|
 	ClientSource.create(source) unless sources.include? source[:name]
 end
+
+# Initialising CRMs
+crms = Crm.all
+crms = crms.map { |s| s.name }
+crms_seed = [
+	{ name: 'sageone', display_name: 'SageOne' }
+]
+crms_seed.each do |crm|
+	Crm.create(crm) unless crms.include? crm[:name]
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105192340) do
+ActiveRecord::Schema.define(version: 20160226230036) do
 
   create_table "admins", force: true do |t|
     t.string   "email"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20151105192340) do
 
   add_index "creditors", ["gc_id"], name: "index_creditors_on_gc_id"
   add_index "creditors", ["organisation_id"], name: "index_creditors_on_organisation_id"
+
+  create_table "crms", force: true do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "crms", ["name"], name: "index_crms_on_name"
 
   create_table "customer_bank_accounts", force: true do |t|
     t.string   "customer_id"

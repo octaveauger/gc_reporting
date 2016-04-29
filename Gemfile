@@ -45,6 +45,7 @@ gem 'i18n_country_select'
 gem 'i18n-country-translations'
 gem 'bootstrap-tagsinput-rails'
 gem 'slack-notifier'
+gem 'sage_one'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

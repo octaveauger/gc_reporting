@@ -43,6 +43,13 @@ Rails.application.routes.draw do
     get :logout, on: :collection
   end
 
+  namespace :crmconnect do
+    resource :sageone, controller: :sageone do
+      get :authorise, on: :collection
+      get :callback, on: :collection
+    end
+  end
+
   get "authorisations/new/:flow_id", to: 'authorisations#new', as: 'authorisations_new'
   get "authorisations/confirm/:flow_id", to: 'authorisations#confirm', as: 'authorisations_confirm'
   get "authorisations/error"

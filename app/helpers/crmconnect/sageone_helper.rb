@@ -1,0 +1,2 @@
+module Crmconnect::SageoneHelper
+end
